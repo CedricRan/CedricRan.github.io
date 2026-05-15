@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portfolio - HSC</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Inter", sans-serif;
+}
+
+body {
+  background: radial-gradient(circle at top, #0b1220, #05070f);
+  color: white;
+  overflow-x: hidden;
+}
+
+/* HEADER */
+header {
+  text-align: center;
+  padding: 80px 20px;
+}
+
+.glow {
+  color: #60a5fa;
+  text-shadow: 0 0 20px rgba(96,165,250,0.6);
+}
+
+header h1 {
+  font-size: 3rem;
+  font-weight: 800;
+}
+
+header p {
+  color: #94a3b8;
+  margin-top: 10px;
+}
+
+/* NAV */
+nav {
+  margin-top: 25px;
+}
+
+nav a {
+  color: #cbd5e1;
+  margin: 0 15px;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+nav a:hover {
+  color: #60a5fa;
+}
+
+/* SECTIONS */
+section {
+  padding: 60px 15%;
+}
+
+h2 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  color: #60a5fa;
+}
+
+/* CARDS */
+.card {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.08);
+  padding: 25px;
+  border-radius: 16px;
+  margin-bottom: 20px;
+  backdrop-filter: blur(10px);
+  transition: 0.3s;
+}
+
+.card:hover {
+  transform: translateY(-8px);
+  border-color: #60a5fa;
+  box-shadow: 0 0 25px rgba(96,165,250,0.2);
+}
+
+/* GRID */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 20px;
+}
+
+/* BUTTON */
+.btn {
+  display: inline-block;
+  margin-top: 15px;
+  padding: 12px 18px;
+  background: #2563eb;
+  color: white;
+  text-decoration: none;
+  border-radius: 10px;
+  transition: 0.3s;
+}
+
+.btn:hover {
+  background: #1d4ed8;
+  box-shadow: 0 0 20px rgba(37,99,235,0.5);
+}
+
+/* FOOTER */
+footer {
+  text-align: center;
+  padding: 30px;
+  color: #64748b;
+}
+
+/* SMALL GLOW DECOR */
+.blur-circle {
+  position: absolute;
+  width: 300px;
+  height: 300px;
+  background: #2563eb;
+  filter: blur(120px);
+  opacity: 0.3;
+  top: -100px;
+  left: -100px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="blur-circle"></div>
+
+<header>
+  <h1 class="glow">Herintsaina Steve Cedric</h1>
+  <p>Étudiant en IA & Big Data</p>
+  <p>Stage recherché en Intelligence Artificielle / Data Science</p>
+
+  <nav>
+    <a href="#about">About</a>
+    <a href="#skills">Skills</a>
+    <a href="#projects">Projects</a>
+    <a href="#contact">Contact</a>
+  </nav>
+</header>
+
+<section id="about">
+  <h2>À propos</h2>
+  <div class="card">
+    Étudiant passionné par l’Intelligence Artificielle, le Big Data et le développement logiciel.
+    Je construis des projets académiques en analyse de données et machine learning.
+  </div>
+</section>
+
+<section id="skills">
+  <h2>Compétences</h2>
+
+  <div class="grid">
+
+    <div class="card">
+      <h3>Langages</h3>
+      <p>Python, SQL</p>
+    </div>
+
+    <div class="card">
+      <h3>IA / Data</h3>
+      <p>Machine Learning, EDA</p>
+    </div>
+
+    <div class="card">
+      <h3>Outils</h3>
+      <p>Vim, Jupyter lab, Git</p>
+    </div>
+
+  </div>
+</section>
+
+<section id="projects">
+  <h2>Projets</h2>
+
+  <div class="card">
+    <h3>Smart Traffic AI</h3>
+    <p>Prédiction des embouteillages et optimisation d’itinéraire avec analyse de données.</p>
+    <p><b>Tech:</b> Python, IA rule based</p>
+  </div>
+
+  <div class="card">
+    <h3>Android Game Arcade</h3>
+    <p>Développement d’un jeu Android dans un projet académique.</p>
+    <p><b>Tech:</b> Kotlin, Android Studio, Javascript, Html, Css</p>
+  </div>
+
+</section>
+
+<section id="contact">
+  <h2>Contact</h2>
+
+  <div class="card">
+    <p>Email : herintsainastevecedric@gmail.com</p>
+    <p>Tel : 038 50 124 33</p>
+    <p>Antananarivo, Madagascar</p>
+
+    <a class="btn" href="mailto:herintsainastevecedric@gmail.com">
+      Me contacter
+    </a>
+  </div>
+</section>
+
+<footer>
+
+</footer>
+<script>
+  const footer = document.querySelector("footer")
+  const Year = new Date().getFullYear()
+  footer.innerText = `© ${Year} - Herintsaina Steve Cedric`
+</script>
+</body>
+</html>
