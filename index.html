@@ -1,222 +1,567 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Portfolio - HSC</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RANDRIANARISOA Herintsaina Steve Cedric - Portfolio</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark: #05070f;
+            --bg-card: rgba(255, 255, 255, 0.03);
+            --border-card: rgba(255, 255, 255, 0.08);
+            --primary: #3b82f6;
+            --primary-glow: rgba(59, 130, 246, 0.3);
+            --accent: #60a5fa;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+        }
 
-<style>
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: "Inter", sans-serif;
-}
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Inter", sans-serif;
+            scroll-behavior: smooth;
+        }
 
-body {
-  background: radial-gradient(circle at top, #0b1220, #05070f);
-  color: white;
-  overflow-x: hidden;
-}
+        body {
+            background: radial-gradient(circle at top, #0f172a, var(--bg-dark));
+            color: var(--text-main);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
 
-/* HEADER */
-header {
-  text-align: center;
-  padding: 80px 20px;
-}
+        /* Arrière-plans décoratifs */
+        .blur-circle {
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            background: var(--primary);
+            filter: blur(150px);
+            opacity: 0.15;
+            top: -150px;
+            left: -100px;
+            z-index: -1;
+        }
 
-.glow {
-  color: #60a5fa;
-  text-shadow: 0 0 20px rgba(96,165,250,0.6);
-}
+        .blur-circle-2 {
+            position: absolute;
+            width: 350px;
+            height: 350px;
+            background: #a855f7;
+            filter: blur(130px);
+            opacity: 0.1;
+            top: 600px;
+            right: -100px;
+            z-index: -1;
+        }
 
-header h1 {
-  font-size: 3rem;
-  font-weight: 800;
-}
+        /* HEADER */
+        header {
+            text-align: center;
+            padding: 100px 20px 60px 20px;
+            position: relative;
+        }
 
-header p {
-  color: #94a3b8;
-  margin-top: 10px;
-}
+        .glow {
+            color: var(--text-main);
+            font-size: 3.5rem;
+            font-weight: 800;
+            letter-spacing: -1px;
+            margin-bottom: 5px;
+            background: linear-gradient(to right, #fff, #94a3b8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
 
-/* NAV */
-nav {
-  margin-top: 25px;
-}
+        header h2 {
+            font-size: 1.5rem;
+            color: var(--accent);
+            font-weight: 600;
+            margin-top: 10px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
 
-nav a {
-  color: #cbd5e1;
-  margin: 0 15px;
-  text-decoration: none;
-  transition: 0.3s;
-}
+        header .subtitle {
+            color: var(--text-muted);
+            max-width: 600px;
+            margin: 15px auto 0 auto;
+            font-size: 1.1rem;
+        }
 
-nav a:hover {
-  color: #60a5fa;
-}
+        /* NAVIGATION */
+        nav {
+            margin-top: 40px;
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            flex-wrap: wrap;
+        }
 
-/* SECTIONS */
-section {
-  padding: 60px 15%;
-}
+        nav a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            padding: 8px 16px;
+            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
 
-h2 {
-  font-size: 2rem;
-  margin-bottom: 20px;
-  color: #60a5fa;
-}
+        nav a:hover, nav a.active {
+            color: var(--text-main);
+            background: rgba(59, 130, 246, 0.1);
+            border-color: var(--primary);
+            box-shadow: 0 0 15px var(--primary-glow);
+        }
 
-/* CARDS */
-.card {
-  background: rgba(255,255,255,0.05);
-  border: 1px solid rgba(255,255,255,0.08);
-  padding: 25px;
-  border-radius: 16px;
-  margin-bottom: 20px;
-  backdrop-filter: blur(10px);
-  transition: 0.3s;
-}
+        /* SECTIONS */
+        section {
+            padding: 80px 10%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
 
-.card:hover {
-  transform: translateY(-8px);
-  border-color: #60a5fa;
-  box-shadow: 0 0 25px rgba(96,165,250,0.2);
-}
+        h2.section-title {
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: 40px;
+            color: var(--text-main);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
 
-/* GRID */
-.grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 20px;
-}
+        h2.section-title::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(to right, rgba(255,255,255,0.15), transparent);
+        }
 
-/* BUTTON */
-.btn {
-  display: inline-block;
-  margin-top: 15px;
-  padding: 12px 18px;
-  background: #2563eb;
-  color: white;
-  text-decoration: none;
-  border-radius: 10px;
-  transition: 0.3s;
-}
+        /* CARTES ET BLOCS */
+        .card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-card);
+            padding: 30px;
+            border-radius: 20px;
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), border-color 0.3s, box-shadow 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
 
-.btn:hover {
-  background: #1d4ed8;
-  box-shadow: 0 0 20px rgba(37,99,235,0.5);
-}
+        .card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(96, 165, 250, 0.4);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3), 0 0 20px rgba(59, 130, 246, 0.1);
+        }
 
-/* FOOTER */
-footer {
-  text-align: center;
-  padding: 30px;
-  color: #64748b;
-}
+        /* GRIDS */
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 25px;
+        }
 
-/* SMALL GLOW DECOR */
-.blur-circle {
-  position: absolute;
-  width: 300px;
-  height: 300px;
-  background: #2563eb;
-  filter: blur(120px);
-  opacity: 0.3;
-  top: -100px;
-  left: -100px;
-}
-</style>
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        /* PROJETS */
+        .project-card h3 {
+            font-size: 1.4rem;
+            color: var(--text-main);
+            margin-bottom: 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .project-card h3 span {
+            font-size: 0.8rem;
+            background: rgba(16, 185, 129, 0.15);
+            color: #10b981;
+            padding: 4px 10px;
+            border-radius: 12px;
+            border: 1px solid rgba(16, 185, 129, 0.2);
+        }
+
+        .project-card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 20px;
+        }
+
+        .tech-stack {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .tech-badge {
+            font-size: 0.8rem;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 5px 12px;
+            border-radius: 6px;
+            color: var(--accent);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        /* COMPÉTENCES */
+        .skill-group h3 {
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            color: var(--accent);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .skill-tags {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .skill-tag {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--border-card);
+            padding: 8px 16px;
+            border-radius: 10px;
+            font-size: 0.9rem;
+            transition: 0.2s;
+        }
+        
+        .skill-tag:hover {
+            background: rgba(59, 130, 246, 0.1);
+            border-color: var(--primary);
+        }
+
+        /* PARCOURS (FORMATION) */
+        .timeline {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .timeline-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            padding-bottom: 15px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .timeline-item:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+
+        .timeline-info h3 {
+            font-size: 1.15rem;
+            color: var(--text-main);
+        }
+
+        .timeline-info p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        .timeline-date {
+            font-size: 0.9rem;
+            color: var(--accent);
+            background: rgba(96, 165, 250, 0.1);
+            padding: 4px 12px;
+            border-radius: 12px;
+            white-space: nowrap;
+        }
+
+        /* CONTACT & INFOS */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+
+        .info-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .info-list li {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            color: var(--text-muted);
+        }
+
+        .info-list i {
+            color: var(--primary);
+            font-size: 1.2rem;
+            width: 24px;
+            text-align: center;
+        }
+
+        .info-list a {
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: 0.2s;
+        }
+
+        .info-list a:hover {
+            color: var(--accent);
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 14px 24px;
+            background: var(--primary);
+            color: white;
+            text-decoration: none;
+            border-radius: 12px;
+            font-weight: 600;
+            transition: 0.3s;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3);
+            margin-top: 15px;
+        }
+
+        .btn:hover {
+            background: #1d4ed8;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(37, 99, 235, 0.5);
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 900px) {
+            section { padding: 60px 5%; }
+            .contact-grid { grid-template-columns: 1fr; }
+            .glow { font-size: 2.5rem; }
+        }
+
+        /* FOOTER */
+        footer {
+            text-align: center;
+            padding: 40px;
+            margin-top: 60px;
+            color: var(--text-muted);
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            font-size: 0.9rem;
+        }
+    </style>
 </head>
-
 <body>
 
-<div class="blur-circle"></div>
+    <div class="blur-circle"></div>
+    <div class="blur-circle-2"></div>
 
-<header>
-  <h1 class="glow">Herintsaina Steve Cedric</h1>
-  <p>Étudiant en IA & Big Data</p>
-  <p>Stage recherché en Intelligence Artificielle / Data Science</p>
+    <header>
+        <h1 class="glow">Herintsaina Steve Cedric</h1>
+        <h2>Étudiant en IA & Big Data</h2>
+        <p class="subtitle">À la recherche d'une première expérience professionnelle (Stage / Alternance) pour mettre en pratique mes compétences en ingénierie des données et algorithmes intelligents.</p>
 
-  <nav>
-    <a href="#about">About</a>
-    <a href="#skills">Skills</a>
-    <a href="#projects">Projects</a>
-    <a href="#contact">Contact</a>
-  </nav>
-</header>
+        <nav>
+            <a href="#about"><i class="fa-regular fa-user"></i> Profil</a>
+            <a href="#skills"><i class="fa-solid fa-code"></i> Compétences</a>
+            <a href="#projects"><i class="fa-solid fa-laptop-code"></i> Projets</a>
+            <a href="#education"><i class="fa-solid fa-graduation-cap"></i> Formation</a>
+            <a href="#contact"><i class="fa-regular fa-envelope"></i> Contact</a>
+        </nav>
+    </header>
 
-<section id="about">
-  <h2>About</h2>
-  <div class="card">
-    Étudiant passionné par l’Intelligence Artificielle, le Big Data et le développement logiciel.
-    Je construis des projets académiques en analyse de données et machine learning.
-  </div>
-</section>
+    <section id="about">
+        <h2 class="section-title">Profil Professionnel</h2>
+        <div class="card">
+            <p style="font-size: 1.1rem; color: var(--text-muted); min-height: 50px;">
+                Actuellement en cursus d'ingénierie spécialisé, je me passionne pour la création de modèles de machine learning performants (from scratch ou via framework) et pour l'architecture de systèmes de données en temps réel. Autonome et orienté solutions, je maîtrise la stack Python et les écosystèmes Big Data modernes.
+            </p>
+        </div>
+    </section>
 
-<section id="skills">
-  <h2>Skills</h2>
+    <section id="skills">
+        <h2 class="section-title">Compétences Techniques</h2>
+        <div class="grid-3">
+            
+            <div class="card skill-group">
+                <h3><i class="fa-solid fa-terminal"></i> Langages</h3>
+                <div class="skill-tags">
+                    <span class="skill-tag">Python</span>
+                    <span class="skill-tag">SQL</span>
+                    <span class="skill-tag">JavaScript</span>
+                </div>
+            </div>
 
-  <div class="grid">
+            <div class="card skill-group">
+                <h3><i class="fa-solid fa-brain"></i> IA & Big Data</h3>
+                <div class="skill-tags">
+                    <span class="skill-tag">NumPy</span>
+                    <span class="skill-tag">Pandas</span>
+                    <span class="skill-tag">Scikit-Learn</span>
+                    <span class="skill-tag">Machine Learning</span>
+                </div>
+            </div>
 
-    <div class="card">
-      <h3>Langages</h3>
-      <p>Python, SQL</p>
-    </div>
+            <div class="card skill-group">
+                <h3><i class="fa-solid fa-screwdriver-wrench"></i> Outils</h3>
+                <div class="skill-tags">
+                    <span class="skill-tag">Git</span>
+                    <span class="skill-tag">Docker</span>
+                    <span class="skill-tag">Vim</span>
+                    <span class="skill-tag">PostgreSQL</span>
+                    <span class="skill-tag">Redis</span>
+                </div>
+            </div>
 
-    <div class="card">
-      <h3>IA / Data</h3>
-      <p>Machine Learning, EDA</p>
-    </div>
+        </div>
+    </section>
 
-    <div class="card">
-      <h3>Outils</h3>
-      <p>Vim, Jupyter lab, Git</p>
-    </div>
+    <section id="projects">
+        <h2 class="section-title">Projets Réalisés</h2>
+        <div class="grid-2">
 
-  </div>
-</section>
+            <div class="card project-card">
+                <h3>AINGANA <span>Backend & Cartographie</span></h3>
+                <p>Développement d'un système de prédiction de trafic basé sur des données simulées. Recherche de chemin optimal et mise en place d'une interface cartographique interactive (PWA) pour la visualisation des flux routiers en temps réel.</p>
+                <div style="margin-bottom:15px; color:var(--text-muted); font-size:0.9rem;">
+                    <i class="fa-solid fa-gears" style="color:var(--primary)"></i> Backend temps réel géré avec Redis pour optimiser les calculs dynamiques.
+                </div>
+                <div class="tech-stack">
+                    <span class="tech-badge">Python</span>
+                    <span class="tech-badge">JavaScript</span>
+                    <span class="tech-badge">Redis</span>
+                    <span class="tech-badge">Postgres</span>
+                    <span class="tech-badge">PWA</span>
+                </div>
+            </div>
 
-<section id="projects">
-  <h2>Projets</h2>
+            <div class="card project-card">
+                <h3>IA DE RECONNAISSANCE <span>Deep Learning</span></h3>
+                <p>Implémentation complète d'un Perceptron Multicouche (MLP) à partir de zéro (from scratch) sans framework haut niveau, afin de comprendre les rouages mathématiques de la rétropropagation.</p>
+                <div style="margin-bottom:15px; color:#10b981; font-size:0.9rem; font-weight: 600;">
+                    <i class="fa-solid fa-bullseye"></i> Précision (Accuracy) : 93.76% sur le dataset MNIST
+                </div>
+                <div class="tech-stack">
+                    <span class="tech-badge">Python</span>
+                    <span class="tech-badge">NumPy</span>
+                    <span class="tech-badge">Maths / Algorithmes</span>
+                </div>
+            </div>
 
-  <div class="card">
-    <h3>Smart Traffic AI</h3>
-    <p>Prédiction des embouteillages et optimisation d’itinéraire avec analyse de données.</p>
-    <p><b>Tech:</b> Python, IA rule based</p>
-  </div>
+        </div>
+    </section>
 
-  <div class="card">
-    <h3>Android Game Arcade</h3>
-    <p>Développement d’un jeu Android dans un projet académique.</p>
-    <p><b>Tech:</b> Kotlin, Android Studio, Javascript, Html, Css</p>
-  </div>
+    <section id="education">
+        <h2 class="section-title">Parcours Académique</h2>
+        <div class="card timeline">
+            
+            <div class="timeline-item">
+                <div class="timeline-info">
+                    <h3>Licence en IA et Big Data</h3>
+                    <p>GE-IT (Génie Enseignement Informatique et Technologie)</p>
+                </div>
+                <span class="timeline-date">2023 - 2026 (En cours)</span>
+            </div>
 
-</section>
+            <div class="timeline-item">
+                <div class="timeline-info">
+                    <h3>Baccalauréat</h3>
+                    <p>St Champagnat</p>
+                </div>
+                <span class="timeline-date">2022 - 2023</span>
+            </div>
 
-<section id="contact">
-  <h2>Contact</h2>
+            <div class="timeline-item">
+                <div class="timeline-info">
+                    <h3>Brevet d'Études du Premier Cycle (BEPC)</h3>
+                    <p>St Ignace de Loyola</p>
+                </div>
+                <span class="timeline-date">2019 - 2020</span>
+            </div>
 
-  <div class="card">
-    <p>Email : cedricran00449@gmail.com</p>
-    <p>Tel : 038 50 124 33</p>
-    <p>Antananarivo, Madagascar</p>
+        </div>
+    </section>
 
-    <a class="btn" href="mailto:herintsainastevecedric@gmail.com">
-      Me contacter
-    </a>
-  </div>
-</section>
+    <section id="contact">
+        <h2 class="section-title">Me Contacter</h2>
+        <div class="card contact-grid">
+            
+            <div>
+                <p style="margin-bottom: 20px; color: var(--text-muted);">N'hésitez pas à me contacter pour toute opportunité de stage, collaboration technique ou simplement pour échanger sur l'écosystème Data !</p>
+                <ul class="info-list">
+                    <li><i class="fa-regular fa-envelope"></i> <a href="mailto:cedricran00449@gmail.com">cedricran00449@gmail.com</a></li>
+                    <li><i class="fa-solid fa-phone"></i> <span>038 50 124 33</span></li>
+                    <li><i class="fa-solid fa-location-dot"></i> <span>IVN 85 Ô Ankasina, Antananarivo</span></li>
+                    <li><i class="fa-brands fa-github"></i> <a href="https://cedricran.github.io" target="_blank">cedricran.github.io</a></li>
+                </ul>
+            </div>
 
-<footer>
+            <div style="display: flex; flex-direction: column; justify-content: space-between; border-left: 1px solid rgba(255,255,255,0.05); padding-left: 30px;">
+                <div>
+                    <h4 style="color: var(--accent); margin-bottom: 5px;">Langues</h4>
+                    <p style="font-size:0.95rem; color: var(--text-muted);">
+                        🇲🇬 <b>Malagasy :</b> Courant <br>
+                        🇫🇷 <b>Français :</b> Intermédiaire <br>
+                        🇬🇧 <b>Anglais :</b> Intermédiaire
+                    </p>
+                </div>
+                <div style="margin-top: 15px;">
+                    <h4 style="color: var(--accent); margin-bottom: 5px;">Centres d'intérêt</h4>
+                    <p style="font-size:0.95rem; color: var(--text-muted);">Jeux vidéo • Cinéma / Films</p>
+                </div>
+                <a class="btn" href="mailto:cedricran00449@gmail.com">
+                    <i class="fa-regular fa-paper-plane"></i> Envoyer un message
+                </a>
+            </div>
 
-</footer>
-<script>
-  const footer = document.querySelector("footer")
-  const Year = new Date().getFullYear()
-  footer.innerText = `© ${Year} - Herintsaina Steve Cedric`
-</script>
+        </div>
+    </section>
+
+    <footer>
+        </footer>
+
+    <script>
+        // Mettre à jour l'année au footer automatiquement
+        const footer = document.querySelector("footer");
+        const currentYear = new Date().getFullYear();
+        footer.innerHTML = `&copy; ${currentYear} - RANDRIANARISOA Herintsaina Steve Cedric. Tous droits réservés.`;
+
+        // Effet de Navigation Actuelle au Scroll
+        const sections = document.querySelectorAll("section");
+        const navLinks = document.querySelectorAll("nav a");
+
+        window.addEventListener("scroll", () => {
+            let current = "";
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (pageYOffset >= (sectionTop - 200)) {
+                    current = section.getAttribute("id");
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove("active");
+                if (link.getAttribute("href").includes(current)) {
+                    link.classList.add("active");
+                }
+            });
+        });
+    </script>
 </body>
 </html>
