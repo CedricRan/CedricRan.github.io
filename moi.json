@@ -1,0 +1,127 @@
+{
+  "continents": [
+    {
+      "id": "profile",
+      "name": "Profil",
+      "color": "#FFFFFF",
+      "icon": "👨‍💻",
+      "domain": "Présentation",
+      "detail": "Profil d'étudiant en IA & Big Data à la recherche d'un stage",
+      "countries": [
+        {
+          "id": "about_me",
+          "name": "À propos de moi",
+          "lat": -18.8792,
+          "lng": 47.5079,
+          "size": 3.0,
+          "role": "Étudiant & Développeur",
+          "technologies": ["IA", "Big Data", "Dev Logiciel"],
+          "details": "Étudiant passionné par l'intelligence artificielle et le développement logiciel. Actuellement en quête active d'un stage d'application pour mettre en pratique mes compétences et contribuer à des projets innovants."
+        }
+      ]
+    },
+    {
+      "id": "skills",
+      "name": "Compétences",
+      "color": "#10B981",
+      "icon": "⚡",
+      "domain": "Pôle Technique",
+      "detail": "Compétences clés réparties par domaines d'expertise en programmation et IA",
+      "countries": [
+        {
+          "id": "ia_data",
+          "name": "IA & Data Science",
+          "lat": 48.8566,
+          "lng": 28.3522,
+          "size": 2.8,
+          "role": "Analyste / Data Scientist",
+          "technologies": ["Machine Learning", "EDA", "Modélisation", "Analyse de données"],
+          "details": "- Conception et entraînement de modèles de Machine Learning\n- Analyse exploratoire de données (EDA)\n- Nettoyage, préparation et modélisation de jeux de données complexes"
+        },
+        {
+          "id": "langages",
+          "name": "Langages de Programmation",
+          "lat": 35.6762,
+          "lng": 20.6503,
+          "size": 2.6,
+          "role": "Développeur Full-Stack",
+          "technologies": ["Python", "SQL", "JavaScript"],
+          "details": "- Maîtrise avancée de Python pour l'algorithmique et l'IA\n- Manipulation de bases de données relationnelles avec SQL\n- Intégration et dynamisme web avec JavaScript"
+        },
+        {
+          "id": "outils",
+          "name": "Outils & Environnement",
+          "lat": 51.5074,
+          "lng": -8.1278,
+          "size": 2.0,
+          "role": "DevOps & Productivité",
+          "technologies": ["Vim", "Jupyter Lab", "Git", "GitHub"],
+          "details": "- Utilisation quotidienne de Git et GitHub pour le versioning et le travail d'équipe\n- Environnement de travail sous Jupyter Lab pour la data\n- Édition rapide et efficace avec Vim"
+        }
+      ]
+    },
+    {
+      "id": "projects",
+      "name": "Projets",
+      "color": "#3B82F6",
+      "icon": "🚀",
+      "domain": "Réalisations",
+      "detail": "Projets académiques et applications concrètes en IA et développement",
+      "countries": [
+        {
+          "id": "smart_traffic",
+          "name": "AINGANA",
+          "lat": -25.2744,
+          "lng": 133.7751,
+          "size": 2.7,
+          "role": "Développeur IA",
+          "technologies": ["Python", "IA Rule-based", "Algorithmique"],
+          "details": "- Système intelligent de prédiction et d'optimisation des embouteillages\n- Implémentation d'une logique basée sur des règles pour réguler le trafic\n- Analyse des flux de circulation en temps réel"
+        },
+
+        {
+          "id": "RAG",
+          "name": "RAG",
+          "lat": -25.8688,
+          "lng": 148.2093,
+          "size": 3.3,
+          "role": "Lead Data Scientist / Développeur RAG",
+          "technologies": ["jupyter lab", "pypdf", "Genai", "Sklearn", "Python"],
+          "details": "- Conception et développement d'un système de Retrieval-Augmented Generation (RAG)\n- Traitement et analyse de documents PDF avec pypdf et scikit-learn\n- Vectorisation des Textes avec genai\n- Expérimentation et prototypage sous Jupyter Lab"
+        },        
+        {
+        "id": "android_game",
+        "name": "Android Game Arcade",
+        "lat": -33.8688,
+        "lng": 151.2093,
+        "size": 2.3,
+        "role": "Développeur Mobile & Web",
+        "technologies": ["Kotlin", "Android Studio", "JavaScript", "HTML", "CSS"],
+        "details": "- Conception et développement d'un jeu mobile sur Android\n- Utilisation de Kotlin et Android Studio pour l'application native\n- Intégration d'interfaces web interactives (HTML/CSS/JS)"
+        },
+
+        
+      ]
+    },
+    {
+      "id": "contact",
+      "name": "Contact",
+      "color": "#EF4444",
+      "icon": "📍",
+      "domain": "Communication",
+      "detail": "Coordonnées de contact direct et localisation professionnelle",
+      "countries": [
+        {
+          "id": "location",
+          "name": "Antananarivo, Madagascar",
+          "lat": 15.0000,
+          "lng": -75.0000,
+          "size": 2.5,
+          "role": "Disponibilité Stage",
+          "technologies": ["Email", "Téléphone", "Présentiel / Distanciel"],
+          "details": "- Email : cedricran00449@gmail.com\n- Téléphone : 038 50 124 33\n- Localisation : Antananarivo, Madagascar\n- Ouvert aux opportunités de stage (national ou international)"
+        }
+      ]
+    }
+  ]
+}

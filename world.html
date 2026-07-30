@@ -1,0 +1,884 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio 3D - Projets & Expériences</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    
+    body {
+      background: #02040a;
+      color: #f3f4f6;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      overflow: hidden;
+      height: 100vh;
+      width: 100vw;
+    }
+
+    #canvas-container { 
+      width: 100%; 
+      height: 100%; 
+      position: absolute; 
+      top: 0; 
+      left: 0; 
+    }
+
+    /* EN-TÊTE */
+    #app-header {
+      position: absolute;
+      top: 25px;
+      left: 25px;
+      background: rgba(15, 23, 42, 0.75);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(16px);
+      padding: 16px 22px;
+      border-radius: 16px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+      z-index: 10;
+      pointer-events: none;
+    }
+    #app-header h1 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #ffffff;
+      margin-bottom: 2px;
+    }
+    #app-header p {
+      font-size: 0.8rem;
+      color: #94a3b8;
+    }
+
+    /* PANNEAU D'INFORMATION DES PROJETS */
+    #info-panel {
+      position: absolute;
+      top: 25px;
+      right: 25px;
+      background: rgba(15, 23, 42, 0.90);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      backdrop-filter: blur(24px);
+      padding: 24px;
+      border-radius: 20px;
+      width: 420px;
+      max-width: calc(100vw - 50px);
+      max-height: 85vh;
+      overflow-y: auto;
+      display: none;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.75);
+      z-index: 10;
+      animation: panelSlideIn 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    #info-panel::-webkit-scrollbar {
+      width: 6px;
+    }
+    #info-panel::-webkit-scrollbar-track {
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 10px;
+    }
+    #info-panel::-webkit-scrollbar-thumb {
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 10px;
+    }
+
+    @keyframes panelSlideIn {
+      from { opacity: 0; transform: translateY(-12px) scale(0.97); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    .info-header-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 12px;
+    }
+
+    .info-tag {
+      display: inline-block;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      padding: 4px 10px;
+      border-radius: 20px;
+      background: rgba(56, 189, 248, 0.15);
+      color: #38bdf8;
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      margin-bottom: 8px;
+    }
+
+    #info-title { 
+      font-size: 1.5rem; 
+      font-weight: 800; 
+      color: #ffffff; 
+      line-height: 1.2;
+    }
+
+    #close-btn {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: #94a3b8;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      flex-shrink: 0;
+    }
+
+    #close-btn:hover {
+      background: rgba(239, 68, 68, 0.2);
+      border-color: rgba(239, 68, 68, 0.4);
+      color: #ef4444;
+    }
+
+    .info-section {
+      margin-top: 18px;
+      padding-top: 16px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .info-section-title {
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: #94a3b8;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 10px;
+    }
+
+    .info-text-paragraph {
+      font-size: 0.95rem;
+      color: #cbd5e1;
+      line-height: 1.6;
+    }
+
+    /* BADGES TECHNO / SKILLS */
+    .tech-tags-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 8px;
+    }
+
+    .tech-badge {
+      font-size: 0.78rem;
+      font-weight: 600;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      color: #e2e8f0;
+      padding: 5px 12px;
+      border-radius: 8px;
+    }
+
+    .metrics-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    .metric-card {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 12px;
+      border-radius: 12px;
+    }
+
+    .metric-label {
+      font-size: 0.75rem;
+      color: #94a3b8;
+      margin-bottom: 4px;
+    }
+
+    .metric-value {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: #ffffff;
+    }
+
+    .info-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .info-list-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.9rem;
+      color: #e2e8f0;
+      background: rgba(255, 255, 255, 0.03);
+      padding: 8px 12px;
+      border-radius: 8px;
+      border-left: 3px solid #38bdf8;
+    }
+
+    /* BARRE DE NAVIGATION */
+    #nav-bar {
+      position: absolute;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 10px;
+      background: rgba(15, 23, 42, 0.85);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      backdrop-filter: blur(16px);
+      padding: 10px 18px;
+      border-radius: 50px;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+      z-index: 10;
+    }
+
+    .nav-btn {
+      background: transparent;
+      border: 1px solid transparent;
+      cursor: pointer;
+      color: #94a3b8;
+      transition: all 0.25s ease;
+      padding: 10px 20px;
+      border-radius: 30px;
+      font-size: 0.9rem;
+      font-weight: 500;
+    }
+
+    .nav-btn:hover { 
+      color: #ffffff; 
+      background: rgba(255, 255, 255, 0.08); 
+    }
+
+    .nav-btn.active {
+      color: #ffffff;
+      font-weight: 600;
+    }
+  </style>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+</head>
+<body>
+
+  <div id="canvas-container"></div>
+
+  <div id="app-header">
+    <h1>Globe Portfolio 3D</h1>
+    <p>Cliquez sur une région ou un projet</p>
+  </div>
+
+  <div id="info-panel">
+    <div class="info-header-row">
+      <div>
+        <span id="info-tag" class="info-tag">PROJET</span>
+        <h2 id="info-title">Titre du Projet</h2>
+      </div>
+      <button id="close-btn" onclick="closeInfo()">&times;</button>
+    </div>
+    <div id="info-body"></div>
+  </div>
+
+  <div id="nav-bar"></div>
+
+  <script>
+    let VITESSE_ROTATION = 0.6;
+
+    let scene, camera, renderer, controls;
+    const sphereRadius = 5;
+    const ZOOM_PAYS = 5.5;
+
+    let countryMarkers = [];
+    let countryObjects = [];
+    let pulsingRings = [];
+    let coreMesh = null;
+    let animFrameId = null;
+    let globalData = null;
+    let globeGroup = null;
+    let saturnRingMesh = null;
+
+    function latLngToVector3(lat, lng, radius) {
+      const phi = (90 - lat) * (Math.PI / 180);
+      const theta = (lng + 180) * (Math.PI / 180);
+      const x = -(radius * Math.sin(phi) * Math.cos(theta));
+      const z = (radius * Math.sin(phi) * Math.sin(theta));
+      const y = (radius * Math.cos(phi));
+      return new THREE.Vector3(x, y, z);
+    }
+
+    function reactiverAutoRotation() {
+      if (controls) {
+        controls.autoRotate = true;
+        controls.autoRotateSpeed = VITESSE_ROTATION;
+      }
+    }
+
+    function stopperAutoRotation() {
+      if (controls) {
+        controls.autoRotate = false;
+      }
+    }
+
+    function init() {
+      const container = document.getElementById('canvas-container');
+      scene = new THREE.Scene();
+
+      camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1000);
+      camera.position.set(0, 0, 16);
+
+      renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+      renderer.setSize(window.innerWidth, window.innerHeight);
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+      container.appendChild(renderer.domElement);
+
+      controls = new THREE.OrbitControls(camera, renderer.domElement);
+      controls.enableDamping = true;
+      controls.dampingFactor = 0.05;
+
+      controls.autoRotate = true;
+      controls.autoRotateSpeed = VITESSE_ROTATION;
+
+      globeGroup = new THREE.Group();
+      scene.add(globeGroup);
+
+      // ÉCLAIRAGE
+      const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
+      scene.add(ambientLight);
+
+      const dirLight1 = new THREE.DirectionalLight(0x38bdf8, 1.2);
+      dirLight1.position.set(20, 20, 20);
+      scene.add(dirLight1);
+
+      const dirLight2 = new THREE.DirectionalLight(0x818cf8, 0.8);
+      dirLight2.position.set(-20, -10, -20);
+      scene.add(dirLight2);
+
+      // DÉCOR ESPACE
+      createSpaceBackground();
+
+      // SPHÈRE DU GLOBE
+      const coreGeo = new THREE.SphereGeometry(sphereRadius - 0.05, 64, 64);
+      const coreMat = new THREE.MeshStandardMaterial({
+        color: 0x090d16,
+        roughness: 0.7,
+        metalness: 0.5,
+      });
+      coreMesh = new THREE.Mesh(coreGeo, coreMat);
+      globeGroup.add(coreMesh);
+
+      // GRILLE
+      const gridGeo = new THREE.SphereGeometry(sphereRadius, 36, 18);
+      const gridMat = new THREE.MeshBasicMaterial({
+        color: 0x1e293b,
+        wireframe: true,
+        transparent: true,
+        opacity: 0.25
+      });
+      const gridMesh = new THREE.Mesh(gridGeo, gridMat);
+      globeGroup.add(gridMesh);
+
+      // ATMOSPHÈRE
+      const atmosGeo = new THREE.SphereGeometry(sphereRadius + 0.4, 64, 64);
+      const atmosMat = new THREE.ShaderMaterial({
+        vertexShader: `
+          varying vec3 vNormal;
+          void main() {
+            vNormal = normalize(normalMatrix * normal);
+            gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+          }
+        `,
+        fragmentShader: `
+          varying vec3 vNormal;
+          void main() {
+            float intensity = pow(0.6 - dot(vNormal, vec3(0, 0, 1.0)), 2.0);
+            gl_FragColor = vec4(0.2, 0.5, 1.0, 1.0) * intensity * 0.4;
+          }
+        `,
+        blending: THREE.AdditiveBlending,
+        side: THREE.BackSide,
+        transparent: true
+      });
+      scene.add(new THREE.Mesh(atmosGeo, atmosMat));
+
+      // CHARGEMENT DU FICHIER JSON
+      fetch('moi.json')
+        .then(res => res.json())
+        .then(data => {
+          globalData = data;
+          buildGlobe(data);
+          buildUI(data);
+        });
+
+      window.addEventListener('resize', onWindowResize);
+      window.addEventListener('click', onCanvasClick);
+
+      animate();
+    }
+
+    function createSpaceBackground() {
+      const starsGeo = new THREE.BufferGeometry();
+      const starsCount = 2000;
+      const starPositions = new Float32Array(starsCount * 3);
+
+      for (let i = 0; i < starsCount * 3; i += 3) {
+        starPositions[i] = (Math.random() - 0.5) * 300;
+        starPositions[i + 1] = (Math.random() - 0.5) * 300;
+        starPositions[i + 2] = (Math.random() - 0.5) * 300;
+      }
+
+      starsGeo.setAttribute('position', new THREE.BufferAttribute(starPositions, 3));
+      const starsMat = new THREE.PointsMaterial({
+        color: 0xffffff,
+        size: 0.6,
+        transparent: true,
+        opacity: 0.8
+      });
+      const starField = new THREE.Points(starsGeo, starsMat);
+      scene.add(starField);
+
+      const sunGeo = new THREE.SphereGeometry(8, 32, 32);
+      const sunMat = new THREE.MeshBasicMaterial({ color: 0xffaa00 });
+      const sunMesh = new THREE.Mesh(sunGeo, sunMat);
+      sunMesh.position.set(-50, 30, -70);
+      scene.add(sunMesh);
+
+      const marsGeo = new THREE.SphereGeometry(2.2, 32, 32);
+      const marsMat = new THREE.MeshStandardMaterial({ color: 0xc84b31, roughness: 0.8 });
+      const marsMesh = new THREE.Mesh(marsGeo, marsMat);
+      marsMesh.position.set(40, -18, -45);
+      scene.add(marsMesh);
+
+      const saturnGeo = new THREE.SphereGeometry(3.5, 32, 32);
+      const saturnMat = new THREE.MeshStandardMaterial({ color: 0x38bdf8, roughness: 0.6 });
+      const saturnMesh = new THREE.Mesh(saturnGeo, saturnMat);
+      saturnMesh.position.set(-35, -25, -55);
+
+      const ringGeo = new THREE.RingGeometry(4.5, 7.5, 32);
+      const ringMat = new THREE.MeshBasicMaterial({ color: 0x818cf8, side: THREE.DoubleSide, transparent: true, opacity: 0.55 });
+      saturnRingMesh = new THREE.Mesh(ringGeo, ringMat);
+      saturnRingMesh.rotation.x = Math.PI / 3;
+      saturnMesh.add(saturnRingMesh);
+
+      scene.add(saturnMesh);
+    }
+
+    function buildGlobe(data) {
+      data.continents.forEach(continent => {
+        const color = new THREE.Color(continent.color);
+
+        continent.countries.forEach(country => {
+          const center = latLngToVector3(country.lat, country.lng, sphereRadius);
+          const countryRadius = country.size || 1.0;
+
+          const countryPoints = [];
+          const pointCount = Math.floor(180 * countryRadius);
+          for (let i = 0; i < pointCount; i++) {
+            const r = Math.sqrt(Math.random()) * countryRadius * 3.5;
+            const angle = Math.random() * Math.PI * 2;
+            const spreadLat = country.lat + r * Math.cos(angle);
+            const spreadLng = country.lng + r * Math.sin(angle);
+            countryPoints.push(latLngToVector3(spreadLat, spreadLng, sphereRadius + 0.02));
+          }
+
+          const geometry = new THREE.BufferGeometry().setFromPoints(countryPoints);
+          const material = new THREE.PointsMaterial({ 
+            color: color, 
+            size: 0.08, 
+            transparent: true, 
+            opacity: 0.9 
+          });
+          const countryCloud = new THREE.Points(geometry, material);
+
+          const beamHeight = 0.8 * Math.sqrt(countryRadius);
+          const beamGeo = new THREE.CylinderGeometry(0.02, 0.05, beamHeight, 8);
+          beamGeo.translate(0, beamHeight / 2, 0);
+          beamGeo.rotateX(Math.PI / 2);
+
+          const beamMat = new THREE.MeshBasicMaterial({ color: color, transparent: true, opacity: 0.8 });
+          const beamMesh = new THREE.Mesh(beamGeo, beamMat);
+          beamMesh.position.copy(center);
+          beamMesh.lookAt(center.clone().multiplyScalar(2));
+          beamMesh.visible = false;
+
+          const ringGeo = new THREE.RingGeometry(0.08, 0.14, 16);
+          const ringMat = new THREE.MeshBasicMaterial({ color: color, side: THREE.DoubleSide, transparent: true, opacity: 0.6 });
+          const ringMesh = new THREE.Mesh(ringGeo, ringMat);
+          ringMesh.position.copy(center.clone().multiplyScalar(1.01));
+          ringMesh.lookAt(center.clone().multiplyScalar(2));
+          ringMesh.visible = false;
+          pulsingRings.push(ringMesh);
+
+          // Paires de données orientées PROJET
+          const countryInfo = {
+            type: 'project',
+            continentId: continent.id,
+            name: country.name,
+            details: country.details,
+            technologies: country.technologies || country.stack || [],
+            role: country.role || 'Développeur / Concepteur',
+            category: country.category || continent.name,
+            continentName: continent.name,
+            lat: country.lat,
+            lng: country.lng,
+            color: continent.color
+          };
+
+          countryCloud.userData = countryInfo;
+          beamMesh.userData = countryInfo;
+          ringMesh.userData = countryInfo;
+
+          globeGroup.add(countryCloud);
+          globeGroup.add(beamMesh);
+          globeGroup.add(ringMesh);
+
+          countryObjects.push(countryCloud);
+          countryMarkers.push(beamMesh);
+        });
+      });
+    }
+
+    function hexToRgba(hex, alpha) {
+      const c = new THREE.Color(hex);
+      return `rgba(${Math.round(c.r * 255)}, ${Math.round(c.g * 255)}, ${Math.round(c.b * 255)}, ${alpha})`;
+    }
+
+    function buildUI(data) {
+      const navBar = document.getElementById('nav-bar');
+      navBar.innerHTML = '';
+
+      data.continents.forEach(continent => {
+        const btn = document.createElement('button');
+        btn.className = 'nav-btn';
+        btn.id = `btn-${continent.id}`;
+        btn.innerText = continent.name; 
+
+        const baseColor = continent.color || '#ffffff';
+        const activeBg = hexToRgba(baseColor, 0.25);
+        const activeBorder = hexToRgba(baseColor, 0.8);
+        const glowColor = hexToRgba(baseColor, 0.4);
+
+        btn.addEventListener('mouseenter', () => {
+          if (!btn.classList.contains('active')) {
+            btn.style.color = '#ffffff';
+            btn.style.backgroundColor = hexToRgba(baseColor, 0.15);
+          }
+        });
+
+        btn.addEventListener('mouseleave', () => {
+          if (!btn.classList.contains('active')) {
+            btn.style.color = '#94a3b8';
+            btn.style.backgroundColor = 'transparent';
+          }
+        });
+
+        btn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          selectContinent(continent);
+        });
+
+        btn.setActiveStyle = (isActive) => {
+          if (isActive) {
+            btn.classList.add('active');
+            btn.style.color = '#ffffff';
+            btn.style.backgroundColor = activeBg;
+            btn.style.borderColor = activeBorder;
+            btn.style.boxShadow = `0 0 16px ${glowColor}`;
+          } else {
+            btn.classList.remove('active');
+            btn.style.color = '#94a3b8';
+            btn.style.backgroundColor = 'transparent';
+            btn.style.borderColor = 'transparent';
+            btn.style.boxShadow = 'none';
+          }
+        };
+
+        navBar.appendChild(btn);
+      });
+    }
+
+    function updateActiveButton(activeContinentId) {
+      if (!globalData) return;
+      globalData.continents.forEach(c => {
+        const btn = document.getElementById(`btn-${c.id}`);
+        if (btn && btn.setActiveStyle) {
+          btn.setActiveStyle(c.id === activeContinentId);
+        }
+      });
+    }
+
+    function selectContinent(continent) {
+      stopperAutoRotation();
+      updateActiveButton(continent.id);
+
+      countryMarkers.forEach(marker => {
+        marker.visible = (marker.userData.continentId === continent.id);
+      });
+
+      pulsingRings.forEach(ring => {
+        ring.visible = (ring.userData.continentId === continent.id);
+      });
+
+      if (continent.countries && continent.countries.length > 0) {
+        const centerDir = new THREE.Vector3(0, 0, 0);
+        continent.countries.forEach(c => {
+          centerDir.add(latLngToVector3(c.lat, c.lng, 1));
+        });
+        centerDir.normalize();
+
+        let maxAngle = 0;
+        continent.countries.forEach(c => {
+          const p = latLngToVector3(c.lat, c.lng, 1);
+          const angle = centerDir.angleTo(p);
+          if (angle > maxAngle) maxAngle = angle;
+        });
+
+        const fovRad = (camera.fov * Math.PI) / 180;
+        const calculatedDist = (sphereRadius * Math.sin(maxAngle) / Math.sin(fovRad / 2)) + 3.0;
+        const fitDistance = Math.max(8.5, calculatedDist);
+
+        zoomToDirection(centerDir, fitDistance);
+        
+        showStructuredInfo({
+          tag: 'CATÉGORIE DE PROJETS',
+          title: continent.name,
+          color: continent.color,
+          details: continent.detail || `Projets et réalisations associés à la catégorie ${continent.name}. Cliquez sur une balise pour découvrir les détails de la réalisation.`,
+          extraMetrics: [
+            { label: 'Element trouve', value: continent.countries.length },
+            { label: 'Domaine', value: continent.domain || 'Développement' }
+          ]
+        });
+      }
+    }
+
+    function zoomToDirection(targetDir, targetDistance) {
+      if (animFrameId) cancelAnimationFrame(animFrameId);
+
+      const targetPos = targetDir.clone().multiplyScalar(sphereRadius + targetDistance);
+      const startPos = camera.position.clone();
+
+      const startDist = startPos.length();
+      const endDist = targetPos.length();
+
+      const startDir = startPos.clone().normalize();
+      const angle = startDir.angleTo(targetDir);
+
+      const axis = new THREE.Vector3().crossVectors(startDir, targetDir);
+      if (axis.lengthSq() > 0) {
+        axis.normalize();
+      } else {
+        axis.set(0, 1, 0);
+      }
+
+      let progress = 0;
+
+      function animateStep() {
+        progress += 0.035;
+        const ease = 0.5 - Math.cos(Math.min(progress, 1) * Math.PI) / 2;
+
+        const currentDir = startDir.clone().applyAxisAngle(axis, angle * ease);
+        const currentDist = THREE.MathUtils.lerp(startDist, endDist, ease);
+
+        camera.position.copy(currentDir.multiplyScalar(currentDist));
+        controls.target.set(0, 0, 0);
+        controls.update();
+
+        if (progress < 1) {
+          animFrameId = requestAnimationFrame(animateStep);
+        }
+      }
+      animateStep();
+    }
+
+    function zoomToLocation(lat, lng, targetDistance) {
+      const dir = latLngToVector3(lat, lng, 1);
+      zoomToDirection(dir, targetDistance);
+    }
+
+    function onCanvasClick(event) {
+      if (event.target.closest('#nav-bar') || event.target.closest('#info-panel') || event.target.closest('#app-header')) return;
+
+      const mouse = new THREE.Vector2(
+        (event.clientX / window.innerWidth) * 2 - 1,
+        -(event.clientY / window.innerHeight) * 2 + 1
+      );
+
+      const raycaster = new THREE.Raycaster();
+      raycaster.params.Points.threshold = 0.3;
+      raycaster.setFromCamera(mouse, camera);
+
+      const clickableTargets = [...countryMarkers.filter(m => m.visible), ...countryObjects];
+      const intersects = raycaster.intersectObjects([...clickableTargets, coreMesh]);
+
+      if (intersects.length > 0) {
+        const hitObject = intersects[0].object;
+
+        if (hitObject.userData && hitObject.userData.type === 'project') {
+          stopperAutoRotation();
+          const data = hitObject.userData;
+          
+          countryMarkers.forEach(m => {
+            m.visible = (m.userData.continentId === data.continentId);
+          });
+
+          pulsingRings.forEach(r => {
+            r.visible = (r.userData.continentId === data.continentId);
+          });
+
+          updateActiveButton(data.continentId);
+
+          zoomToLocation(data.lat, data.lng, ZOOM_PAYS);
+
+          showStructuredInfo({
+            tag: `${data.continentName}`,
+            title: data.name,
+            color: data.color,
+            details: data.details,
+            technologies: data.technologies,
+            role: data.role
+          });
+        } else {
+          reactiverAutoRotation();
+        }
+      } else {
+        reactiverAutoRotation();
+      }
+    }
+
+    // FORMATAGE DU POP-UP ORIENTÉ PROJET & PORTFOLIO
+    function showStructuredInfo(data) {
+      const panel = document.getElementById('info-panel');
+      const tagEl = document.getElementById('info-tag');
+      const titleEl = document.getElementById('info-title');
+      const bodyEl = document.getElementById('info-body');
+
+      tagEl.innerText = data.tag || 'PROJET';
+      if (data.color) {
+        tagEl.style.backgroundColor = hexToRgba(data.color, 0.15);
+        tagEl.style.borderColor = hexToRgba(data.color, 0.4);
+        tagEl.style.color = data.color;
+      }
+
+      titleEl.innerText = data.title;
+
+      let htmlContent = '';
+
+      // 1. Métriques relatives au Projet (Rôle / Catégorie) sans Latitude/Longitude
+      if (data.role || data.extraMetrics) {
+        htmlContent += `<div class="metrics-grid">`;
+        
+        if (data.role) {
+          htmlContent += `
+            <div class="metric-card">
+              <div class="metric-label">RÔLE</div>
+              <div class="metric-value">${data.role}</div>
+            </div>
+          `;
+        }
+
+        if (data.extraMetrics) {
+          data.extraMetrics.forEach(m => {
+            htmlContent += `
+              <div class="metric-card">
+                <div class="metric-label">${m.label.toUpperCase()}</div>
+                <div class="metric-value">${m.value}</div>
+              </div>
+            `;
+          });
+        }
+        
+        htmlContent += `</div>`;
+      }
+
+      // 2. Badges des Technologies / Compétences utilisées
+      if (data.technologies && data.technologies.length > 0) {
+        htmlContent += `
+          <div class="info-section">
+            <div class="info-section-title">Technologies & Outils</div>
+            <div class="tech-tags-container">
+              ${data.technologies.map(tech => `<span class="tech-badge">${tech}</span>`).join('')}
+            </div>
+          </div>
+        `;
+      }
+
+      // 3. Description & Réalisations clés
+      if (data.details) {
+        const rawText = data.details.trim();
+        const lines = rawText.split('\n').filter(l => l.trim().length > 0);
+
+        let listItems = [];
+        let paragraphText = '';
+
+        lines.forEach(line => {
+          const trimmed = line.trim();
+          if (trimmed.startsWith('-') || trimmed.startsWith('•') || trimmed.startsWith('*')) {
+            listItems.push(trimmed.replace(/^[-•*]\s*/, ''));
+          } else {
+            paragraphText += (paragraphText ? ' ' : '') + trimmed;
+          }
+        });
+
+        if (paragraphText) {
+          htmlContent += `
+            <div class="info-section">
+              <div class="info-section-title">Aperçut</div>
+              <p class="info-text-paragraph">${paragraphText}</p>
+            </div>
+          `;
+        }
+
+        if (listItems.length > 0) {
+          htmlContent += `
+            <div class="info-section">
+              <div class="info-section-title">Fonctionnalités / Réalisations</div>
+              <ul class="info-list">
+                ${listItems.map(item => `<li class="info-list-item"><span>✦</span> ${item}</li>`).join('')}
+              </ul>
+            </div>
+          `;
+        }
+      }
+
+      bodyEl.innerHTML = htmlContent;
+      panel.style.display = 'block';
+    }
+
+    function closeInfo() {
+      document.getElementById('info-panel').style.display = 'none';
+    }
+
+    function onWindowResize() {
+      camera.aspect = window.innerWidth / window.innerHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize(window.innerWidth, window.innerHeight);
+    }
+
+    function animate() {
+      requestAnimationFrame(animate);
+
+      const time = Date.now() * 0.003;
+
+      pulsingRings.forEach(ring => {
+        if (ring.visible) {
+          const scale = 1 + Math.sin(time * 2) * 0.2;
+          ring.scale.set(scale, scale, scale);
+        }
+      });
+
+      if (saturnRingMesh) {
+        saturnRingMesh.rotation.z += 0.002;
+      }
+
+      controls.update();
+      renderer.render(scene, camera);
+    }
+
+    window.onload = init;
+  </script>
+</body>
+</html>
