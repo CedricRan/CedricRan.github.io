@@ -4,6 +4,13 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Portfolio — IA &amp; Big Data</title>
+  <meta name="description" content="Portfolio d'un étudiant en IA et Big Data, en recherche de stage : projets, compétences et contact.">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Portfolio — IA &amp; Big Data">
+  <meta property="og:description" content="Un univers 3D à explorer : projets, compétences et contact.">
+  <meta property="og:image" content="apercu.png">
+  <meta name="theme-color" content="#02040a">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
     
@@ -16,6 +23,7 @@
       width: 100vw;
     }
 
+    #canvas-container canvas { touch-action: none; }
     #canvas-container { 
       width: 100%; 
       height: 100%; 
@@ -280,7 +288,7 @@
     .ico { flex-shrink: 0; }
     .info-tag { display: inline-flex; align-items: center; gap: 6px; }
     /* Barre du bas : icône au-dessus, nom en dessous, cases de même taille */
-    #nav-bar { gap: 6px; padding: 8px; width: min(520px, calc(100vw - 24px)); border-radius: 22px; overflow: visible; }
+    #nav-bar { gap: 6px; padding: 8px; width: min(640px, calc(100vw - 24px)); border-radius: 22px; overflow: visible; }
     .nav-btn { flex: 1 1 0; min-width: 0; height: 66px; padding: 6px 4px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; border-radius: 16px; font-size: 0.74rem; line-height: 1.1; }
     .nav-btn span { max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 
@@ -346,19 +354,48 @@
     .shots { display: flex; gap: 8px; overflow-x: auto; }
     .shots img { height: 120px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.12); }
     .lien-etude { display: inline-flex; align-items: center; gap: 6px; text-decoration: none; }
-    #list-view { position: fixed; inset: 0; z-index: 65; overflow-y: auto; background: rgba(2,4,10,0.97); }
-    #list-view[hidden] { display: none; }
-    .list-inner { max-width: 780px; margin: 0 auto; padding: 32px 20px 80px; }
-    .list-inner h2 { font-family: var(--serif); font-size: 1.6rem; margin: 34px 0 6px; color: #eadfc8; }
-    .list-item { margin-top: 18px; padding: 18px; border: 1px solid rgba(255,255,255,0.1); border-radius: 14px; background: rgba(255,255,255,0.03); }
-    .list-item h3 { font-size: 1.1rem; }
-    .list-role { color: #94a3b8; font-size: 0.85rem; margin: 2px 0 10px; }
-    #list-note { margin-top: 12px; color: #94a3b8; font-size: 0.9rem; }
     #loader { display: none; position: fixed; bottom: 18px; left: 50%; transform: translateX(-50%); z-index: 70; color: #94a3b8; font-size: 0.85rem; pointer-events: none; }
     #erreur { display: none; position: fixed; inset: 0; z-index: 80; flex-direction: column; align-items: center; justify-content: center; gap: 14px; text-align: center; padding: 24px; background: rgba(2,4,10,0.95); color: #e2e8f0; line-height: 1.5; }
     #erreur h2 { font-family: var(--serif); }
     button:focus-visible, a:focus-visible { outline: 2px solid #fff; outline-offset: 2px; }
     @media (prefers-reduced-motion: reduce) { * { animation-duration: 0.01s !important; animation-delay: 0s !important; transition-duration: 0.01s !important; } }
+    /* Liste : sobre, sans décoration */
+    #list-view { position: fixed; inset: 0; z-index: 65; overflow-y: auto; background: #0b0f17; color: #e5e7eb; font: 16px/1.6 system-ui, -apple-system, 'Segoe UI', sans-serif; }
+    #list-view[hidden] { display: none; }
+    .list-inner { max-width: 720px; margin: 0 auto; padding: 24px 20px 60px; }
+    .list-inner .bloc { border: 1px solid #374151; padding: 12px 16px; margin: 14px 0; }
+    .list-inner p { margin: 4px 0; }
+    .list-inner ul { margin: 4px 0 8px 22px; }
+    .list-inner a { color: #93c5fd; }
+    .list-inner button { font: inherit; color: inherit; background: none; border: 1px solid #6b7280; padding: 4px 14px; cursor: pointer; }
+    #list-note { color: #9ca3af; }
+
+    /* Étiquettes des lieux sur le globe */
+    #labels { position: fixed; inset: 0; z-index: 5; pointer-events: none; overflow: hidden; }
+    .etiquette { position: absolute; left: 0; top: 0; display: none; pointer-events: auto; font: inherit; font-size: 0.76rem; color: #f1f5f9; white-space: nowrap; cursor: pointer; background: rgba(10,16,30,0.75); border: 1px solid var(--c, #fff); border-radius: 8px; padding: 3px 9px; backdrop-filter: blur(6px); will-change: transform; transition: opacity 0.3s ease; }
+    .etiquette:hover { background: rgba(255,255,255,0.18); }
+    #toast { position: fixed; left: 50%; bottom: 124px; transform: translateX(-50%); z-index: 30; background: rgba(15,23,42,0.92); border: 1px solid rgba(255,255,255,0.15); padding: 8px 16px; border-radius: 12px; font-size: 0.85rem; opacity: 0; pointer-events: none; transition: opacity 0.3s ease; }
+    #toast.on { opacity: 1; }
+    @media (max-width: 640px) { .etiquette { font-size: 0.68rem; padding: 2px 7px; } #toast { bottom: 100px; width: max-content; max-width: 90vw; } }
+    /* Couleur du territoire sous l'icône */
+    .nav-btn { position: relative; }
+    .barre-couleur { position: absolute; left: 24%; right: 24%; bottom: 6px; height: 3px; border-radius: 2px; background: var(--c, #fff); opacity: 0.55; transition: all 0.25s ease; }
+    .nav-btn:hover .barre-couleur { opacity: 0.9; }
+    .nav-btn.active .barre-couleur { left: 12%; right: 12%; opacity: 1; box-shadow: 0 0 10px var(--c, #fff); }
+
+    /* Panneau : titre et bouton de fermeture toujours visibles pendant le défilement */
+    #info-panel { padding: 0; }
+    .info-header-row { position: sticky; top: 0; z-index: 3; margin: 0; padding: 20px 24px 12px; background: rgba(15,23,42,0.98); border-bottom: 2px solid var(--accent, #f4e3c1); }
+    #info-body { padding: 0 24px 24px; }
+
+    /* Liste : barre fixe avec le bouton Fermer */
+    .list-barre { position: sticky; top: 0; z-index: 2; display: flex; justify-content: space-between; align-items: center; padding: 10px 20px; background: #0b0f17; border-bottom: 1px solid #374151; }
+    .list-barre button { font: inherit; color: inherit; background: none; border: 1px solid #6b7280; padding: 4px 14px; cursor: pointer; }
+    .list-barre button:hover { background: #1f2937; }
+    .etiquette { max-width: 170px; overflow: hidden; text-overflow: ellipsis; font-size: 0.8rem; text-shadow: 0 1px 3px rgba(0,0,0,0.8); box-shadow: inset 3px 0 0 var(--c, #fff); padding-left: 12px; }
+    .etiquette.sel { background: rgba(255,255,255,0.22); box-shadow: inset 3px 0 0 var(--c, #fff), 0 0 16px var(--c, #fff); }
+    @media (max-width: 640px) { .etiquette { font-size: 0.68rem; max-width: 130px; padding-left: 10px; } }
+    @media (max-width: 560px) { .nav-btn span { display: none; } }
   </style>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
@@ -396,6 +433,8 @@
     <div id="intro-links" class="i5"></div>
   </section>
   <div id="list-view" role="dialog" aria-label="Liste des projets" hidden></div>
+  <div id="labels"></div>
+  <div id="toast" role="status"></div>
   <div id="loader" role="status"></div>
   <div id="erreur" role="alert"></div>
   <div id="tooltip"></div>
@@ -453,27 +492,45 @@
     }
 
     // ===== Texture, intro, données, liste, étude de cas =====
+    function bruit3(x, y, z) {
+      const xi = Math.floor(x), yi = Math.floor(y), zi = Math.floor(z);
+      const u = x - xi, v = y - yi, w = z - zi;
+      const f = t => t * t * (3 - 2 * t), l = (p, q, t) => p + (q - p) * t;
+      const h = (p, q, r) => { let n = (Math.imul(p, 374761393) + Math.imul(q, 668265263) + Math.imul(r, 1274126177)) | 0; n = Math.imul(n ^ (n >>> 13), 1274126177); return ((n ^ (n >>> 16)) >>> 0) / 4294967295; };
+      const fu = f(u), fv = f(v), fw = f(w);
+      return l(
+        l(l(h(xi, yi, zi), h(xi + 1, yi, zi), fu), l(h(xi, yi + 1, zi), h(xi + 1, yi + 1, zi), fu), fv),
+        l(l(h(xi, yi, zi + 1), h(xi + 1, yi, zi + 1), fu), l(h(xi, yi + 1, zi + 1), h(xi + 1, yi + 1, zi + 1), fu), fv), fw);
+    }
     function creerTextureSurface() {
-      const c = document.createElement('canvas');
-      c.width = 1024; c.height = 512;
-      const g = c.getContext('2d');
-      const gr = g.createLinearGradient(0, 0, 0, 512);
-      gr.addColorStop(0, '#0d2038'); gr.addColorStop(0.5, '#0a1830'); gr.addColorStop(1, '#0d2038');
-      g.fillStyle = gr; g.fillRect(0, 0, 1024, 512);
-      for (let i = 0; i < (FAIBLE ? 120 : 260); i++) {
-        const x = Math.random() * 1024, y = Math.random() * 512, r = 20 + Math.random() * 90;
-        const rg = g.createRadialGradient(x, y, 0, x, y, r);
-        rg.addColorStop(0, `rgba(60,110,170,${0.05 + Math.random() * 0.07})`);
-        rg.addColorStop(1, 'rgba(60,110,170,0)');
-        g.fillStyle = rg; g.fillRect(x - r, y - r, r * 2, r * 2);
+      const W = FAIBLE ? 512 : 1024, H = W / 2, SEUIL = 0.54;
+      const mk = () => { const c = document.createElement('canvas'); c.width = W; c.height = H; return c; };
+      const cm = mk(), cb = mk(), cl = mk();
+      const im = cm.getContext('2d').createImageData(W, H), ib = cb.getContext('2d').createImageData(W, H), il = cl.getContext('2d').createImageData(W, H);
+      for (let y = 0; y < H; y++) {
+        const lat = (0.5 - y / H) * Math.PI, cy = Math.cos(lat), sy = Math.sin(lat);
+        for (let x = 0; x < W; x++) {
+          const lng = (x / W) * 2 * Math.PI;
+          const px = cy * Math.cos(lng) * 2.2, py = sy * 2.2, pz = cy * Math.sin(lng) * 2.2;
+          let n = 0, amp = 0.5, fr = 1, tot = 0;
+          for (let o = 0; o < 4; o++) { n += amp * bruit3(px * fr + 11, py * fr + 7, pz * fr + 3); tot += amp; amp *= 0.5; fr *= 2.1; }
+          n /= tot;
+          const terre = n > SEUIL, k = terre ? Math.min(1, (n - SEUIL) / 0.25) : n / SEUIL, i = (y * W + x) * 4;
+          let r, g, b;
+          if (terre) { r = 22 + k * 30; g = 52 + k * 40; b = 70 + k * 30; } else { r = 6 + k * 8; g = 20 + k * 18; b = 44 + k * 30; }
+          if (Math.abs(n - SEUIL) < 0.012) { r += 30; g += 50; b += 60; }
+          im.data[i] = r; im.data[i + 1] = g; im.data[i + 2] = b; im.data[i + 3] = 255;
+          const hh = terre ? Math.min(255, 110 + (n - SEUIL) * 500) : 90;
+          ib.data[i] = ib.data[i + 1] = ib.data[i + 2] = hh; ib.data[i + 3] = 255;
+          const lum = (terre && Math.random() < (n - SEUIL > 0.04 ? 0.02 : 0.004)) ? 200 + Math.random() * 55 : 0;
+          il.data[i] = lum; il.data[i + 1] = lum * 0.8; il.data[i + 2] = lum * 0.4; il.data[i + 3] = 255;
+        }
       }
-      for (let i = 0; i < 1400; i++) {
-        g.fillStyle = `rgba(180,220,255,${Math.random() * 0.25})`;
-        g.fillRect(Math.random() * 1024, Math.random() * 512, 1.2, 1.2);
-      }
-      const t = new THREE.CanvasTexture(c);
-      t.anisotropy = 4;
-      return t;
+      cm.getContext('2d').putImageData(im, 0, 0);
+      cb.getContext('2d').putImageData(ib, 0, 0);
+      cl.getContext('2d').putImageData(il, 0, 0);
+      const t = c => { const x = new THREE.CanvasTexture(c); x.anisotropy = 4; return x; };
+      return { map: t(cm), bump: t(cb), lumieres: t(cl) };
     }
 
     function volIntro() {
@@ -490,10 +547,14 @@
       if (!d || !Array.isArray(d.continents) || !d.continents.length) return ['"continents" absent ou vide'];
       const pb = [];
       d.continents.forEach((c, i) => {
-        if (!c.id || !c.name) pb.push(`territoire ${i + 1} : id ou name manquant`);
+        if (!ICONS[c.icon]) c.icon = ({ profile: 'compass', skills: 'tools', projects: 'layers', contact: 'mail' })[c.id] || 'globe';
+        if (!c.id) c.id = 't' + i;
+        if (!c.color) c.color = ['#F4E3C1', '#6FCF97', '#6AA9F2', '#F28B6B', '#C792EA', '#F2D16B'][i % 6];
+        if (!c.name) pb.push(`territoire ${i + 1} : name manquant`);
         if (!Array.isArray(c.countries)) { pb.push(`territoire ${c.id || i + 1} : "countries" manquant`); return; }
         c.countries.forEach((p, j) => {
-          if (!p.id || !p.name || typeof p.lat !== 'number' || typeof p.lng !== 'number') pb.push(`${c.id || i + 1}, lieu ${j + 1} : id, name, lat ou lng invalide`);
+          if (!p.id) p.id = c.id + '_' + j;
+          if (!p.name) pb.push(`${c.id || i + 1}, lieu ${j + 1} : name manquant`);
           if (!Array.isArray(p.technologies)) p.technologies = [];
         });
       });
@@ -544,23 +605,114 @@
       return h;
     }
 
+    function etudePlain(e) {
+      let h = '';
+      ETUDE.forEach(([k, t]) => {
+        const v = e[k];
+        if (!v || (Array.isArray(v) && !v.length)) return;
+        h += Array.isArray(v)
+          ? `<p><strong>${t} :</strong></p><ul>${v.map(i => `<li>${lier(i)}</li>`).join('')}</ul>`
+          : `<p><strong>${t} :</strong> ${v}</p>`;
+      });
+      (e.images || []).forEach(u => { h += `<p><img src="${u}" alt="" style="max-width:100%" loading="lazy" onerror="this.remove()"></p>`; });
+      const L = e.liens || {};
+      const l = [['github', 'Code source'], ['demo', 'Démonstration'], ['doc', 'Documentation']].filter(x => L[x[0]]).map(x => `<a href="${L[x[0]]}" target="_blank" rel="noopener">${x[1]}</a>`);
+      if (l.length) h += `<p><strong>Liens :</strong> ${l.join(' · ')}</p>`;
+      return h;
+    }
     function remplirListe(d) {
       const el = document.getElementById('list-view');
-      el.innerHTML = '<div class="list-inner"><button class="place-chip" onclick="fermerListe()">Fermer</button><p id="list-note"></p>' + d.continents.map(c =>
-        `<section><h2>${c.name}</h2><p class="info-text-paragraph">${c.detail || ''}</p>` + c.countries.map(p => {
-          const lines = (p.details || '').split('\n').map(l => l.trim()).filter(Boolean);
-          const items = lines.filter(l => /^[-•*]/.test(l)).map(l => l.replace(/^[-•*]\s*/, ''));
-          const para = lines.filter(l => !/^[-•*]/.test(l)).join(' ');
-          return `<article class="list-item"><h3>${p.name}</h3><p class="list-role">${p.role || ''}</p>`
-            + (para ? `<p class="info-text-paragraph">${para}</p>` : '')
-            + (items.length ? `<ul class="info-list">${items.map(i => `<li class="info-list-item"><span>${lier(i)}</span></li>`).join('')}</ul>` : '')
-            + `<div class="tech-tags-container">${(p.technologies || []).map(t => `<span class="tech-badge">${t}</span>`).join('')}</div>`
-            + (p.etude ? rendreEtude(p.etude) : '') + '</article>';
-        }).join('') + '</section>').join('') + '</div>';
+      const ligne = (t, v) => v ? `<p><strong>${t} :</strong> ${v}</p>` : '';
+      el.innerHTML = '<div class="list-barre"><span>Liste des projets</span><button onclick="fermerListe()">Fermer</button></div><div class="list-inner"><p id="list-note"></p>' + d.continents.map(c =>
+        `<div class="bloc">${ligne('Titre', c.name)}${ligne('Sous-titre', c.detail)}` + c.countries.map(p => {
+          const lines = (p.details || '').split('\n').map(x => x.trim()).filter(Boolean);
+          const items = lines.filter(x => /^[-•*]/.test(x)).map(x => x.replace(/^[-•*]\s*/, ''));
+          const para = lines.filter(x => !/^[-•*]/.test(x)).join(' ');
+          return `<div class="bloc">${ligne('Titre', p.name)}${ligne('Sous-titre', p.role)}${ligne('Description', para ? lier(para) : '')}`
+            + (items.length ? `<p><strong>Éléments :</strong></p><ul>${items.map(i => `<li>${lier(i)}</li>`).join('')}</ul>` : '')
+            + ligne('Technologies', (p.technologies || []).join(', '))
+            + (p.etude ? etudePlain(p.etude) : '') + '</div>';
+        }).join('') + '</div>').join('') + '</div>';
     }
     function ouvrirListe() { const el = document.getElementById('list-view'); el.hidden = false; el.scrollTop = 0; fermerIntro(); }
     function fermerListe() { document.getElementById('list-view').hidden = true; }
     function toggleListe() { if (document.getElementById('list-view').hidden) ouvrirListe(); else fermerListe(); }
+
+    const BLEU = new THREE.Color(0x4080ff), tintTmp = new THREE.Color();
+    let ondes = [];
+    const STYLE_ONDES = { antarctica: { n: 1, d: 2200 }, asia: { n: 3, d: 1000 }, africa: { n: 1, d: 1800 }, north_america: { n: 2, d: 1400 }, south_america: { n: 2, d: 1600 }, oceania: { n: 2, d: 1200 }, europe: { n: 2, d: 1400 } };
+    function lancerOndes(p) {
+      if (REDUIRE) return;
+      const st = STYLE_ONDES[p.continentId] || { n: 2, d: 1400 };
+      const c = latLngToVector3(p.lat, p.lng, sphereRadius * 1.012);
+      for (let i = 0; i < st.n; i++) {
+        const m = new THREE.Mesh(new THREE.RingGeometry(0.92, 1, 48),
+          new THREE.MeshBasicMaterial({ color: p.color, transparent: true, opacity: 0, side: THREE.DoubleSide, depthWrite: false, blending: THREE.AdditiveBlending }));
+        m.position.copy(c);
+        m.lookAt(c.clone().multiplyScalar(2));
+        globeGroup.add(m);
+        ondes.push({ m: m, t0: performance.now() + i * st.d * 0.35, d: st.d, r: p.rayon || 0.4 });
+      }
+    }
+    function majOndes() {
+      const now = performance.now();
+      ondes = ondes.filter(o => {
+        const k = (now - o.t0) / o.d;
+        if (k < 0) return true;
+        if (k >= 1) { globeGroup.remove(o.m); o.m.geometry.dispose(); o.m.material.dispose(); return false; }
+        const sc = o.r * (0.4 + 1.6 * k);
+        o.m.scale.set(sc, sc, sc);
+        o.m.material.opacity = 0.8 * (1 - k);
+        return true;
+      });
+    }
+
+    let etiquettes = [];
+    function creerEtiquettes() {
+      const box = document.getElementById('labels');
+      box.innerHTML = '';
+      etiquettes = Object.values(placeInfos).map(p => {
+        const b = document.createElement('button');
+        b.className = 'etiquette';
+        b.textContent = p.name;
+        b.title = p.name;
+        b.style.setProperty('--c', p.color);
+        b.addEventListener('click', e => { e.stopPropagation(); focusPlaceById(p.id); });
+        box.appendChild(b);
+        return { p: p, b: b, pos: latLngToVector3(p.lat, p.lng, sphereRadius + 0.08), w: 0, h: 0, on: false };
+      });
+    }
+    function majEtiquettes() {
+      if (!etiquettes.length) return;
+      const introOuverte = !document.getElementById('intro').classList.contains('hide');
+      const W = window.innerWidth, H = window.innerHeight, cd = camera.position.clone().normalize();
+      const vis = [];
+      etiquettes.forEach(e => {
+        const montrer = !introOuverte && e.pos.clone().normalize().dot(cd) > 0.3 && (!techFilter || e.p.technologies.includes(techFilter));
+        if (!montrer) { if (e.on) { e.b.style.display = 'none'; e.on = false; } return; }
+        e.b.style.display = 'block';
+        e.on = true;
+        if (!e.w) { e.w = e.b.offsetWidth; e.h = e.b.offsetHeight; }
+        const v = e.pos.clone().project(camera);
+        e.x = (v.x * 0.5 + 0.5) * W;
+        e.y = (-v.y * 0.5 + 0.5) * H - 18;
+        vis.push(e);
+      });
+      vis.sort((a, b) => a.y - b.y);
+      const places = [];
+      vis.forEach(e => {
+        let y = e.y;
+        places.forEach(o => {
+          if (Math.abs(e.x - o.x) < (e.w + o.w) / 2 + 4 && Math.abs(y - o.yy) < e.h + 2) y = o.yy + e.h + 2;
+        });
+        e.yy = y;
+        places.push(e);
+        const attenue = currentContinent && e.p.continentId !== currentContinent;
+        e.b.classList.toggle('sel', e.p.id === selectedId);
+        e.b.style.opacity = e.p.id === selectedId ? 1 : (attenue ? 0.3 : 1);
+        e.b.style.transform = `translate(${e.x - e.w / 2}px, ${y}px)`;
+      });
+    }
 
     function lancerPulsations() {
       if (REDUIRE) return;
@@ -585,6 +737,7 @@
 
       const liens = [];
       if (c.cv) liens.push(['file', 'CV', c.cv]);
+      if (c.site) liens.push(['globe', 'Site', c.site]);
       if (c.github) liens.push(['github', 'GitHub', c.github]);
       if (c.linkedin) liens.push(['linkedin', 'LinkedIn', c.linkedin]);
       if (c.email) liens.push(['mail', 'Email', 'mailto:' + c.email]);
@@ -596,6 +749,7 @@
       document.getElementById('quick-links').insertAdjacentHTML('afterbegin', `<a href="#" onclick="toggleListe(); return false;" title="Liste des projets" aria-label="Liste des projets">${icon('list', 18)}<span>Liste</span></a>`);
       document.getElementById('intro-nom').textContent = (c.nom && c.nom !== 'Prénom Nom') ? c.nom : 'Portfolio';
       document.getElementById('intro-titre').textContent = sous;
+      if (c.phrase) document.getElementById('intro-phrase').textContent = c.phrase;
       document.getElementById('intro-links').innerHTML = liens.filter(l => ['file', 'mail', 'github', 'linkedin'].includes(l[0]))
         .map(l => `<a href="${l[2]}" target="_blank" rel="noopener">${l[1]}</a>`).join('');
     }
@@ -642,11 +796,9 @@
       // SPHÈRE DU GLOBE
       const coreGeo = new THREE.SphereGeometry(sphereRadius - 0.05, 64, 64);
       const coreMat = new THREE.MeshStandardMaterial({
-        color: 0xffffff,
-        map: creerTextureSurface(),
-        emissive: 0x050d1a,
-        roughness: 0.6,
-        metalness: 0.25,
+        color: 0x0b2038,
+        roughness: 0.55,
+        metalness: 0.35,
       });
       coreMesh = new THREE.Mesh(coreGeo, coreMat);
       globeGroup.add(coreMesh);
@@ -657,7 +809,7 @@
         color: 0x1e293b,
         wireframe: true,
         transparent: true,
-        opacity: 0.25
+        opacity: 0.14
       });
       const gridMesh = new THREE.Mesh(gridGeo, gridMat);
       globeGroup.add(gridMesh);
@@ -665,7 +817,7 @@
       // ATMOSPHÈRE
       const atmosGeo = new THREE.SphereGeometry(sphereRadius + 0.4, 64, 64);
       atmosMat = new THREE.ShaderMaterial({
-        uniforms: { uTime: { value: 0 } },
+        uniforms: { uTime: { value: 0 }, uTint: { value: new THREE.Color(0x4080ff) } },
         vertexShader: `
           varying vec3 vNormal;
           void main() {
@@ -675,10 +827,11 @@
         `,
         fragmentShader: `
           uniform float uTime;
+          uniform vec3 uTint;
           varying vec3 vNormal;
           void main() {
             float intensity = pow(0.6 - dot(vNormal, vec3(0, 0, 1.0)), 2.0);
-            gl_FragColor = vec4(0.25, 0.55, 1.0, 1.0) * intensity * (0.55 + 0.1 * sin(uTime));
+            gl_FragColor = vec4(uTint, 1.0) * intensity * (0.55 + 0.1 * sin(uTime));
           }
         `,
         blending: THREE.AdditiveBlending,
@@ -687,19 +840,31 @@
       });
       scene.add(new THREE.Mesh(atmosGeo, atmosMat));
 
-      chargerDonnees().then(data => {
-        buildGlobe(data);
+      chargerDonnees().then(data => chargerTerre().then(terre => {
+        buildGlobe(data, terre);
         buildUI(data);
+        creerEtiquettes();
+        refreshOpacities();
         remplirListe(data);
         lancerPulsations();
-      }).catch(() => {});
+      })).catch(() => {});
       document.getElementById('intro-go').addEventListener('click', fermerIntro);
       document.getElementById('intro-liste').addEventListener('click', ouvrirListe);
       document.getElementById('intro-go').focus({ preventScroll: true });
       if (!REDUIRE) volIntro();
 
       window.addEventListener('resize', onWindowResize);
-      window.addEventListener('click', onCanvasClick);
+      let tapDebut = null;
+      window.addEventListener('pointerdown', e => {
+        if (e.isPrimary) tapDebut = { x: e.clientX, y: e.clientY, t: performance.now() };
+      });
+      window.addEventListener('pointerup', e => {
+        if (!e.isPrimary || !tapDebut) return;
+        const d = Math.hypot(e.clientX - tapDebut.x, e.clientY - tapDebut.y), dt = performance.now() - tapDebut.t;
+        tapDebut = null;
+        if (d < 10 && dt < 600) onCanvasClick(e);
+      });
+      window.addEventListener('pointercancel', () => { tapDebut = null; });
       window.addEventListener('mousemove', onMouseMove);
       setTimeout(() => document.getElementById('app-header').classList.add('hide'), 8000);
       window.addEventListener('keydown', e => {
@@ -785,7 +950,7 @@
     }
 
     // Facteur de taille des zones (baisse-le si deux pays se chevauchent)
-    const FACTEUR_TAILLE = 0.8;
+    const FACTEUR_TAILLE = 1.0;
 
     function hashStr(s) {
       let h = 0;
@@ -794,7 +959,7 @@
     }
 
     // Crée une zone pleine + un contour, collées à la surface de la sphère
-    function makeCountryShape(lat, lng, angRad, seed, color) {
+    function makeCountryShape(lat, lng, angRad, seed, color, dr) {
       const center = latLngToVector3(lat, lng, 1).normalize();
       const ref = Math.abs(center.y) > 0.99 ? new THREE.Vector3(1, 0, 0) : new THREE.Vector3(0, 1, 0);
       const u = new THREE.Vector3().crossVectors(ref, center).normalize();
@@ -805,7 +970,7 @@
       const p2 = ((seed >> 3) % 100) / 100 * Math.PI * 2;
       const edgeR = a => angRad * (1 + 0.18 * Math.sin(3 * a + p1) + 0.10 * Math.sin(5 * a + p2));
 
-      const R = sphereRadius + 0.03;
+      const R = sphereRadius + (dr === undefined ? 0.03 : dr);
 
       function pointAt(a, f, radius) {
         const d = edgeR(a) * f;
@@ -834,7 +999,7 @@
       fillGeo.setAttribute('position', new THREE.Float32BufferAttribute(pos, 3));
       fillGeo.setIndex(idx);
       const fill = new THREE.Mesh(fillGeo, new THREE.MeshBasicMaterial({
-        color: color, transparent: true, opacity: 0.45, side: THREE.DoubleSide, depthWrite: false, blending: THREE.AdditiveBlending
+        color: TERRE_LIEU.clone(), transparent: true, opacity: 1, side: THREE.DoubleSide, depthWrite: false
       }));
 
       // --- Contour ---
@@ -854,7 +1019,7 @@
       borderGeo.setAttribute('position', new THREE.Float32BufferAttribute(bpos, 3));
       borderGeo.setIndex(bidx);
       const border = new THREE.Mesh(borderGeo, new THREE.MeshBasicMaterial({
-        color: color, transparent: true, opacity: 0.95, side: THREE.DoubleSide, depthWrite: false
+        color: color, transparent: true, opacity: 0.95, side: THREE.DoubleSide, depthWrite: false, blending: THREE.AdditiveBlending
       }));
 
       return { fill, border };
@@ -883,7 +1048,7 @@
     function resoudreChevauchements(data) {
       const deg = Math.PI / 180;
       const marge = MARGE_DEG * deg;
-      const maxDepl = DEPLACEMENT_MAX * deg;
+      const maxDepl = (terreMode ? 3 : DEPLACEMENT_MAX) * deg;
       const items = [];
 
       data.continents.forEach(c => c.countries.forEach(country => {
@@ -998,8 +1163,147 @@
       });
     }
 
-    function buildGlobe(data) {
+    // ===== Terre réelle : continents noirs, pays du fichier allumés =====
+    let terreMode = false;
+
+    function decoderTopo(topo, objet) {
+      const sc = topo.transform.scale, tr = topo.transform.translate;
+      const arcs = topo.arcs.map(a => { let x = 0, y = 0; return a.map(q => { x += q[0]; y += q[1]; return [x * sc[0] + tr[0], y * sc[1] + tr[1]]; }); });
+      const anneau = idx => {
+        let pts = [];
+        idx.forEach(i => { const a = i < 0 ? arcs[~i].slice().reverse() : arcs[i]; pts = pts.concat(pts.length ? a.slice(1) : a); });
+        return pts;
+      };
+      return topo.objects[objet].geometries.map(g => ({
+        nom: (g.properties && g.properties.name) || '',
+        couleur: null,
+        polys: g.type === 'Polygon' ? [g.arcs.map(anneau)] : g.type === 'MultiPolygon' ? g.arcs.map(pl => pl.map(anneau)) : []
+      }));
+    }
+    function dansAnneau(pt, r) {
+      let c = false;
+      for (let i = 0, j = r.length - 1; i < r.length; j = i++) {
+        const xi = r[i][0], yi = r[i][1], xj = r[j][0], yj = r[j][1];
+        if ((yi > pt[1]) !== (yj > pt[1]) && pt[0] < (xj - xi) * (pt[1] - yi) / (yj - yi) + xi) c = !c;
+      }
+      return c;
+    }
+    function dansPays(pt, pays) {
+      return pays.polys.some(pl => dansAnneau(pt, pl[0]) && !pl.slice(1).some(h => dansAnneau(pt, h)));
+    }
+    function centrePays(pays) {
+      let best = null;
+      pays.polys.forEach(pl => { if (!best || pl[0].length > best.length) best = pl[0]; });
+      const xs = best.map(q => q[0]), ys = best.map(q => q[1]);
+      return [(Math.min(...xs) + Math.max(...xs)) / 2, (Math.min(...ys) + Math.max(...ys)) / 2];
+    }
+    function trouverPays(terre, nom) {
+      const n = String(nom).trim().toLowerCase();
+      return terre.find(t => t.nom.toLowerCase() === n) || null;
+    }
+    function assignerPays(data, terre) {
+      data.continents.forEach(c => c.countries.forEach(pl => {
+        const nomme = pl.pays ? trouverPays(terre, pl.pays) : null;
+        if (nomme && (typeof pl.lat !== 'number' || typeof pl.lng !== 'number')) {
+          const ctr = centrePays(nomme); pl.lng = ctr[0]; pl.lat = ctr[1];
+        }
+        const t = nomme || ((typeof pl.lat === 'number' && typeof pl.lng === 'number') ? terre.find(x => dansPays([pl.lng, pl.lat], x)) : null);
+        if (t && !t.couleur) t.couleur = c.color;
+      }));
+    }
+    function dessinerTerre(terre) {
+      const W = FAIBLE ? 1024 : 2048, H = W / 2, k = W / 2048;
+      const cv = document.createElement('canvas');
+      cv.width = W; cv.height = H;
+      const g = cv.getContext('2d');
+      const gr = g.createLinearGradient(0, 0, 0, H);
+      gr.addColorStop(0, '#0a1b30'); gr.addColorStop(0.5, '#0d2742'); gr.addColorStop(1, '#0a1b30');
+      g.fillStyle = gr; g.fillRect(0, 0, W, H);
+      g.lineJoin = 'round';
+      const tracer = t => {
+        g.beginPath();
+        t.polys.forEach(pl => pl.forEach(r => {
+          r.forEach((q, i) => { const x = (q[0] + 180) / 360 * W, y = (90 - q[1]) / 180 * H; if (i) g.lineTo(x, y); else g.moveTo(x, y); });
+          g.closePath();
+        }));
+      };
+      terre.forEach(t => { tracer(t); g.fillStyle = '#04060a'; g.fill('evenodd'); g.strokeStyle = '#101a2e'; g.lineWidth = 1.2 * k; g.stroke(); });
+      terre.forEach(t => {
+        if (!t.couleur) return;
+        const fond = new THREE.Color(0x04060a).lerp(new THREE.Color(t.couleur), 0.32);
+        tracer(t); g.fillStyle = '#' + fond.getHexString(); g.fill('evenodd');
+        g.shadowColor = t.couleur; g.shadowBlur = 12 * k; g.strokeStyle = t.couleur; g.lineWidth = 2 * k; g.stroke(); g.shadowBlur = 0;
+      });
+      const tex = new THREE.CanvasTexture(cv);
+      tex.anisotropy = 8;
+      coreMesh.material.map = tex;
+      coreMesh.material.color.set(0xffffff);
+      coreMesh.material.needsUpdate = true;
+    }
+    function chargerTerre() {
+      const ctl = new AbortController(), t = setTimeout(() => ctl.abort(), 8000);
+      const lire = url => fetch(url, { signal: ctl.signal }).then(r => { if (!r.ok) throw new Error(); return r.json(); });
+      return lire('terre.json')
+        .catch(() => lire('https://cdn.jsdelivr.net/npm/world-atlas@2.0.2/countries-110m.json'))
+        .then(topo => { clearTimeout(t); return decoderTopo(topo, 'countries'); })
+        .catch(() => { clearTimeout(t); return null; });
+    }
+
+    const TERRE_LIEU = new THREE.Color(0x070a11), TERRE_HALO = new THREE.Color(0x020306);
+    let tRev = 0, compteurRev = 0, halos = [];
+
+    // Chaque territoire reçoit un point d'ancrage réparti sur la planète ; ses lieux s'organisent en spirale autour.
+    function disposerAutomatiquement(data, seulementManquants) {
+      const deg = Math.PI / 180, N = data.continents.length, R = 5.25 * deg, esp = R * 2.3;
+      data.continents.forEach((c, i) => {
+        const y = 1 - 2 * (i + 0.5) / N;
+        const anc = latLngToVector3(Math.asin(y) / deg, ((i * 137.508) % 360) - 180, 1).normalize();
+        const bs = countryBasis(anc);
+        c.countries.forEach((p, k) => {
+          if (seulementManquants && typeof p.lat === 'number' && typeof p.lng === 'number') return;
+          const d = esp * Math.sqrt(k), a = k * 2.399963;
+          const t = bs.u.clone().multiplyScalar(Math.cos(a)).add(bs.v.clone().multiplyScalar(Math.sin(a)));
+          const dir = anc.clone().multiplyScalar(Math.cos(d)).add(t.multiplyScalar(Math.sin(d)));
+          const ll = vector3ToLatLng(dir);
+          p.lat = ll.lat; p.lng = ll.lng; p.size = 1.5;
+        });
+      });
+    }
+
+    // Zone « découverte » du territoire : s'agrandit automatiquement avec le nombre de lieux.
+    function creerHalos(data) {
+      halos = [];
+      data.continents.forEach(continent => {
+        const ds = continent.countries.map(c => latLngToVector3(c.lat, c.lng, 1).normalize());
+        const ctr = ds.reduce((a, b) => a.add(b), new THREE.Vector3()).normalize();
+        let r = 0;
+        continent.countries.forEach((c, i) => { r = Math.max(r, ctr.angleTo(ds[i]) + (c._angRad || 0.09) * 1.3); });
+        const ll = vector3ToLatLng(ctr);
+        const h = makeCountryShape(ll.lat, ll.lng, r * 1.4 + 0.03, hashStr(continent.id), new THREE.Color(continent.color), 0.012);
+        h.fill.material.color.copy(TERRE_HALO);
+        h.fill.material.opacity = 0;
+        h.fill.renderOrder = 1;
+        h.border.renderOrder = 1;
+        h.border.material.opacity = 0;
+        globeGroup.add(h.fill);
+        globeGroup.add(h.border);
+        halos.push(h);
+      });
+    }
+
+    function buildGlobe(data, terre) {
+      terreMode = !!terre;
+      if (terre) {
+        assignerPays(data, terre);
+        disposerAutomatiquement(data, true);
+        data.continents.forEach(c => c.countries.forEach(p => { p.size = 0.9; }));
+      } else {
+        disposerAutomatiquement(data);
+      }
       resoudreChevauchements(data);
+      if (terre) dessinerTerre(terre); else creerHalos(data);
+      tRev = performance.now();
+      compteurRev = 0;
 
       data.continents.forEach(continent => {
         const color = new THREE.Color(continent.color);
@@ -1013,6 +1317,14 @@
           const shape = makeCountryShape(country.lat, country.lng, angRad, hashStr(country.name), color);
           const countryCloud = shape.fill;      // zone cliquable
           const countryBorder = shape.border;   // contour
+          countryCloud.renderOrder = 2;
+          countryBorder.renderOrder = 3;
+          if (terreMode) {
+            countryCloud.material.color.set(color);
+            countryCloud.material.blending = THREE.AdditiveBlending;
+            countryCloud.material.opacity = 0;
+            countryBorder.visible = false;
+          }
 
           const beamHeight = 0.8 * Math.sqrt(countryRadius);
           const beamGeo = new THREE.CylinderGeometry(0.02, 0.05, beamHeight, 8);
@@ -1023,14 +1335,14 @@
           const beamMesh = new THREE.Mesh(beamGeo, beamMat);
           beamMesh.position.copy(center);
           beamMesh.lookAt(center.clone().multiplyScalar(2));
-          beamMesh.visible = false;
+          beamMesh.visible = true;
 
           const ringGeo = new THREE.RingGeometry(0.08, 0.14, 16);
           const ringMat = new THREE.MeshBasicMaterial({ color: color, side: THREE.DoubleSide, transparent: true, opacity: 0.6 });
           const ringMesh = new THREE.Mesh(ringGeo, ringMat);
           ringMesh.position.copy(center.clone().multiplyScalar(1.01));
           ringMesh.lookAt(center.clone().multiplyScalar(2));
-          ringMesh.visible = false;
+          ringMesh.visible = true;
           pulsingRings.push(ringMesh);
 
           // Paires de données orientées PROJET
@@ -1056,6 +1368,8 @@
           placeInfos[country.id] = countryInfo;
           countryInfo.mesh = countryCloud;
           countryInfo.phase = hashStr(country.name) % 6;
+          countryInfo.rayon = angRad * sphereRadius;
+          countryInfo.delai = (compteurRev++) * 350;
           countryInfo.border = countryBorder;
           beamMesh.userData = countryInfo;
           ringMesh.userData = countryInfo;
@@ -1091,7 +1405,9 @@
         const btn = document.createElement('button');
         btn.className = 'nav-btn';
         btn.id = `btn-${continent.id}`;
-        btn.innerHTML = icon(continent.icon, 20) + '<span>' + (continent.court || continent.name) + '</span>';
+        btn.innerHTML = icon(continent.icon, 20) + '<span>' + (continent.court || continent.name) + '</span><i class="barre-couleur"></i>';
+        btn.style.setProperty('--c', continent.color || '#fff');
+        btn.title = continent.name;
 
         const baseColor = continent.color || '#ffffff';
         const activeBg = hexToRgba(baseColor, 0.25);
@@ -1156,6 +1472,7 @@
       updateActiveButton(continent.id);
       currentContinent = continent.id;
       refreshOpacities();
+      Object.values(placeInfos).filter(p => p.continentId === continent.id).forEach(lancerOndes);
 
       countryMarkers.forEach(marker => {
         marker.visible = (marker.userData.continentId === continent.id);
@@ -1280,11 +1597,13 @@
     function refreshOpacities() {
       Object.values(placeInfos).forEach(p => {
         const match = !techFilter || p.technologies.includes(techFilter);
-        let o = techFilter ? (match ? 0.85 : 0.1) : (currentContinent ? (p.continentId === currentContinent ? 0.62 : 0.2) : 0.45);
+        let o = techFilter ? (match ? 0.85 : 0.1) : (currentContinent ? (p.continentId === currentContinent ? 0.75 : 0.18) : 0.55);
         if (p.id === selectedId) o = 0.85;
         if (p.id === hoveredId) o = Math.max(o, 0.8);
         p.baseO = o;
-        p.mesh.material.opacity = o;
+        p._c = p._c || new THREE.Color(p.color);
+        if (terreMode) p.glow = Math.max(0, o - 0.5) * 0.9;
+        else p.mesh.material.color.copy(TERRE_LIEU).lerp(p._c, Math.max(0, o - 0.2) * 0.45);
         p.border.material.opacity = match ? 0.95 : 0.2;
       });
     }
@@ -1305,7 +1624,7 @@
         const pts = new THREE.QuadraticBezierCurve3(p1, mid, p2).getPoints(48);
         const line = new THREE.Line(
           new THREE.BufferGeometry().setFromPoints(pts),
-          new THREE.LineBasicMaterial({ color: d.color, transparent: true, opacity: 0.75 })
+          new THREE.LineBasicMaterial({ color: d.color, transparent: true, opacity: 0.6, blending: THREE.AdditiveBlending, depthWrite: false })
         );
         line.geometry.setDrawRange(0, 0);
         globeGroup.add(line);
@@ -1359,8 +1678,8 @@
     function showMarkersFor(continentId) {
       currentContinent = continentId;
       if (techFilter) { techFilter = null; document.getElementById('filter-pill').style.display = 'none'; refreshOpacities(); }
-      countryMarkers.forEach(m => { m.visible = (m.userData.continentId === continentId); });
-      pulsingRings.forEach(r => { r.visible = (r.userData.continentId === continentId); });
+      countryMarkers.forEach(m => { m.visible = (!continentId || m.userData.continentId === continentId); });
+      pulsingRings.forEach(r => { r.visible = (!continentId || r.userData.continentId === continentId); });
     }
 
     function focusPlace(d) {
@@ -1369,6 +1688,7 @@
       updateActiveButton(d.continentId);
       selectedId = d.id;
       refreshOpacities();
+      lancerOndes(d);
       zoomToLocation(d.lat, d.lng, ZOOM_PAYS);
       dessinerLiens(d);
       const cont = globalData.continents.find(x => x.id === d.continentId);
@@ -1408,12 +1728,25 @@
       return hits.length ? hits[0].object : null;
     }
 
+    let clicsVides = 0, tClics = null;
+    function toast(msg) {
+      const t = document.getElementById('toast');
+      t.textContent = msg;
+      t.classList.add('on');
+      clearTimeout(toast.t);
+      toast.t = setTimeout(() => t.classList.remove('on'), 2200);
+    }
     function onCanvasClick(event) {
-      if (event.target.closest('#nav-bar') || event.target.closest('#info-panel') || event.target.closest('#app-header') || event.target.closest('#filter-pill')) return;
+      if (event.target.closest('#nav-bar, #info-panel, #app-header, #filter-pill, #quick-links, #tour-btn, #intro, #list-view, #erreur, .etiquette')) return;
       stopTour();
       const hit = pick(event);
-      if (hit && hit.userData && hit.userData.type === 'project') focusPlace(hit.userData);
-      else reactiverAutoRotation();
+      if (hit && hit.userData && hit.userData.type === 'project') { clicsVides = 0; focusPlace(hit.userData); return; }
+      if (!(selectedId || currentContinent || techFilter)) { reactiverAutoRotation(); return; }
+      clicsVides++;
+      clearTimeout(tClics);
+      tClics = setTimeout(() => { clicsVides = 0; }, 4000);
+      if (clicsVides >= 2) { clicsVides = 0; vueEnsemble(); toast("Retour à la vue d'ensemble"); }
+      else toast("Cliquer encore une fois dans le vide pour revenir à la vue d'ensemble");
     }
 
     function onMouseMove(event) {
@@ -1435,7 +1768,8 @@
     }
 
     function lier(t) {
-      return t.replace(/([\w.+-]+@[\w-]+\.[\w.]*\w)/g, '<a href="mailto:$1">$1</a>')
+      return t.replace(/(https?:\/\/[^\s<]+)/g, '<a href="$1" target="_blank" rel="noopener">$1</a>')
+              .replace(/([\w.+-]+@[\w-]+\.[\w.]*\w)/g, '<a href="mailto:$1">$1</a>')
               .replace(/(0\d{2}(?: \d{2,3}){3})/g, m => `<a href="tel:${m.replace(/ /g, '')}">${m}</a>`);
     }
 
@@ -1477,10 +1811,10 @@
         h += `<div class="info-section"><div class="info-section-title">${lib.tech}</div><div class="tech-tags-container">${d.technologies.map(t => `<button class="tech-badge tech-btn${techFilter === t ? ' on' : ''}" data-tech="${t}" title="Voir tous les lieux liés à cette technologie">${t}</button>`).join('')}</div></div>`;
       }
       if (d.links && d.links.length) {
-        h += `<div class="info-section"><div class="info-section-title">Liens avec d'autres lieux</div><p class="link-note">Technologies en commun, tracées sur le globe.</p>${d.links.map(l => `<button class="place-chip" title="${l.shared.join(', ')}" onclick="focusPlaceById('${l.id}')">${l.name}</button>`).join('')}</div>`;
+        h += `<div class="info-section"><div class="info-section-title">Liens avec d'autres lieux</div><p class="link-note">Technologies en commun, tracées sur le globe.</p>${d.links.map(l => `<button class="place-chip" style="border-left:3px solid ${(placeInfos[l.id] || {}).color || '#fff'}" title="${l.shared.join(', ')}" onclick="focusPlaceById('${l.id}')">${l.name}</button>`).join('')}</div>`;
       }
       if (d.places && d.places.length) {
-        h += `<div class="info-section"><div class="info-section-title">Les lieux à explorer</div>${d.places.map(p => `<button class="place-chip" onclick="focusPlaceById('${p.id}')">${p.name}</button>`).join('')}</div>`;
+        h += `<div class="info-section"><div class="info-section-title">Les lieux à explorer</div>${d.places.map(p => `<button class="place-chip" style="border-left:3px solid ${(placeInfos[p.id] || {}).color || '#fff'}" onclick="focusPlaceById('${p.id}')">${p.name}</button>`).join('')}</div>`;
       }
       if (d.nav) h += `<div class="nav-row"><button class="place-chip" onclick="focusPlaceById('${d.nav.prev}')">← Précédent</button><span class="count">${d.nav.index} / ${d.nav.total}</span><button class="place-chip" onclick="focusPlaceById('${d.nav.next}')">Suivant →</button></div>`;
       if (d.backTo) h += `<button class="back-link" onclick="selectContinentById('${d.backTo}')">← Retour à « ${d.tag} »</button>`;
@@ -1511,10 +1845,17 @@
         if (dust) dust.rotation.y += 0.0004;
         if (dirLight1) dirLight1.intensity = 1.1 + Math.sin(time * 0.15) * 0.25;
         Object.values(placeInfos).forEach(p => {
-          if (p.baseO !== undefined) p.mesh.material.opacity = p.baseO * (0.93 + 0.07 * Math.sin(time * 0.6 + p.phase));
+          if (p.baseO === undefined) return;
+          const rev = Math.min(1, Math.max(0, (performance.now() - tRev - p.delai) / 1400));
+          p.mesh.material.opacity = terreMode ? (p.glow || 0) * rev : rev;
+          const bord = ((!techFilter || p.technologies.includes(techFilter)) ? 0.95 : 0.2) * ((currentContinent && p.continentId !== currentContinent) ? 0.35 : 1);
+          p.border.material.opacity = bord * (0.88 + 0.12 * Math.sin(time * 0.6 + p.phase)) * rev;
         });
       }
       if (dirLight2 && ambianceCible) dirLight2.color.lerp(ambianceCible, 0.03);
+      if (atmosMat && ambianceCible) { tintTmp.copy(ambianceCible).lerp(BLEU, 0.5); atmosMat.uniforms.uTint.value.lerp(tintTmp, 0.03); }
+      majOndes();
+      halos.forEach(h => { const k = Math.min(1, Math.max(0, (performance.now() - tRev - 400) / 2500)); h.fill.material.opacity = k; h.border.material.opacity = 0.55 * k; });
 
       pulsingRings.forEach(ring => {
         if (ring.visible) {
@@ -1531,6 +1872,7 @@
         saturnRingMesh.rotation.z += 0.002;
       }
 
+      majEtiquettes();
       controls.update();
       renderer.render(scene, camera);
     }

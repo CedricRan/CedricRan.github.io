@@ -1,151 +1,288 @@
 {
   "continents": [
     {
-      "id": "profile",
-      "name": "Identité & Vision",
+      "id": "antarctica",
+      "name": "Accroche",
       "court": "Profil",
-      "color": "#f4e3c1",
-      "icon": "user",
-      "domain": "Parcours & Ambition",
-      "detail": "Découvrez mon histoire, ma vision de l'ingénierie des données et mon ambition professionnelle.",
-      "libelles": { "role": "Statut", "tech": "Spécialités", "resume": "Présentation", "liste": "Objectifs" },
+      "color": "#9FD8F0",
+      "icon": "compass",
+      "domain": "Vue d'ensemble",
+      "detail": "Le sommet du CV : le profil en une phrase.",
+      "libelles": {
+        "role": "Statut",
+        "tech": "Domaines",
+        "resume": "Résumé",
+        "liste": "En bref"
+      },
       "countries": [
         {
-          "id": "about_me",
-          "name": "Point d'Ancrage",
-          "lat": -18.8792,
-          "lng": 47.5079,
-          "size": 3.0,
-          "role": "Étudiant en IA & Big Data",
-          "technologies": ["Machine Learning", "Big Data Architecture", "Software Engineering"],
-          "details": "Passionné par l'intersection entre les modèles génératifs et les architectures distribuées massives.\n- Recherche active : Stage d'application de fin d'études (4 à 6 mois)\n- Vision : Transformer la donnée brute en systèmes décisionnels automatisés, éthiques et scalables.\n- Méthodologie : Approche rigoureuse, orientée résolution de problèmes complexes et MLOps."
+          "id": "accroche",
+          "name": "Profil",
+          "pays": "Antarctica",
+          "role": "Étudiant en IA et Big Data",
+          "technologies": [
+            "Intelligence artificielle",
+            "Big Data"
+          ],
+          "details": "Étudiant en IA et Big Data à la recherche d'une première expérience professionnelle.\n- Formation : Licence en IA et Big Data (GE-IT, 2023-2026, en cours)\n- Stage 2026 : traitement d'images chez Innov'Art XD"
         }
       ]
     },
     {
-      "id": "skills",
-      "name": "Écosystème Technique",
-      "court": "Compétences",
-      "color": "#6fcf97",
-      "icon": "tools",
-      "domain": "Expertises",
-      "detail": "Carte interactive de mes compétences opérationnelles en Data Science, Big Data et Développement.",
-      "libelles": { "role": "Domaine", "tech": "Outils & Frameworks", "liste": "Savoir-Faire" },
+      "id": "asia",
+      "name": "Expériences",
+      "court": "Expériences",
+      "color": "#E8B04B",
+      "icon": "briefcase",
+      "domain": "Expériences professionnelles",
+      "detail": "Le continent le plus vaste : les réalisations et expériences menées jusqu'ici.",
+      "libelles": {
+        "role": "Poste",
+        "tech": "Outils",
+        "liste": "Missions"
+      },
       "countries": [
         {
-          "id": "ia_data",
-          "name": "IA & Modeling",
-          "lat": 48.8566,
-          "lng": 2.3522,
-          "size": 2.8,
-          "role": "Data Science & GenAI",
-          "technologies": ["Python", "PyTorch", "Scikit-Learn", "NLP", "Transformers", "EDA"],
-          "details": "- Entraînement et évaluation approfondie de modèles de Deep Learning et NLP.\n- Conception de pipelines RAG (Retrieval-Augmented Generation) optimisés.\n- Nettoyage, feature engineering et exploration visuelle de jeux de données complexes."
+          "id": "innovart",
+          "name": "Innov'Art XD",
+          "pays": "India",
+          "role": "Stagiaire en traitement d'images",
+          "technologies": [
+            "Python",
+            "FastAPI",
+            "OpenCV",
+            "NumPy",
+            "scikit-image"
+          ],
+          "details": "Stage 2026 à Ampefiloha, Antananarivo.\n- Conception d'une API REST de prétraitement d'images pour la reconstruction 3D\n- Pipeline OpenCV : redimensionnement, débruitage (médian, bilatéral, Non-Local Means), CLAHE, contours Canny, points ORB\n- Benchmark de 4 configurations de filtrage (PSNR, SSIM, F1 des contours, répétabilité ORB)",
+          "etude": {
+            "objectif": "Prétraiter des images pour la reconstruction 3D, via une API REST.",
+            "resultats": [
+              "Filtre bilatéral de qualité proche de NLMeans, environ 34 fois plus rapide"
+            ]
+          }
         },
         {
+          "id": "trafficflow",
+          "name": "TrafficFlow",
+          "pays": "Japan",
+          "role": "Projet académique",
+          "technologies": [
+            "Python",
+            "JavaScript",
+            "PWA",
+            "Postgres",
+            "Redis"
+          ],
+          "details": "- Recherche de chemin optimal\n- Système de prédiction de trafic basé sur des données simulées\n- Développement d'une interface cartographique interactive pour la visualisation en temps réel\n- Conception d'un backend temps réel avec Redis pour optimiser la gestion du trafic dynamique"
+        },
+        {
+          "id": "reconnaissance",
+          "name": "IA de reconnaissance",
+          "pays": "China",
+          "role": "Projet académique",
+          "technologies": [
+            "Python",
+            "NumPy"
+          ],
+          "details": "- Implémentation d'un Perceptron Multicouche (MLP) à partir de zéro (from scratch)\n- Jeu de données : MNIST",
+          "etude": {
+            "resultats": [
+              "Accuracy : 93,76 % sur MNIST"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "africa",
+      "name": "Formation",
+      "court": "Formation",
+      "color": "#E07A5F",
+      "icon": "book",
+      "domain": "Formation & diplômes",
+      "detail": "Là où tout a commencé : les fondations scolaires, les diplômes et les certifications.",
+      "libelles": {
+        "role": "Niveau",
+        "tech": "Domaines",
+        "liste": "Détails"
+      },
+      "countries": [
+        {
+          "id": "ge_it",
+          "name": "GE-IT",
+          "pays": "Madagascar",
+          "role": "Licence en IA et Big Data",
+          "technologies": [
+            "Intelligence artificielle",
+            "Big Data"
+          ],
+          "details": "Période : 2023-2026 (en cours)."
+        },
+        {
+          "id": "champagnat",
+          "name": "St Champagnat",
+          "pays": "Kenya",
+          "role": "Bac",
+          "technologies": [],
+          "details": "Période : 2022-2023."
+        },
+        {
+          "id": "loyola",
+          "name": "St Ignace de Loyola",
+          "pays": "Tanzania",
+          "role": "BEPC",
+          "technologies": [],
+          "details": "Période : 2019-2020."
+        }
+      ]
+    },
+    {
+      "id": "north_america",
+      "name": "Compétences techniques",
+      "court": "Techniques",
+      "color": "#6AA9F2",
+      "icon": "code",
+      "domain": "Hard skills",
+      "detail": "Les outils et savoir-faire pratiques : technologie et maîtrise.",
+      "libelles": {
+        "role": "Domaine",
+        "tech": "Maîtrise",
+        "liste": "Concrètement"
+      },
+      "countries": [
+        {
           "id": "langages",
-          "name": "Core Software",
-          "lat": 50.1109,
-          "lng": 8.6821,
-          "size": 2.6,
-          "role": "Ingénierie logicielle",
-          "technologies": ["Python", "SQL", "JavaScript", "Kotlin", "C++"],
-          "details": "- Programmation algorithmique haute performance en Python et C++.\n- Modélisation relationnelle et requêtage analytique SQL complexe.\n- Développement d'interfaces et d'applications mobiles réactives."
+          "name": "Langages de programmation",
+          "pays": "United States of America",
+          "role": "Programmation",
+          "technologies": [
+            "Python",
+            "SQL",
+            "JavaScript"
+          ],
+          "details": "Compétences en langages de programmation."
+        },
+        {
+          "id": "ia_data",
+          "name": "IA / Big Data",
+          "pays": "Canada",
+          "role": "Data & intelligence artificielle",
+          "technologies": [
+            "numpy",
+            "scikit-learn",
+            "pandas",
+            "OpenCV"
+          ],
+          "details": "Bibliothèques utilisées pour l'IA et le traitement des données."
         },
         {
           "id": "outils",
-          "name": "Infrastructure & MLOps",
-          "lat": 51.5074,
-          "lng": -0.1278,
-          "size": 2.2,
-          "role": "Environnement de production",
-          "technologies": ["Git", "GitHub", "Docker", "Jupyter Lab", "Vim"],
-          "details": "- Gestion de version distribuée et workflows CI/CD avec Git/GitHub.\n- Conteneurisation d'applications et reproductibilité des environnements (Docker).\n- Prototypage rapide sous Jupyter Lab et édition de code optimisée."
+          "name": "Outils",
+          "pays": "Mexico",
+          "role": "Outils du quotidien",
+          "technologies": [
+            "Git",
+            "Vim",
+            "Docker",
+            "FastAPI"
+          ],
+          "details": "Outils de développement et de déploiement."
+        },
+        {
+          "id": "langues",
+          "name": "Langues",
+          "pays": "Cuba",
+          "role": "Langues parlées",
+          "technologies": [
+            "Malagasy",
+            "Français",
+            "Anglais"
+          ],
+          "details": "- Malagasy : courant\n- Français : intermédiaire\n- Anglais : intermédiaire"
         }
       ]
     },
     {
-      "id": "projects",
-      "name": "Études de Cas & Projets",
-      "court": "Projets",
-      "color": "#38bdf8",
-      "icon": "layers",
-      "domain": "Réalisations Majeures",
-      "detail": "Explorez mes projets à travers des études de cas détaillées : problème, architecture, défis et métriques de performance.",
-      "libelles": { "role": "Rôle Technique", "tech": "Stack Technique", "liste": "Points Clés & Résultats" },
+      "id": "south_america",
+      "name": "Qualités personnelles",
+      "court": "Soft skills",
+      "color": "#5ED1A5",
+      "icon": "user",
+      "domain": "Soft skills",
+      "detail": "Le continent de la personnalité : la manière de travailler avec les autres.",
+      "libelles": {
+        "role": "Qualité",
+        "tech": "Atouts"
+      },
       "countries": [
         {
-          "id": "RAG",
-          "name": "RAG Document Intelligence",
-          "lat": -33.8688,
-          "lng": 151.2093,
-          "size": 3.3,
-          "role": "Lead Data Scientist & Architecte GenAI",
-          "technologies": ["Python", "Jupyter Lab", "pypdf", "GenAI", "Scikit-learn"],
-          "problem": "Indexation et recherche sémantique précise au sein de corpus volumineux de documents PDF non structurés.",
-          "solution": "Mise en place d'un pipeline d'extraction, de découpage en chunks, de vectorisation et de re-ranking sémantique.",
-          "metrics": [
-            { "label": "Précision Retrieval", "value": "94.2%" },
-            { "label": "Temps de réponse", "value": "< 1.2s" }
-          ],
-          "github": "https://github.com/cedricran/RAG-Document-Intelligence",
-          "details": "Conception complète d'un système de Retrieval-Augmented Generation (RAG).\n- Extraction multithreadée du texte PDF via pypdf\n- Embedding vectoriel et calcul de similarité cosinus avec Scikit-learn\n- Interface d'interrogation intuitive réduisant les hallucinations de 85%"
-        },
-        {
-          "id": "smart_traffic",
-          "name": "AINGANA — Smart Traffic",
-          "lat": -27.4698,
-          "lng": 153.0251,
-          "size": 2.7,
-          "role": "Concepteur & Développeur IA",
-          "technologies": ["Python", "IA à base de règles", "Algorithmique"],
-          "problem": "Embouteillages majeurs aux carrefours urbains saturés aux heures de pointe.",
-          "solution": "Système dynamique de régulation des feux de signalisation par analyse prédictive du flux de véhicules.",
-          "metrics": [
-            { "label": "Réduction Attente", "value": "-28%" },
-            { "label": "Fluidité globale", "value": "+35%" }
-          ],
-          "github": "https://github.com/cedricran/AINGANA-Smart-Traffic",
-          "details": "Moteur d'IA basé sur un ensemble de règles déductives et d'analyse temporelle.\n- Modélisation du trafic urbain en temps réel\n- Optimisation adaptative des temps de vert aux intersections\n- Réduction estimée des émissions de CO2 dues au ralenti"
-        },
-        {
-          "id": "android_game",
-          "name": "Android Game Arcade",
-          "lat": -37.8136,
-          "lng": 144.9631,
-          "size": 2.3,
-          "role": "Développeur Mobile Fullstack",
-          "technologies": ["Kotlin", "Android Studio", "JavaScript", "HTML", "CSS"],
-          "problem": "Proposer une expérience de jeu fluide sur mobile avec synchronisation de scores en temps réel.",
-          "solution": "Architecture hybride native Kotlin exploitant des vues optimisées et une interface web responsive.",
-          "metrics": [
-            { "label": "Taux de FPS", "value": "60 FPS stable" },
-            { "label": "Taille App", "value": "< 15 Mo" }
-          ],
-          "github": "https://github.com/cedricran/Android-Game-Arcade",
-          "details": "Application d'arcade interactive développée pour écosystème Android.\n- Moteur de jeu natif développé sous Android Studio avec Kotlin\n- Intégration de modules Webview réactifs (HTML5 Canvas / CSS3)\n- Gestion optimisée de la mémoire et du cycle de vie Android"
+          "id": "soft_skills",
+          "name": "Façon de travailler",
+          "pays": "Brazil",
+          "role": "À compléter",
+          "technologies": [],
+          "details": "Section à compléter avec les qualités personnelles, par exemple autonomie, esprit d'équipe et créativité."
         }
       ]
     },
     {
-      "id": "contact",
-      "name": "Espace Contact & Recrutement",
+      "id": "oceania",
+      "name": "Centres d'intérêt",
+      "court": "Loisirs",
+      "color": "#C792EA",
+      "icon": "star",
+      "domain": "Loisirs",
+      "detail": "Les découvertes à côté du travail : passions, sports et voyages.",
+      "libelles": {
+        "role": "Activité",
+        "tech": "Thèmes"
+      },
+      "countries": [
+        {
+          "id": "jeu_video",
+          "name": "Jeu vidéo",
+          "pays": "Australia",
+          "role": "Loisir",
+          "technologies": [],
+          "details": "Centre d'intérêt : jeu vidéo."
+        },
+        {
+          "id": "film",
+          "name": "Film",
+          "pays": "New Zealand",
+          "role": "Loisir",
+          "technologies": [],
+          "details": "Centre d'intérêt : cinéma et films."
+        }
+      ]
+    },
+    {
+      "id": "europe",
+      "name": "Contact",
       "court": "Contact",
-      "color": "#f28b6b",
+      "color": "#F4E3C1",
       "icon": "mail",
-      "domain": "Opportunités",
-      "detail": "Prêt à échanger pour un stage ou une collaboration technique. Retrouvez mes coordonnées directes ci-dessous.",
-      "libelles": { "role": "Disponibilité", "tech": "Canaux", "resume": "Localisation", "liste": "Informations Directes" },
+      "domain": "En-tête & contacts",
+      "detail": "La porte d'entrée : les coordonnées pour se connecter.",
+      "libelles": {
+        "role": "Disponibilité",
+        "tech": "Moyens d'échange",
+        "resume": "Localisation",
+        "liste": "Coordonnées"
+      },
       "countries": [
         {
           "id": "location",
-          "name": "Antananarivo (Madagascar) / Remote",
-          "lat": -18.8792,
-          "lng": 47.5079,
-          "size": 2.5,
-          "role": "Ouvert pour Stage IA & Big Data",
-          "technologies": ["Email Direct", "LinkedIn", "GitHub", "Téléphone"],
-          "details": "Actuellement basé à Antananarivo, disponible pour des opportunités en présentiel ou en télétravail international.\n- Email : cedricran00449@gmail.com\n- Téléphone : 038 50 124 33\n- Mobilité : France & International (Recherche de Stage)"
+          "name": "Coordonnées",
+          "pays": "France",
+          "role": "Disponible pour une première expérience professionnelle",
+          "technologies": [
+            "Email",
+            "Téléphone",
+            "Site web"
+          ],
+          "details": "Basé à Antananarivo, Madagascar (Ankasina).\n- Adresse : IVN 85 Ô Ankasina\n- Email : cedricran00449@gmail.com\n- Téléphone : 038 50 124 33\n- Site : https://cedricran.github.io"
         }
       ]
     }

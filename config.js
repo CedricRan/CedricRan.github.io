@@ -11,16 +11,18 @@
 window.CONFIG = {
 
   // --- Identité (affichée dans l'en-tête et dans l'onglet du navigateur) ---
-  nom: "Prénom Nom",                         // À REMPLACER par le vrai nom
-  titre: "Étudiant en IA & Big Data",
-  accroche: "En recherche de stage d'application",
+  nom: "RANDRIANARISOA Herintsaina Steve Cedric",                         // À REMPLACER par le vrai nom
+  titre: "Étudiant en IA et Big Data",
+  accroche: "À la recherche d'une première expérience professionnelle",
+  phrase: "Un univers à explorer continent par continent : formation, expériences, compétences et contact.",                                // Phrase affichée sous le nom dans l'introduction. Vide = phrase par défaut
 
   // --- Liens rapides (boutons en bas à droite) ---
-  cv: "",                                    // Ex : "cv.pdf" (fichier placé à côté de index.html) ou lien complet https://...
-  github: "",                                // Ex : "https://github.com/pseudo"
+  cv: "cv.pdf",                                    // Ex : "cv.pdf" (fichier placé à côté de index.html) ou lien complet https://...
+  site: "https://cedricran.github.io",
+  github: "https://github.com/cedricran",                                // Ex : "https://github.com/pseudo"
   linkedin: "",                              // Ex : "https://www.linkedin.com/in/pseudo"
   email: "cedricran00449@gmail.com",
-  telephone: ""                              // Ex : "038 50 124 33"
+  telephone: "038 50 124 33"                              // Ex : "038 50 124 33"
 
 };
 
