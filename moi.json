@@ -3,123 +3,128 @@
     {
       "id": "profile",
       "name": "Profil",
-      "color": "#FFFFFF",
-      "icon": "👨‍💻",
-      "domain": "Présentation",
-      "detail": "Profil d'étudiant en IA & Big Data à la recherche d'un stage",
+      "court": "Profil",
+      "color": "#F4E3C1",
+      "icon": "compass",
+      "domain": "Parcours",
+      "detail": "Point de départ de ce monde : profil, motivations et recherche actuelle.",
+      "libelles": { "tech": "Domaines", "resume": "Parcours", "liste": "En bref" },
       "countries": [
         {
           "id": "about_me",
-          "name": "À propos de moi",
-          "lat": -18.8792,
-          "lng": 47.5079,
+          "name": "Point de départ",
+          "lat": -15.7,
+          "lng": 46.3,
           "size": 3.0,
-          "role": "Étudiant & Développeur",
-          "technologies": ["IA", "Big Data", "Dev Logiciel"],
-          "details": "Étudiant passionné par l'intelligence artificielle et le développement logiciel. Actuellement en quête active d'un stage d'application pour mettre en pratique mes compétences et contribuer à des projets innovants."
+          "role": "Étudiant en IA & Big Data",
+          "technologies": ["Intelligence artificielle", "Big Data", "Développement logiciel"],
+          "details": "Étudiant en intelligence artificielle et en Big Data, passionné par la transformation des données en décisions utiles et par l'apprentissage à travers des projets concrets.\n- Recherche : un stage d'application, au sein d'une équipe\n- Moteur : contribuer à des projets innovants"
         }
       ]
     },
     {
       "id": "skills",
-      "name": "Compétences",
-      "color": "#10B981",
-      "icon": "⚡",
-      "domain": "Pôle Technique",
-      "detail": "Compétences clés réparties par domaines d'expertise en programmation et IA",
+      "name": "Savoir-faire",
+      "court": "Compétences",
+      "color": "#6FCF97",
+      "icon": "tools",
+      "domain": "Compétences",
+      "detail": "Les compétences clés au quotidien : comprendre les données, programmer et travailler proprement.",
+      "libelles": { "tech": "Maîtrise", "liste": "Concrètement" },
       "countries": [
         {
           "id": "ia_data",
-          "name": "IA & Data Science",
+          "name": "L'IA et la donnée",
           "lat": 48.8566,
-          "lng": 28.3522,
+          "lng": 2.3522,
           "size": 2.8,
-          "role": "Analyste / Data Scientist",
+          "role": "Data & intelligence artificielle",
           "technologies": ["Machine Learning", "EDA", "Modélisation", "Analyse de données"],
-          "details": "- Conception et entraînement de modèles de Machine Learning\n- Analyse exploratoire de données (EDA)\n- Nettoyage, préparation et modélisation de jeux de données complexes"
+          "details": "- Entraînement et évaluation de modèles de Machine Learning\n- Exploration des données pour en comprendre la structure (EDA)\n- Nettoyage et préparation de jeux de données complexes avant modélisation"
         },
         {
           "id": "langages",
-          "name": "Langages de Programmation",
-          "lat": 35.6762,
-          "lng": 20.6503,
+          "name": "Langages de programmation",
+          "lat": 50.1109,
+          "lng": 8.6821,
           "size": 2.6,
-          "role": "Développeur Full-Stack",
+          "role": "Programmation",
           "technologies": ["Python", "SQL", "JavaScript"],
-          "details": "- Maîtrise avancée de Python pour l'algorithmique et l'IA\n- Manipulation de bases de données relationnelles avec SQL\n- Intégration et dynamisme web avec JavaScript"
+          "details": "- Python pour l'algorithmique et l'IA\n- SQL pour interroger et organiser des bases de données\n- JavaScript pour dynamiser le web"
         },
         {
           "id": "outils",
-          "name": "Outils & Environnement",
+          "name": "L'atelier",
           "lat": 51.5074,
-          "lng": -8.1278,
+          "lng": -0.1278,
           "size": 2.0,
-          "role": "DevOps & Productivité",
+          "role": "Outils du quotidien",
           "technologies": ["Vim", "Jupyter Lab", "Git", "GitHub"],
-          "details": "- Utilisation quotidienne de Git et GitHub pour le versioning et le travail d'équipe\n- Environnement de travail sous Jupyter Lab pour la data\n- Édition rapide et efficace avec Vim"
+          "details": "- Git et GitHub au quotidien, pour le suivi du code et le travail d'équipe\n- Jupyter Lab pour explorer et prototyper en data\n- Vim pour une édition rapide et efficace"
         }
       ]
     },
     {
       "id": "projects",
-      "name": "Projets",
-      "color": "#3B82F6",
-      "icon": "🚀",
-      "domain": "Réalisations",
-      "detail": "Projets académiques et applications concrètes en IA et développement",
+      "name": "Réalisations",
+      "court": "Projets",
+      "color": "#6AA9F2",
+      "icon": "layers",
+      "domain": "Projets menés",
+      "detail": "Projets menés pendant les études, de l'idée jusqu'à une application concrète.",
+      "libelles": { "tech": "Technologies", "liste": "Réalisations" },
       "countries": [
         {
           "id": "smart_traffic",
           "name": "AINGANA",
-          "lat": -25.2744,
-          "lng": 133.7751,
+          "lat": -27.4698,
+          "lng": 153.0251,
           "size": 2.7,
-          "role": "Développeur IA",
-          "technologies": ["Python", "IA Rule-based", "Algorithmique"],
-          "details": "- Système intelligent de prédiction et d'optimisation des embouteillages\n- Implémentation d'une logique basée sur des règles pour réguler le trafic\n- Analyse des flux de circulation en temps réel"
+          "role": "Conception et développement IA",
+          "technologies": ["Python", "IA à base de règles", "Algorithmique"],
+          "details": "- Système de prédiction et de réduction des embouteillages\n- Logique à base de règles pour réguler la circulation\n- Analyse des flux de circulation en temps réel"
         },
-
         {
           "id": "RAG",
           "name": "RAG",
-          "lat": -25.8688,
-          "lng": 148.2093,
+          "lat": -33.8688,
+          "lng": 151.2093,
           "size": 3.3,
-          "role": "Lead Data Scientist / Développeur RAG",
-          "technologies": ["jupyter lab", "pypdf", "Genai", "Sklearn", "Python"],
-          "details": "- Conception et développement d'un système de Retrieval-Augmented Generation (RAG)\n- Traitement et analyse de documents PDF avec pypdf et scikit-learn\n- Vectorisation des Textes avec genai\n- Expérimentation et prototypage sous Jupyter Lab"
-        },        
-        {
-        "id": "android_game",
-        "name": "Android Game Arcade",
-        "lat": -33.8688,
-        "lng": 151.2093,
-        "size": 2.3,
-        "role": "Développeur Mobile & Web",
-        "technologies": ["Kotlin", "Android Studio", "JavaScript", "HTML", "CSS"],
-        "details": "- Conception et développement d'un jeu mobile sur Android\n- Utilisation de Kotlin et Android Studio pour l'application native\n- Intégration d'interfaces web interactives (HTML/CSS/JS)"
+          "role": "Lead Data Scientist & développeur RAG",
+          "technologies": ["Jupyter Lab", "pypdf", "GenAI", "Scikit-learn", "Python"],
+          "details": "- Conception d'un système de Retrieval-Augmented Generation (RAG)\n- Lecture et analyse de documents PDF avec pypdf et scikit-learn\n- Vectorisation des textes avec GenAI\n- Prototypage et expérimentation sous Jupyter Lab"
         },
-
-        
+        {
+          "id": "android_game",
+          "name": "Android Game Arcade",
+          "lat": -37.8136,
+          "lng": 144.9631,
+          "size": 2.3,
+          "role": "Développeur mobile & web",
+          "technologies": ["Kotlin", "Android Studio", "JavaScript", "HTML", "CSS"],
+          "details": "- Jeu mobile conçu pour Android\n- Application native en Kotlin avec Android Studio\n- Interfaces web interactives en HTML, CSS et JavaScript"
+        }
       ]
     },
     {
       "id": "contact",
       "name": "Contact",
-      "color": "#EF4444",
-      "icon": "📍",
-      "domain": "Communication",
-      "detail": "Coordonnées de contact direct et localisation professionnelle",
+      "court": "Contact",
+      "color": "#F28B6B",
+      "icon": "mail",
+      "domain": "Échanges",
+      "detail": "Un stage, un projet, une simple question ? Les coordonnées pour échanger se trouvent ici.",
+      "libelles": { "role": "Disponibilité", "tech": "Moyens d'échange", "resume": "Localisation", "liste": "Coordonnées" },
       "countries": [
         {
           "id": "location",
           "name": "Antananarivo, Madagascar",
-          "lat": 15.0000,
-          "lng": -75.0000,
+          "lat": -18.8792,
+          "lng": 47.5079,
           "size": 2.5,
-          "role": "Disponibilité Stage",
-          "technologies": ["Email", "Téléphone", "Présentiel / Distanciel"],
-          "details": "- Email : cedricran00449@gmail.com\n- Téléphone : 038 50 124 33\n- Localisation : Antananarivo, Madagascar\n- Ouvert aux opportunités de stage (national ou international)"
+          "role": "Disponible pour un stage",
+          "technologies": ["Email", "Téléphone", "Sur place ou à distance"],
+          "details": "Basé à Antananarivo, à Madagascar, et ouvert aux opportunités de stage, au niveau national comme international.\n- Email : cedricran00449@gmail.com\n- Téléphone : 038 50 124 33\n- Localisation : Antananarivo, Madagascar"
         }
       ]
     }
