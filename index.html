@@ -1164,7 +1164,7 @@
     }
 
     // ===== Terre réelle : continents noirs, pays du fichier allumés =====
-    let terreMode = false;
+    let terreMode = false, paysAllumes = [], surbCtx = null, surbTex = null, surbCle = '';
 
     function decoderTopo(topo, objet) {
       const sc = topo.transform.scale, tr = topo.transform.translate;
@@ -1189,6 +1189,12 @@
       return c;
     }
     function dansPays(pt, pays) {
+      if (!pays.bb) {
+        let a = 1e9, b = 1e9, c = -1e9, d = -1e9;
+        pays.polys.forEach(pl => pl[0].forEach(q => { a = Math.min(a, q[0]); b = Math.min(b, q[1]); c = Math.max(c, q[0]); d = Math.max(d, q[1]); }));
+        pays.bb = [a, b, c, d];
+      }
+      if (pt[0] < pays.bb[0] || pt[0] > pays.bb[2] || pt[1] < pays.bb[1] || pt[1] > pays.bb[3]) return false;
       return pays.polys.some(pl => dansAnneau(pt, pl[0]) && !pl.slice(1).some(h => dansAnneau(pt, h)));
     }
     function centrePays(pays) {
@@ -1208,8 +1214,10 @@
           const ctr = centrePays(nomme); pl.lng = ctr[0]; pl.lat = ctr[1];
         }
         const t = nomme || ((typeof pl.lat === 'number' && typeof pl.lng === 'number') ? terre.find(x => dansPays([pl.lng, pl.lat], x)) : null);
+        pl._pays = t || null;
         if (t && !t.couleur) t.couleur = c.color;
       }));
+      paysAllumes = terre.filter(t => t.couleur);
     }
     function dessinerTerre(terre) {
       const W = FAIBLE ? 1024 : 2048, H = W / 2, k = W / 2048;
@@ -1236,10 +1244,52 @@
       });
       const tex = new THREE.CanvasTexture(cv);
       tex.anisotropy = 8;
+      const ov = document.createElement('canvas');
+      ov.width = 1024; ov.height = 512;
+      surbCtx = ov.getContext('2d');
+      surbTex = new THREE.CanvasTexture(ov);
+      const surb = new THREE.Mesh(new THREE.SphereGeometry(sphereRadius + 0.015, 64, 64),
+        new THREE.MeshBasicMaterial({ map: surbTex, transparent: true, depthWrite: false, blending: THREE.AdditiveBlending }));
+      surb.renderOrder = 2;
+      globeGroup.add(surb);
       coreMesh.material.map = tex;
       coreMesh.material.color.set(0xffffff);
       coreMesh.material.needsUpdate = true;
     }
+    function majSurbrillance(liste) {
+      if (!surbCtx) return;
+      const cle = liste.map(x => x[0].nom + ':' + x[1].toFixed(2)).join('|');
+      if (cle === surbCle) return;
+      surbCle = cle;
+      const W = 1024, H = 512, g = surbCtx;
+      g.clearRect(0, 0, W, H);
+      liste.forEach(x => {
+        if (x[1] <= 0.01) return;
+        g.beginPath();
+        x[0].polys.forEach(pl => pl.forEach(r => {
+          r.forEach((q, i) => { const px = (q[0] + 180) / 360 * W, py = (90 - q[1]) / 180 * H; if (i) g.lineTo(px, py); else g.moveTo(px, py); });
+          g.closePath();
+        }));
+        g.globalAlpha = Math.min(0.8, x[1]);
+        g.fillStyle = x[2];
+        g.fill('evenodd');
+      });
+      g.globalAlpha = 1;
+      surbTex.needsUpdate = true;
+    }
+    function lieuSousPoint(pt) {
+      const ll = vector3ToLatLng(pt), dir = pt.clone().normalize();
+      const t = paysAllumes.find(x => dansPays([ll.lng, ll.lat], x));
+      if (!t) return null;
+      let best = null, bd = 1e9;
+      Object.values(placeInfos).forEach(p => {
+        if (p.paysObj !== t) return;
+        const d = latLngToVector3(p.lat, p.lng, 1).normalize().angleTo(dir);
+        if (d < bd) { bd = d; best = p; }
+      });
+      return best;
+    }
+
     function chargerTerre() {
       const ctl = new AbortController(), t = setTimeout(() => ctl.abort(), 8000);
       const lire = url => fetch(url, { signal: ctl.signal }).then(r => { if (!r.ok) throw new Error(); return r.json(); });
@@ -1367,6 +1417,7 @@
           countryCloud.userData = countryInfo;
           placeInfos[country.id] = countryInfo;
           countryInfo.mesh = countryCloud;
+          countryInfo.paysObj = country._pays || null;
           countryInfo.phase = hashStr(country.name) % 6;
           countryInfo.rayon = angRad * sphereRadius;
           countryInfo.delai = (compteurRev++) * 350;
@@ -1606,6 +1657,7 @@
         else p.mesh.material.color.copy(TERRE_LIEU).lerp(p._c, Math.max(0, o - 0.2) * 0.45);
         p.border.material.opacity = match ? 0.95 : 0.2;
       });
+      if (terreMode) majSurbrillance(Object.values(placeInfos).filter(p => p.paysObj).map(p => [p.paysObj, (p.glow || 0) * 1.4, p.color]));
     }
     function setHover(id) { if (id !== hoveredId) { hoveredId = id; refreshOpacities(); } }
 
@@ -1724,8 +1776,14 @@
       const mouse = new THREE.Vector2((event.clientX / window.innerWidth) * 2 - 1, -(event.clientY / window.innerHeight) * 2 + 1);
       const rc = new THREE.Raycaster();
       rc.setFromCamera(mouse, camera);
-      const hits = rc.intersectObjects([...countryMarkers.filter(m => m.visible), ...countryObjects, coreMesh]);
-      return hits.length ? hits[0].object : null;
+      const cibles = terreMode ? [...countryMarkers.filter(m => m.visible), coreMesh] : [...countryMarkers.filter(m => m.visible), ...countryObjects, coreMesh];
+      const hits = rc.intersectObjects(cibles);
+      if (!hits.length) return null;
+      if (terreMode && hits[0].object === coreMesh) {
+        const lieu = lieuSousPoint(hits[0].point);
+        return lieu ? lieu.mesh : hits[0].object;
+      }
+      return hits[0].object;
     }
 
     let clicsVides = 0, tClics = null;
@@ -1847,7 +1905,7 @@
         Object.values(placeInfos).forEach(p => {
           if (p.baseO === undefined) return;
           const rev = Math.min(1, Math.max(0, (performance.now() - tRev - p.delai) / 1400));
-          p.mesh.material.opacity = terreMode ? (p.glow || 0) * rev : rev;
+          p.mesh.material.opacity = terreMode ? (p.paysObj ? 0 : (p.glow || 0) * rev) : rev;
           const bord = ((!techFilter || p.technologies.includes(techFilter)) ? 0.95 : 0.2) * ((currentContinent && p.continentId !== currentContinent) ? 0.35 : 1);
           p.border.material.opacity = bord * (0.88 + 0.12 * Math.sin(time * 0.6 + p.phase)) * rev;
         });
