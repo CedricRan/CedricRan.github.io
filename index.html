@@ -297,6 +297,68 @@
     }
     #small-screen { display: none; position: fixed; inset: 0; z-index: 100; align-items: center; justify-content: center; text-align: center; padding: 24px; background: #02040a; color: #cbd5e1; font-size: 0.95rem; line-height: 1.6; }
     @media (max-width: 319px), (max-height: 359px) { #small-screen { display: flex; } }
+    /* Interactivité */
+    .tech-btn { font: inherit; font-size: 0.78rem; font-weight: 500; cursor: pointer; transition: all 0.2s ease; }
+    .tech-btn:hover, .tech-btn.on { border-color: var(--accent, #f4e3c1); background: rgba(255,255,255,0.14); color: #fff; }
+    .nav-row { display: flex; gap: 8px; align-items: center; justify-content: space-between; margin-top: 18px; }
+    .nav-row .place-chip { margin: 0; }
+    .nav-row .count { font-size: 0.8rem; color: #94a3b8; }
+    .link-note { font-size: 0.82rem; color: #94a3b8; margin-bottom: 10px; }
+    #tour-btn { position: absolute; left: 25px; bottom: 30px; z-index: 10; display: flex; align-items: center; gap: 8px; font: inherit; font-size: 0.82rem; color: #e2e8f0; background: rgba(15,23,42,0.85); border: 1px solid rgba(255,255,255,0.12); backdrop-filter: blur(16px); padding: 12px 16px; border-radius: 16px; cursor: pointer; transition: background 0.2s ease; }
+    #tour-btn:hover { background: rgba(255,255,255,0.12); }
+    #filter-pill { display: none; position: absolute; top: 25px; left: 50%; transform: translateX(-50%); z-index: 12; cursor: pointer; white-space: nowrap; background: rgba(15,23,42,0.92); border: 1px solid rgba(255,255,255,0.2); padding: 8px 16px; border-radius: 20px; font-size: 0.85rem; }
+    @media (max-width: 640px) {
+      #tour-btn { left: auto; right: 12px; top: 12px; bottom: auto; padding: 10px 12px; }
+      #tour-btn span { display: none; }
+      #filter-pill { top: 64px; }
+    }
+    /* Carte seule : occupe toute la largeur */
+    .metrics-grid .metric-card:last-child:nth-child(odd) { grid-column: 1 / -1; }
+    .metrics-grid .metric-card:only-child { padding: 16px 18px; }
+    .metrics-grid .metric-card:only-child .metric-value { font-size: 1.3rem; }
+    /* Liens rapides (CV, GitHub, contact) */
+    #quick-links { position: absolute; right: 25px; bottom: 30px; z-index: 10; display: flex; gap: 8px; }
+    #quick-links a { display: flex; align-items: center; gap: 7px; color: #e2e8f0; text-decoration: none; font-size: 0.82rem; background: rgba(15,23,42,0.85); border: 1px solid rgba(255,255,255,0.12); backdrop-filter: blur(16px); padding: 12px 14px; border-radius: 16px; transition: background 0.2s ease; }
+    #quick-links a:hover { background: rgba(255,255,255,0.12); }
+    @media (max-width: 1280px) { #quick-links a span { display: none; } }
+    @media (max-width: 640px) { #quick-links { right: 12px; top: 64px; bottom: auto; flex-direction: column; } }
+    /* ===== Introduction ===== */
+    #app-header { display: none !important; }
+    #veil { position: fixed; inset: 0; z-index: 60; background: #02040a; pointer-events: none; animation: veil 2.4s ease 0.2s forwards; }
+    @keyframes veil { to { opacity: 0; visibility: hidden; } }
+    #intro { position: fixed; inset: 0; z-index: 50; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; text-align: center; padding: 0 24px 11vh; background: linear-gradient(to top, rgba(2,4,10,0.94) 0%, rgba(2,4,10,0.45) 55%, rgba(2,4,10,0) 100%); transition: opacity 1s ease, visibility 1s; }
+    #intro.hide { opacity: 0; visibility: hidden; pointer-events: none; }
+    #intro h1 { font-family: var(--serif); font-weight: 500; font-size: clamp(2rem, 6vw, 3.6rem); letter-spacing: 0.03em; opacity: 0; animation: rise 1.4s ease 1.6s forwards; }
+    #intro .i2 { margin-top: 10px; font-size: clamp(0.72rem, 1.6vw, 0.9rem); text-transform: uppercase; letter-spacing: 0.32em; color: #9fb4d0; opacity: 0; animation: rise 1.2s ease 2.3s forwards; }
+    #intro .i3 { margin-top: 18px; max-width: 520px; font-size: 1rem; line-height: 1.6; color: #cbd5e1; opacity: 0; animation: rise 1.2s ease 2.9s forwards; }
+    #intro .i4 { margin-top: 28px; display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; opacity: 0; animation: rise 1.2s ease 3.5s forwards; }
+    #intro .i5 { margin-top: 22px; display: flex; gap: 22px; opacity: 0; animation: rise 1.2s ease 4s forwards; }
+    #intro .i5 a { color: #9fb4d0; font-size: 0.85rem; text-decoration: none; border-bottom: 1px solid rgba(159,180,208,0.35); padding-bottom: 2px; }
+    #intro .i5 a:hover { color: #fff; }
+    @keyframes rise { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+    .intro-main, .intro-sec { font: inherit; font-size: 0.95rem; cursor: pointer; border-radius: 30px; padding: 12px 28px; transition: all 0.25s ease; }
+    .intro-main { color: #02040a; background: #eadfc8; border: 1px solid #eadfc8; font-weight: 600; }
+    .intro-main:hover { background: #fff; box-shadow: 0 0 30px rgba(234,223,200,0.4); }
+    .intro-sec { color: #e2e8f0; background: transparent; border: 1px solid rgba(255,255,255,0.25); }
+    .intro-sec:hover { background: rgba(255,255,255,0.1); }
+
+    /* ===== Étude de cas, liste, chargement, erreur ===== */
+    .shots { display: flex; gap: 8px; overflow-x: auto; }
+    .shots img { height: 120px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.12); }
+    .lien-etude { display: inline-flex; align-items: center; gap: 6px; text-decoration: none; }
+    #list-view { position: fixed; inset: 0; z-index: 65; overflow-y: auto; background: rgba(2,4,10,0.97); }
+    #list-view[hidden] { display: none; }
+    .list-inner { max-width: 780px; margin: 0 auto; padding: 32px 20px 80px; }
+    .list-inner h2 { font-family: var(--serif); font-size: 1.6rem; margin: 34px 0 6px; color: #eadfc8; }
+    .list-item { margin-top: 18px; padding: 18px; border: 1px solid rgba(255,255,255,0.1); border-radius: 14px; background: rgba(255,255,255,0.03); }
+    .list-item h3 { font-size: 1.1rem; }
+    .list-role { color: #94a3b8; font-size: 0.85rem; margin: 2px 0 10px; }
+    #list-note { margin-top: 12px; color: #94a3b8; font-size: 0.9rem; }
+    #loader { display: none; position: fixed; bottom: 18px; left: 50%; transform: translateX(-50%); z-index: 70; color: #94a3b8; font-size: 0.85rem; pointer-events: none; }
+    #erreur { display: none; position: fixed; inset: 0; z-index: 80; flex-direction: column; align-items: center; justify-content: center; gap: 14px; text-align: center; padding: 24px; background: rgba(2,4,10,0.95); color: #e2e8f0; line-height: 1.5; }
+    #erreur h2 { font-family: var(--serif); }
+    button:focus-visible, a:focus-visible { outline: 2px solid #fff; outline-offset: 2px; }
+    @media (prefers-reduced-motion: reduce) { * { animation-duration: 0.01s !important; animation-delay: 0s !important; transition-duration: 0.01s !important; } }
   </style>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
@@ -324,11 +386,29 @@
   </div>
 
   <div id="nav-bar"></div>
+  <nav id="quick-links" aria-label="Liens rapides"></nav>
+  <div id="veil"></div>
+  <section id="intro" aria-label="Introduction">
+    <h1 id="intro-nom">Portfolio</h1>
+    <p id="intro-titre" class="i2"></p>
+    <p id="intro-phrase" class="i3">Un univers numérique où chaque territoire raconte une compétence, un projet ou une étape de parcours.</p>
+    <div class="i4"><button id="intro-go" class="intro-main">Explorer</button><button id="intro-liste" class="intro-sec">Version liste</button></div>
+    <div id="intro-links" class="i5"></div>
+  </section>
+  <div id="list-view" role="dialog" aria-label="Liste des projets" hidden></div>
+  <div id="loader" role="status"></div>
+  <div id="erreur" role="alert"></div>
   <div id="tooltip"></div>
+  <button id="tour-btn"></button>
+  <div id="filter-pill"></div>
   <div id="small-screen">Écran trop petit pour afficher ce portfolio.<br>Merci d'agrandir la fenêtre ou de tourner l'appareil.</div>
 
+  <script src="config.js"></script>
   <script>
     let VITESSE_ROTATION = 0.6;
+    const REDUIRE = !!(window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches);
+    const FAIBLE = (navigator.hardwareConcurrency || 8) <= 4 || window.innerWidth < 640;
+    let dirLight1 = null, dirLight2 = null, atmosMat = null, ambianceCible = null, starMats = [], dust = null, rotId = 0;
 
     let scene, camera, renderer, controls;
     const sphereRadius = 5;
@@ -353,35 +433,191 @@
     }
 
     function reactiverAutoRotation() {
+      rotId++;
       if (controls) {
-        controls.autoRotate = true;
+        controls.autoRotate = !REDUIRE;
         controls.autoRotateSpeed = VITESSE_ROTATION;
       }
     }
 
     function stopperAutoRotation() {
-      if (controls) {
-        controls.autoRotate = false;
+      if (!controls || !controls.autoRotate) return;
+      const id = ++rotId, v0 = controls.autoRotateSpeed;
+      let k = 0;
+      (function ralentir() {
+        if (id !== rotId) return;
+        k += 0.04;
+        controls.autoRotateSpeed = v0 * Math.max(0, 1 - k);
+        if (k < 1) requestAnimationFrame(ralentir); else controls.autoRotate = false;
+      })();
+    }
+
+    // ===== Texture, intro, données, liste, étude de cas =====
+    function creerTextureSurface() {
+      const c = document.createElement('canvas');
+      c.width = 1024; c.height = 512;
+      const g = c.getContext('2d');
+      const gr = g.createLinearGradient(0, 0, 0, 512);
+      gr.addColorStop(0, '#0d2038'); gr.addColorStop(0.5, '#0a1830'); gr.addColorStop(1, '#0d2038');
+      g.fillStyle = gr; g.fillRect(0, 0, 1024, 512);
+      for (let i = 0; i < (FAIBLE ? 120 : 260); i++) {
+        const x = Math.random() * 1024, y = Math.random() * 512, r = 20 + Math.random() * 90;
+        const rg = g.createRadialGradient(x, y, 0, x, y, r);
+        rg.addColorStop(0, `rgba(60,110,170,${0.05 + Math.random() * 0.07})`);
+        rg.addColorStop(1, 'rgba(60,110,170,0)');
+        g.fillStyle = rg; g.fillRect(x - r, y - r, r * 2, r * 2);
       }
+      for (let i = 0; i < 1400; i++) {
+        g.fillStyle = `rgba(180,220,255,${Math.random() * 0.25})`;
+        g.fillRect(Math.random() * 1024, Math.random() * 512, 1.2, 1.2);
+      }
+      const t = new THREE.CanvasTexture(c);
+      t.anisotropy = 4;
+      return t;
+    }
+
+    function volIntro() {
+      const debut = performance.now(), de = camera.position.clone(), vers = new THREE.Vector3(0, 1.5, 17);
+      (function pas(t) {
+        const k = Math.min(1, (t - debut) / 4500), e = 1 - Math.pow(1 - k, 3);
+        camera.position.lerpVectors(de, vers, e);
+        if (k < 1) requestAnimationFrame(pas);
+      })(debut);
+    }
+    function fermerIntro() { document.getElementById('intro').classList.add('hide'); }
+
+    function validerDonnees(d) {
+      if (!d || !Array.isArray(d.continents) || !d.continents.length) return ['"continents" absent ou vide'];
+      const pb = [];
+      d.continents.forEach((c, i) => {
+        if (!c.id || !c.name) pb.push(`territoire ${i + 1} : id ou name manquant`);
+        if (!Array.isArray(c.countries)) { pb.push(`territoire ${c.id || i + 1} : "countries" manquant`); return; }
+        c.countries.forEach((p, j) => {
+          if (!p.id || !p.name || typeof p.lat !== 'number' || typeof p.lng !== 'number') pb.push(`${c.id || i + 1}, lieu ${j + 1} : id, name, lat ou lng invalide`);
+          if (!Array.isArray(p.technologies)) p.technologies = [];
+        });
+      });
+      return pb;
+    }
+    function afficherErreur(msg) {
+      const e = document.getElementById('erreur');
+      e.innerHTML = `<h2>Contenu indisponible</h2><p>${msg}</p><p>Vérifier que moi.json se trouve à côté de index.html, et ouvrir la page via un serveur ou un hébergement (pas en double-cliquant sur le fichier).</p><button class="place-chip" onclick="location.reload()">Réessayer</button>`;
+      e.style.display = 'flex';
+    }
+    function chargerDonnees() {
+      const ld = document.getElementById('loader');
+      ld.textContent = 'Chargement…'; ld.style.display = 'block';
+      return fetch('moi.json')
+        .then(res => { if (!res.ok) throw new Error('moi.json introuvable (HTTP ' + res.status + ').'); return res.json(); })
+        .then(data => {
+          const pb = validerDonnees(data);
+          if (pb.length) throw new Error('Structure invalide : ' + pb.slice(0, 3).join(' ; ') + '.');
+          globalData = data; ld.style.display = 'none';
+          return data;
+        })
+        .catch(e => { ld.style.display = 'none'; afficherErreur(e.message || 'Erreur inconnue.'); throw e; });
+    }
+    function webglIndisponible() {
+      fermerIntro();
+      document.getElementById('veil').style.display = 'none';
+      chargerDonnees().then(d => {
+        remplirListe(d); ouvrirListe();
+        document.getElementById('list-note').textContent = "L'affichage 3D n'est pas disponible sur cet appareil : voici la version liste.";
+      }).catch(() => {});
+    }
+
+    const ETUDE = [['objectif', 'Objectif'], ['probleme', 'Problème traité'], ['defis', 'Difficultés rencontrées'], ['solutions', 'Solutions mises en place'], ['resultats', 'Résultats'], ['apprentissages', 'Enseignements'], ['ameliorations', "Pistes d'amélioration"]];
+    function rendreEtude(e) {
+      let h = '';
+      if (e.images && e.images.length) h += `<div class="info-section"><div class="info-section-title">Aperçu</div><div class="shots">${e.images.map(u => `<img loading="lazy" src="${u}" alt="" onerror="this.remove()">`).join('')}</div></div>`;
+      ETUDE.forEach(([k, titre]) => {
+        const v = e[k];
+        if (!v || (Array.isArray(v) && !v.length)) return;
+        h += `<div class="info-section"><div class="info-section-title">${titre}</div>` + (Array.isArray(v)
+          ? `<ul class="info-list">${v.map(i => `<li class="info-list-item"><span style="color:var(--accent)">•</span><span>${lier(i)}</span></li>`).join('')}</ul>`
+          : `<p class="info-text-paragraph">${v}</p>`) + '</div>';
+      });
+      const L = e.liens || {};
+      const btns = [['github', 'github', 'Code source'], ['demo', 'globe', 'Démonstration'], ['doc', 'file', 'Documentation']]
+        .filter(x => L[x[0]]).map(x => `<a class="place-chip lien-etude" href="${L[x[0]]}" target="_blank" rel="noopener">${icon(x[1], 14)} ${x[2]}</a>`);
+      if (btns.length) h += `<div class="info-section"><div class="info-section-title">Liens</div>${btns.join('')}</div>`;
+      return h;
+    }
+
+    function remplirListe(d) {
+      const el = document.getElementById('list-view');
+      el.innerHTML = '<div class="list-inner"><button class="place-chip" onclick="fermerListe()">Fermer</button><p id="list-note"></p>' + d.continents.map(c =>
+        `<section><h2>${c.name}</h2><p class="info-text-paragraph">${c.detail || ''}</p>` + c.countries.map(p => {
+          const lines = (p.details || '').split('\n').map(l => l.trim()).filter(Boolean);
+          const items = lines.filter(l => /^[-•*]/.test(l)).map(l => l.replace(/^[-•*]\s*/, ''));
+          const para = lines.filter(l => !/^[-•*]/.test(l)).join(' ');
+          return `<article class="list-item"><h3>${p.name}</h3><p class="list-role">${p.role || ''}</p>`
+            + (para ? `<p class="info-text-paragraph">${para}</p>` : '')
+            + (items.length ? `<ul class="info-list">${items.map(i => `<li class="info-list-item"><span>${lier(i)}</span></li>`).join('')}</ul>` : '')
+            + `<div class="tech-tags-container">${(p.technologies || []).map(t => `<span class="tech-badge">${t}</span>`).join('')}</div>`
+            + (p.etude ? rendreEtude(p.etude) : '') + '</article>';
+        }).join('') + '</section>').join('') + '</div>';
+    }
+    function ouvrirListe() { const el = document.getElementById('list-view'); el.hidden = false; el.scrollTop = 0; fermerIntro(); }
+    function fermerListe() { document.getElementById('list-view').hidden = true; }
+    function toggleListe() { if (document.getElementById('list-view').hidden) ouvrirListe(); else fermerListe(); }
+
+    function lancerPulsations() {
+      if (REDUIRE) return;
+      setInterval(() => {
+        if (selectedId || techFilter || !document.getElementById('intro').classList.contains('hide')) return;
+        const tous = Object.values(placeInfos);
+        const l = tous.filter(p => tous.some(o => o !== p && o.technologies.some(t => p.technologies.includes(t))));
+        if (!l.length) return;
+        dessinerLiens(l[Math.floor(Math.random() * l.length)]);
+        setTimeout(() => { if (!selectedId) effacerLiens(); }, 4500);
+      }, 9000);
+    }
+
+    function appliquerConfig() {
+      const c = window.CONFIG || {};
+      if (c.nom && c.nom !== 'Prénom Nom') {
+        document.querySelector('#app-header h1').textContent = c.nom;
+        document.title = c.nom + ' — Portfolio';
+      }
+      const sous = [c.titre, c.accroche].filter(Boolean).join(' · ');
+      if (sous) document.querySelector('#app-header p').textContent = sous;
+
+      const liens = [];
+      if (c.cv) liens.push(['file', 'CV', c.cv]);
+      if (c.github) liens.push(['github', 'GitHub', c.github]);
+      if (c.linkedin) liens.push(['linkedin', 'LinkedIn', c.linkedin]);
+      if (c.email) liens.push(['mail', 'Email', 'mailto:' + c.email]);
+      if (c.telephone) liens.push(['phone', 'Téléphone', 'tel:' + c.telephone.replace(/\s/g, '')]);
+      document.getElementById('quick-links').innerHTML = liens.map(l => {
+        const ext = /^https?:/.test(l[2]) || l[0] === 'file' ? ' target="_blank" rel="noopener"' : '';
+        return `<a href="${l[2]}"${ext} title="${l[1]}" aria-label="${l[1]}">${icon(l[0], 18)}<span>${l[1]}</span></a>`;
+      }).join('');
+      document.getElementById('quick-links').insertAdjacentHTML('afterbegin', `<a href="#" onclick="toggleListe(); return false;" title="Liste des projets" aria-label="Liste des projets">${icon('list', 18)}<span>Liste</span></a>`);
+      document.getElementById('intro-nom').textContent = (c.nom && c.nom !== 'Prénom Nom') ? c.nom : 'Portfolio';
+      document.getElementById('intro-titre').textContent = sous;
+      document.getElementById('intro-links').innerHTML = liens.filter(l => ['file', 'mail', 'github', 'linkedin'].includes(l[0]))
+        .map(l => `<a href="${l[2]}" target="_blank" rel="noopener">${l[1]}</a>`).join('');
     }
 
     function init() {
+      appliquerConfig();
       const container = document.getElementById('canvas-container');
       scene = new THREE.Scene();
 
       camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1000);
-      camera.position.set(0, 0, 16);
+      camera.position.set(0, 6, REDUIRE ? 17 : 70);
 
-      renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+      try { renderer = new THREE.WebGLRenderer({ antialias: !FAIBLE, alpha: true }); } catch (e) { webglIndisponible(); return; }
       renderer.setSize(window.innerWidth, window.innerHeight);
-      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio, FAIBLE ? 1.25 : 2));
       container.appendChild(renderer.domElement);
 
       controls = new THREE.OrbitControls(camera, renderer.domElement);
       controls.enableDamping = true;
       controls.dampingFactor = 0.05;
 
-      controls.autoRotate = true;
+      controls.autoRotate = !REDUIRE;
       controls.autoRotateSpeed = VITESSE_ROTATION;
 
       globeGroup = new THREE.Group();
@@ -391,13 +627,14 @@
       const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
       scene.add(ambientLight);
 
-      const dirLight1 = new THREE.DirectionalLight(0x38bdf8, 1.2);
+      dirLight1 = new THREE.DirectionalLight(0x38bdf8, 1.2);
       dirLight1.position.set(20, 20, 20);
       scene.add(dirLight1);
 
-      const dirLight2 = new THREE.DirectionalLight(0x818cf8, 0.8);
+      dirLight2 = new THREE.DirectionalLight(0x818cf8, 0.8);
       dirLight2.position.set(-20, -10, -20);
       scene.add(dirLight2);
+      ambianceCible = new THREE.Color(0x818cf8);
 
       // DÉCOR ESPACE
       createSpaceBackground();
@@ -405,9 +642,11 @@
       // SPHÈRE DU GLOBE
       const coreGeo = new THREE.SphereGeometry(sphereRadius - 0.05, 64, 64);
       const coreMat = new THREE.MeshStandardMaterial({
-        color: 0x0b1a2e,
-        roughness: 0.7,
-        metalness: 0.5,
+        color: 0xffffff,
+        map: creerTextureSurface(),
+        emissive: 0x050d1a,
+        roughness: 0.6,
+        metalness: 0.25,
       });
       coreMesh = new THREE.Mesh(coreGeo, coreMat);
       globeGroup.add(coreMesh);
@@ -425,7 +664,8 @@
 
       // ATMOSPHÈRE
       const atmosGeo = new THREE.SphereGeometry(sphereRadius + 0.4, 64, 64);
-      const atmosMat = new THREE.ShaderMaterial({
+      atmosMat = new THREE.ShaderMaterial({
+        uniforms: { uTime: { value: 0 } },
         vertexShader: `
           varying vec3 vNormal;
           void main() {
@@ -434,10 +674,11 @@
           }
         `,
         fragmentShader: `
+          uniform float uTime;
           varying vec3 vNormal;
           void main() {
             float intensity = pow(0.6 - dot(vNormal, vec3(0, 0, 1.0)), 2.0);
-            gl_FragColor = vec4(0.2, 0.5, 1.0, 1.0) * intensity * 0.4;
+            gl_FragColor = vec4(0.25, 0.55, 1.0, 1.0) * intensity * (0.55 + 0.1 * sin(uTime));
           }
         `,
         blending: THREE.AdditiveBlending,
@@ -446,27 +687,40 @@
       });
       scene.add(new THREE.Mesh(atmosGeo, atmosMat));
 
-      // CHARGEMENT DU FICHIER JSON
-      fetch('moi.json')
-        .then(res => res.json())
-        .then(data => {
-          globalData = data;
-          buildGlobe(data);
-          buildUI(data);
-        });
+      chargerDonnees().then(data => {
+        buildGlobe(data);
+        buildUI(data);
+        remplirListe(data);
+        lancerPulsations();
+      }).catch(() => {});
+      document.getElementById('intro-go').addEventListener('click', fermerIntro);
+      document.getElementById('intro-liste').addEventListener('click', ouvrirListe);
+      document.getElementById('intro-go').focus({ preventScroll: true });
+      if (!REDUIRE) volIntro();
 
       window.addEventListener('resize', onWindowResize);
       window.addEventListener('click', onCanvasClick);
       window.addEventListener('mousemove', onMouseMove);
       setTimeout(() => document.getElementById('app-header').classList.add('hide'), 8000);
-      window.addEventListener('keydown', e => { if (e.key === 'Escape') closeInfo(); });
+      window.addEventListener('keydown', e => {
+        if (e.key === 'Escape') { if (!document.getElementById('intro').classList.contains('hide')) fermerIntro(); else if (!document.getElementById('list-view').hidden) fermerListe(); else if (techFilter) filtrerTech(techFilter); else closeInfo(); }
+        else if (e.key === 'ArrowRight') stepKey(1);
+        else if (e.key === 'ArrowLeft') stepKey(-1);
+      });
+      document.getElementById('info-body').addEventListener('click', e => {
+        const b = e.target.closest('[data-tech]');
+        if (b) filtrerTech(b.dataset.tech);
+      });
+      document.getElementById('filter-pill').addEventListener('click', () => { if (techFilter) filtrerTech(techFilter); });
+      document.getElementById('tour-btn').addEventListener('click', e => { e.stopPropagation(); toggleTour(); });
+      majBoutonTour();
 
       animate();
     }
 
     function createSpaceBackground() {
       const starsGeo = new THREE.BufferGeometry();
-      const starsCount = 2000;
+      const starsCount = FAIBLE ? 800 : 2000;
       const starPositions = new Float32Array(starsCount * 3);
 
       for (let i = 0; i < starsCount * 3; i += 3) {
@@ -484,6 +738,25 @@
       });
       const starField = new THREE.Points(starsGeo, starsMat);
       scene.add(starField);
+      starMats = [starsMat];
+      const n2 = FAIBLE ? 80 : 250, a2 = new Float32Array(n2 * 3);
+      for (let i = 0; i < n2 * 3; i++) a2[i] = (Math.random() - 0.5) * 260;
+      const g2 = new THREE.BufferGeometry();
+      g2.setAttribute('position', new THREE.BufferAttribute(a2, 3));
+      const m2 = new THREE.PointsMaterial({ color: 0xbfdbfe, size: 1.3, transparent: true, opacity: 0.6 });
+      scene.add(new THREE.Points(g2, m2));
+      starMats.push(m2);
+      const nd = FAIBLE ? 100 : 260, ad = new Float32Array(nd * 3);
+      for (let i = 0; i < nd; i++) {
+        const r = 7 + Math.random() * 7, th = Math.random() * 6.283, ph = Math.acos(2 * Math.random() - 1);
+        ad[i * 3] = r * Math.sin(ph) * Math.cos(th);
+        ad[i * 3 + 1] = r * Math.cos(ph);
+        ad[i * 3 + 2] = r * Math.sin(ph) * Math.sin(th);
+      }
+      const gd = new THREE.BufferGeometry();
+      gd.setAttribute('position', new THREE.BufferAttribute(ad, 3));
+      dust = new THREE.Points(gd, new THREE.PointsMaterial({ color: 0x93c5fd, size: 0.05, transparent: true, opacity: 0.5 }));
+      scene.add(dust);
 
       const sunGeo = new THREE.SphereGeometry(8, 32, 32);
       const sunMat = new THREE.MeshBasicMaterial({ color: 0xffaa00 });
@@ -561,7 +834,7 @@
       fillGeo.setAttribute('position', new THREE.Float32BufferAttribute(pos, 3));
       fillGeo.setIndex(idx);
       const fill = new THREE.Mesh(fillGeo, new THREE.MeshBasicMaterial({
-        color: color, transparent: true, opacity: 0.45, side: THREE.DoubleSide, depthWrite: false
+        color: color, transparent: true, opacity: 0.45, side: THREE.DoubleSide, depthWrite: false, blending: THREE.AdditiveBlending
       }));
 
       // --- Contour ---
@@ -766,6 +1039,7 @@
             id: country.id,
             libelles: continent.libelles || {},
             icon: continent.icon,
+            etude: country.etude || null,
             continentId: continent.id,
             name: country.name,
             details: country.details,
@@ -780,6 +1054,9 @@
 
           countryCloud.userData = countryInfo;
           placeInfos[country.id] = countryInfo;
+          countryInfo.mesh = countryCloud;
+          countryInfo.phase = hashStr(country.name) % 6;
+          countryInfo.border = countryBorder;
           beamMesh.userData = countryInfo;
           ringMesh.userData = countryInfo;
 
@@ -871,8 +1148,14 @@
     }
 
     function selectContinent(continent) {
+      stopTour();
+      selectedId = null;
+      effacerLiens();
+      refreshOpacities();
       stopperAutoRotation();
       updateActiveButton(continent.id);
+      currentContinent = continent.id;
+      refreshOpacities();
 
       countryMarkers.forEach(marker => {
         marker.visible = (marker.userData.continentId === continent.id);
@@ -940,13 +1223,15 @@
       let progress = 0;
 
       function animateStep() {
-        progress += 0.035;
+        progress += 0.025;
         const ease = 0.5 - Math.cos(Math.min(progress, 1) * Math.PI) / 2;
 
         const currentDir = startDir.clone().applyAxisAngle(axis, angle * ease);
         const currentDist = THREE.MathUtils.lerp(startDist, endDist, ease);
 
         camera.position.copy(currentDir.multiplyScalar(currentDist));
+        camera.fov = 45 + 7 * Math.sin(Math.min(progress, 1) * Math.PI);
+        camera.updateProjectionMatrix();
         controls.target.set(0, 0, 0);
         controls.update();
 
@@ -975,14 +1260,105 @@
       briefcase: '<rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/>',
       book: '<path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>',
       star: '<polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>',
-      user: '<path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>'
+      user: '<path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>',
+      list: '<line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><circle cx="3.5" cy="6" r="1"/><circle cx="3.5" cy="12" r="1"/><circle cx="3.5" cy="18" r="1"/>',
+      file: '<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="8" y1="13" x2="16" y2="13"/><line x1="8" y1="17" x2="16" y2="17"/>',
+      github: '<path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>',
+      linkedin: '<path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/>',
+      phone: '<path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/>',
+      play: '<polygon points="6 4 20 12 6 20 6 4"/>',
+      pause: '<rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/>'
     };
     function icon(name, size) {
       const px = size || 16;
       return `<svg class="ico" viewBox="0 0 24 24" width="${px}" height="${px}" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${ICONS[name] || ICONS.globe}</svg>`;
     }
 
+    let hoveredId = null, selectedId = null, techFilter = null, currentContinent = null;
+    let arcs = [], tourTimer = null, tourIndex = 0;
+
+    function refreshOpacities() {
+      Object.values(placeInfos).forEach(p => {
+        const match = !techFilter || p.technologies.includes(techFilter);
+        let o = techFilter ? (match ? 0.85 : 0.1) : (currentContinent ? (p.continentId === currentContinent ? 0.62 : 0.2) : 0.45);
+        if (p.id === selectedId) o = 0.85;
+        if (p.id === hoveredId) o = Math.max(o, 0.8);
+        p.baseO = o;
+        p.mesh.material.opacity = o;
+        p.border.material.opacity = match ? 0.95 : 0.2;
+      });
+    }
+    function setHover(id) { if (id !== hoveredId) { hoveredId = id; refreshOpacities(); } }
+
+    function effacerLiens() {
+      arcs.forEach(a => { globeGroup.remove(a.line); a.line.geometry.dispose(); });
+      arcs = [];
+    }
+    function dessinerLiens(d) {
+      effacerLiens();
+      const p1 = latLngToVector3(d.lat, d.lng, sphereRadius + 0.05);
+      Object.values(placeInfos).forEach(p => {
+        if (p.id === d.id || !p.technologies.some(t => d.technologies.includes(t))) return;
+        const p2 = latLngToVector3(p.lat, p.lng, sphereRadius + 0.05);
+        const h = sphereRadius + 1.0 + 0.35 * p1.distanceTo(p2);
+        const mid = p1.clone().add(p2).normalize().multiplyScalar(h);
+        const pts = new THREE.QuadraticBezierCurve3(p1, mid, p2).getPoints(48);
+        const line = new THREE.Line(
+          new THREE.BufferGeometry().setFromPoints(pts),
+          new THREE.LineBasicMaterial({ color: d.color, transparent: true, opacity: 0.75 })
+        );
+        line.geometry.setDrawRange(0, 0);
+        globeGroup.add(line);
+        arcs.push({ line: line, count: 0, total: pts.length });
+      });
+    }
+
+    function filtrerTech(t) {
+      techFilter = (techFilter === t) ? null : t;
+      const pill = document.getElementById('filter-pill');
+      if (techFilter) {
+        const n = Object.values(placeInfos).filter(p => p.technologies.includes(techFilter)).length;
+        countryMarkers.forEach(m => { m.visible = m.userData.technologies.includes(techFilter); });
+        pulsingRings.forEach(r => { r.visible = r.userData.technologies.includes(techFilter); });
+        pill.innerHTML = `${n} lieu${n > 1 ? 'x' : ''} lié${n > 1 ? 's' : ''} à « ${techFilter} » &times;`;
+        pill.style.display = 'block';
+      } else {
+        pill.style.display = 'none';
+        showMarkersFor(currentContinent);
+      }
+      document.querySelectorAll('[data-tech]').forEach(b => b.classList.toggle('on', b.dataset.tech === techFilter));
+      refreshOpacities();
+    }
+
+    function majBoutonTour() {
+      document.getElementById('tour-btn').innerHTML = tourTimer
+        ? icon('pause', 18) + '<span>Arrêter la visite</span>'
+        : icon('play', 18) + '<span>Visite guidée</span>';
+    }
+    function stopTour() { if (tourTimer) { clearInterval(tourTimer); tourTimer = null; } majBoutonTour(); }
+    function etapeTour() {
+      const all = Object.values(placeInfos);
+      if (tourIndex >= all.length) { stopTour(); vueEnsemble(); return; }
+      focusPlace(all[tourIndex++]);
+    }
+    function toggleTour() {
+      if (tourTimer) { stopTour(); return; }
+      tourIndex = 0;
+      etapeTour();
+      tourTimer = setInterval(etapeTour, 6500);
+      majBoutonTour();
+    }
+    function stepKey(dir) {
+      const d = placeInfos[selectedId];
+      if (!d) return;
+      const cont = globalData.continents.find(x => x.id === d.continentId);
+      const i = cont.countries.findIndex(c => c.id === d.id), n = cont.countries.length;
+      focusPlaceById(cont.countries[(i + dir + n) % n].id);
+    }
+
     function showMarkersFor(continentId) {
+      currentContinent = continentId;
+      if (techFilter) { techFilter = null; document.getElementById('filter-pill').style.display = 'none'; refreshOpacities(); }
       countryMarkers.forEach(m => { m.visible = (m.userData.continentId === continentId); });
       pulsingRings.forEach(r => { r.visible = (r.userData.continentId === continentId); });
     }
@@ -991,20 +1367,34 @@
       stopperAutoRotation();
       showMarkersFor(d.continentId);
       updateActiveButton(d.continentId);
+      selectedId = d.id;
+      refreshOpacities();
       zoomToLocation(d.lat, d.lng, ZOOM_PAYS);
+      dessinerLiens(d);
+      const cont = globalData.continents.find(x => x.id === d.continentId);
+      const idx = cont.countries.findIndex(c => c.id === d.id), n = cont.countries.length;
+      const links = Object.values(placeInfos)
+        .filter(p => p.id !== d.id && p.technologies.some(t => d.technologies.includes(t)))
+        .map(p => ({ id: p.id, name: p.name, shared: p.technologies.filter(t => d.technologies.includes(t)) }));
       showStructuredInfo({
         tag: d.continentName, icon: d.icon, title: d.name, color: d.color, details: d.details,
-        technologies: d.technologies, role: d.role, libelles: d.libelles, backTo: d.continentId
+        technologies: d.technologies, role: d.role, etude: d.etude, libelles: d.libelles, backTo: d.continentId,
+        nav: n > 1 ? { prev: cont.countries[(idx + n - 1) % n].id, next: cont.countries[(idx + 1) % n].id, index: idx + 1, total: n } : null,
+        links: links
       });
     }
-    function focusPlaceById(id) { if (placeInfos[id]) focusPlace(placeInfos[id]); }
+    function focusPlaceById(id) { stopTour(); if (placeInfos[id]) focusPlace(placeInfos[id]); }
     function selectContinentById(id) {
       const c = globalData.continents.find(x => x.id === id);
       if (c) selectContinent(c);
     }
     function vueEnsemble() {
+      stopTour();
+      selectedId = null;
+      effacerLiens();
       closeInfo();
       showMarkersFor(null);
+      refreshOpacities();
       updateActiveButton(null);
       zoomToDirection(camera.position.clone().normalize(), 11);
       reactiverAutoRotation();
@@ -1019,7 +1409,8 @@
     }
 
     function onCanvasClick(event) {
-      if (event.target.closest('#nav-bar') || event.target.closest('#info-panel') || event.target.closest('#app-header')) return;
+      if (event.target.closest('#nav-bar') || event.target.closest('#info-panel') || event.target.closest('#app-header') || event.target.closest('#filter-pill')) return;
+      stopTour();
       const hit = pick(event);
       if (hit && hit.userData && hit.userData.type === 'project') focusPlace(hit.userData);
       else reactiverAutoRotation();
@@ -1030,12 +1421,14 @@
       if (!coreMesh || event.target.closest('#nav-bar') || event.target.closest('#info-panel')) { tip.style.display = 'none'; return; }
       const hit = pick(event);
       if (hit && hit.userData && hit.userData.type === 'project') {
+        setHover(hit.userData.id);
         tip.textContent = hit.userData.name;
         tip.style.left = (event.clientX + 14) + 'px';
         tip.style.top = (event.clientY + 14) + 'px';
         tip.style.display = 'block';
         document.body.style.cursor = 'pointer';
       } else {
+        setHover(null);
         tip.style.display = 'none';
         document.body.style.cursor = '';
       }
@@ -1051,6 +1444,8 @@
       const panel = document.getElementById('info-panel');
       const tagEl = document.getElementById('info-tag');
       panel.style.setProperty('--accent', d.color || '#f4e3c1');
+      panel.style.boxShadow = `0 25px 50px -12px rgba(0,0,0,0.75), 0 0 70px -25px ${d.color || '#f4e3c1'}`;
+      if (ambianceCible) ambianceCible.set(d.color || '#818cf8');
 
       tagEl.innerHTML = (d.icon ? icon(d.icon, 14) : '') + '<span>' + (d.tag || '') + '</span>';
       if (d.color) {
@@ -1077,12 +1472,17 @@
       if (items.length) {
         h += `<div class="info-section"><div class="info-section-title">${lib.liste}</div><ul class="info-list">${items.map(i => `<li class="info-list-item"><span style="color:var(--accent)">•</span><span>${lier(i)}</span></li>`).join('')}</ul></div>`;
       }
+      if (d.etude) h += rendreEtude(d.etude);
       if (d.technologies && d.technologies.length) {
-        h += `<div class="info-section"><div class="info-section-title">${lib.tech}</div><div class="tech-tags-container">${d.technologies.map(t => `<span class="tech-badge">${t}</span>`).join('')}</div></div>`;
+        h += `<div class="info-section"><div class="info-section-title">${lib.tech}</div><div class="tech-tags-container">${d.technologies.map(t => `<button class="tech-badge tech-btn${techFilter === t ? ' on' : ''}" data-tech="${t}" title="Voir tous les lieux liés à cette technologie">${t}</button>`).join('')}</div></div>`;
+      }
+      if (d.links && d.links.length) {
+        h += `<div class="info-section"><div class="info-section-title">Liens avec d'autres lieux</div><p class="link-note">Technologies en commun, tracées sur le globe.</p>${d.links.map(l => `<button class="place-chip" title="${l.shared.join(', ')}" onclick="focusPlaceById('${l.id}')">${l.name}</button>`).join('')}</div>`;
       }
       if (d.places && d.places.length) {
         h += `<div class="info-section"><div class="info-section-title">Les lieux à explorer</div>${d.places.map(p => `<button class="place-chip" onclick="focusPlaceById('${p.id}')">${p.name}</button>`).join('')}</div>`;
       }
+      if (d.nav) h += `<div class="nav-row"><button class="place-chip" onclick="focusPlaceById('${d.nav.prev}')">← Précédent</button><span class="count">${d.nav.index} / ${d.nav.total}</span><button class="place-chip" onclick="focusPlaceById('${d.nav.next}')">Suivant →</button></div>`;
       if (d.backTo) h += `<button class="back-link" onclick="selectContinentById('${d.backTo}')">← Retour à « ${d.tag} »</button>`;
 
       document.getElementById('info-body').innerHTML = h;
@@ -1090,6 +1490,7 @@
     }
 
     function closeInfo() {
+      if (ambianceCible) ambianceCible.set('#818cf8');
       document.getElementById('info-panel').style.display = 'none';
     }
 
@@ -1104,11 +1505,26 @@
 
       const time = Date.now() * 0.003;
 
+      if (!REDUIRE) {
+        if (atmosMat) atmosMat.uniforms.uTime.value = time * 0.4;
+        starMats.forEach((m, i) => { m.opacity = 0.55 + 0.3 * Math.sin(time * (0.5 + i * 0.4) + i); });
+        if (dust) dust.rotation.y += 0.0004;
+        if (dirLight1) dirLight1.intensity = 1.1 + Math.sin(time * 0.15) * 0.25;
+        Object.values(placeInfos).forEach(p => {
+          if (p.baseO !== undefined) p.mesh.material.opacity = p.baseO * (0.93 + 0.07 * Math.sin(time * 0.6 + p.phase));
+        });
+      }
+      if (dirLight2 && ambianceCible) dirLight2.color.lerp(ambianceCible, 0.03);
+
       pulsingRings.forEach(ring => {
         if (ring.visible) {
           const scale = 1 + Math.sin(time * 2) * 0.2;
           ring.scale.set(scale, scale, scale);
         }
+      });
+
+      arcs.forEach(a => {
+        if (a.count < a.total) { a.count = Math.min(a.total, a.count + 2); a.line.geometry.setDrawRange(0, a.count); }
       });
 
       if (saturnRingMesh) {

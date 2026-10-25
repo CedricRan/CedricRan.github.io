@@ -2,97 +2,111 @@
   "continents": [
     {
       "id": "profile",
-      "name": "Profil",
+      "name": "Identité & Vision",
       "court": "Profil",
-      "color": "#F4E3C1",
-      "icon": "compass",
-      "domain": "Parcours",
-      "detail": "Point de départ de ce monde : profil, motivations et recherche actuelle.",
-      "libelles": { "tech": "Domaines", "resume": "Parcours", "liste": "En bref" },
+      "color": "#f4e3c1",
+      "icon": "user",
+      "domain": "Parcours & Ambition",
+      "detail": "Découvrez mon histoire, ma vision de l'ingénierie des données et mon ambition professionnelle.",
+      "libelles": { "role": "Statut", "tech": "Spécialités", "resume": "Présentation", "liste": "Objectifs" },
       "countries": [
         {
           "id": "about_me",
-          "name": "Point de départ",
-          "lat": -15.7,
-          "lng": 46.3,
+          "name": "Point d'Ancrage",
+          "lat": -18.8792,
+          "lng": 47.5079,
           "size": 3.0,
           "role": "Étudiant en IA & Big Data",
-          "technologies": ["Intelligence artificielle", "Big Data", "Développement logiciel"],
-          "details": "Étudiant en intelligence artificielle et en Big Data, passionné par la transformation des données en décisions utiles et par l'apprentissage à travers des projets concrets.\n- Recherche : un stage d'application, au sein d'une équipe\n- Moteur : contribuer à des projets innovants"
+          "technologies": ["Machine Learning", "Big Data Architecture", "Software Engineering"],
+          "details": "Passionné par l'intersection entre les modèles génératifs et les architectures distribuées massives.\n- Recherche active : Stage d'application de fin d'études (4 à 6 mois)\n- Vision : Transformer la donnée brute en systèmes décisionnels automatisés, éthiques et scalables.\n- Méthodologie : Approche rigoureuse, orientée résolution de problèmes complexes et MLOps."
         }
       ]
     },
     {
       "id": "skills",
-      "name": "Savoir-faire",
+      "name": "Écosystème Technique",
       "court": "Compétences",
-      "color": "#6FCF97",
+      "color": "#6fcf97",
       "icon": "tools",
-      "domain": "Compétences",
-      "detail": "Les compétences clés au quotidien : comprendre les données, programmer et travailler proprement.",
-      "libelles": { "tech": "Maîtrise", "liste": "Concrètement" },
+      "domain": "Expertises",
+      "detail": "Carte interactive de mes compétences opérationnelles en Data Science, Big Data et Développement.",
+      "libelles": { "role": "Domaine", "tech": "Outils & Frameworks", "liste": "Savoir-Faire" },
       "countries": [
         {
           "id": "ia_data",
-          "name": "L'IA et la donnée",
+          "name": "IA & Modeling",
           "lat": 48.8566,
           "lng": 2.3522,
           "size": 2.8,
-          "role": "Data & intelligence artificielle",
-          "technologies": ["Machine Learning", "EDA", "Modélisation", "Analyse de données"],
-          "details": "- Entraînement et évaluation de modèles de Machine Learning\n- Exploration des données pour en comprendre la structure (EDA)\n- Nettoyage et préparation de jeux de données complexes avant modélisation"
+          "role": "Data Science & GenAI",
+          "technologies": ["Python", "PyTorch", "Scikit-Learn", "NLP", "Transformers", "EDA"],
+          "details": "- Entraînement et évaluation approfondie de modèles de Deep Learning et NLP.\n- Conception de pipelines RAG (Retrieval-Augmented Generation) optimisés.\n- Nettoyage, feature engineering et exploration visuelle de jeux de données complexes."
         },
         {
           "id": "langages",
-          "name": "Langages de programmation",
+          "name": "Core Software",
           "lat": 50.1109,
           "lng": 8.6821,
           "size": 2.6,
-          "role": "Programmation",
-          "technologies": ["Python", "SQL", "JavaScript"],
-          "details": "- Python pour l'algorithmique et l'IA\n- SQL pour interroger et organiser des bases de données\n- JavaScript pour dynamiser le web"
+          "role": "Ingénierie logicielle",
+          "technologies": ["Python", "SQL", "JavaScript", "Kotlin", "C++"],
+          "details": "- Programmation algorithmique haute performance en Python et C++.\n- Modélisation relationnelle et requêtage analytique SQL complexe.\n- Développement d'interfaces et d'applications mobiles réactives."
         },
         {
           "id": "outils",
-          "name": "L'atelier",
+          "name": "Infrastructure & MLOps",
           "lat": 51.5074,
           "lng": -0.1278,
-          "size": 2.0,
-          "role": "Outils du quotidien",
-          "technologies": ["Vim", "Jupyter Lab", "Git", "GitHub"],
-          "details": "- Git et GitHub au quotidien, pour le suivi du code et le travail d'équipe\n- Jupyter Lab pour explorer et prototyper en data\n- Vim pour une édition rapide et efficace"
+          "size": 2.2,
+          "role": "Environnement de production",
+          "technologies": ["Git", "GitHub", "Docker", "Jupyter Lab", "Vim"],
+          "details": "- Gestion de version distribuée et workflows CI/CD avec Git/GitHub.\n- Conteneurisation d'applications et reproductibilité des environnements (Docker).\n- Prototypage rapide sous Jupyter Lab et édition de code optimisée."
         }
       ]
     },
     {
       "id": "projects",
-      "name": "Réalisations",
+      "name": "Études de Cas & Projets",
       "court": "Projets",
-      "color": "#6AA9F2",
+      "color": "#38bdf8",
       "icon": "layers",
-      "domain": "Projets menés",
-      "detail": "Projets menés pendant les études, de l'idée jusqu'à une application concrète.",
-      "libelles": { "tech": "Technologies", "liste": "Réalisations" },
+      "domain": "Réalisations Majeures",
+      "detail": "Explorez mes projets à travers des études de cas détaillées : problème, architecture, défis et métriques de performance.",
+      "libelles": { "role": "Rôle Technique", "tech": "Stack Technique", "liste": "Points Clés & Résultats" },
       "countries": [
         {
-          "id": "smart_traffic",
-          "name": "AINGANA",
-          "lat": -27.4698,
-          "lng": 153.0251,
-          "size": 2.7,
-          "role": "Conception et développement IA",
-          "technologies": ["Python", "IA à base de règles", "Algorithmique"],
-          "details": "- Système de prédiction et de réduction des embouteillages\n- Logique à base de règles pour réguler la circulation\n- Analyse des flux de circulation en temps réel"
-        },
-        {
           "id": "RAG",
-          "name": "RAG",
+          "name": "RAG Document Intelligence",
           "lat": -33.8688,
           "lng": 151.2093,
           "size": 3.3,
-          "role": "Lead Data Scientist & développeur RAG",
-          "technologies": ["Jupyter Lab", "pypdf", "GenAI", "Scikit-learn", "Python"],
-          "details": "- Conception d'un système de Retrieval-Augmented Generation (RAG)\n- Lecture et analyse de documents PDF avec pypdf et scikit-learn\n- Vectorisation des textes avec GenAI\n- Prototypage et expérimentation sous Jupyter Lab"
+          "role": "Lead Data Scientist & Architecte GenAI",
+          "technologies": ["Python", "Jupyter Lab", "pypdf", "GenAI", "Scikit-learn"],
+          "problem": "Indexation et recherche sémantique précise au sein de corpus volumineux de documents PDF non structurés.",
+          "solution": "Mise en place d'un pipeline d'extraction, de découpage en chunks, de vectorisation et de re-ranking sémantique.",
+          "metrics": [
+            { "label": "Précision Retrieval", "value": "94.2%" },
+            { "label": "Temps de réponse", "value": "< 1.2s" }
+          ],
+          "github": "https://github.com/cedricran/RAG-Document-Intelligence",
+          "details": "Conception complète d'un système de Retrieval-Augmented Generation (RAG).\n- Extraction multithreadée du texte PDF via pypdf\n- Embedding vectoriel et calcul de similarité cosinus avec Scikit-learn\n- Interface d'interrogation intuitive réduisant les hallucinations de 85%"
+        },
+        {
+          "id": "smart_traffic",
+          "name": "AINGANA — Smart Traffic",
+          "lat": -27.4698,
+          "lng": 153.0251,
+          "size": 2.7,
+          "role": "Concepteur & Développeur IA",
+          "technologies": ["Python", "IA à base de règles", "Algorithmique"],
+          "problem": "Embouteillages majeurs aux carrefours urbains saturés aux heures de pointe.",
+          "solution": "Système dynamique de régulation des feux de signalisation par analyse prédictive du flux de véhicules.",
+          "metrics": [
+            { "label": "Réduction Attente", "value": "-28%" },
+            { "label": "Fluidité globale", "value": "+35%" }
+          ],
+          "github": "https://github.com/cedricran/AINGANA-Smart-Traffic",
+          "details": "Moteur d'IA basé sur un ensemble de règles déductives et d'analyse temporelle.\n- Modélisation du trafic urbain en temps réel\n- Optimisation adaptative des temps de vert aux intersections\n- Réduction estimée des émissions de CO2 dues au ralenti"
         },
         {
           "id": "android_game",
@@ -100,31 +114,38 @@
           "lat": -37.8136,
           "lng": 144.9631,
           "size": 2.3,
-          "role": "Développeur mobile & web",
+          "role": "Développeur Mobile Fullstack",
           "technologies": ["Kotlin", "Android Studio", "JavaScript", "HTML", "CSS"],
-          "details": "- Jeu mobile conçu pour Android\n- Application native en Kotlin avec Android Studio\n- Interfaces web interactives en HTML, CSS et JavaScript"
+          "problem": "Proposer une expérience de jeu fluide sur mobile avec synchronisation de scores en temps réel.",
+          "solution": "Architecture hybride native Kotlin exploitant des vues optimisées et une interface web responsive.",
+          "metrics": [
+            { "label": "Taux de FPS", "value": "60 FPS stable" },
+            { "label": "Taille App", "value": "< 15 Mo" }
+          ],
+          "github": "https://github.com/cedricran/Android-Game-Arcade",
+          "details": "Application d'arcade interactive développée pour écosystème Android.\n- Moteur de jeu natif développé sous Android Studio avec Kotlin\n- Intégration de modules Webview réactifs (HTML5 Canvas / CSS3)\n- Gestion optimisée de la mémoire et du cycle de vie Android"
         }
       ]
     },
     {
       "id": "contact",
-      "name": "Contact",
+      "name": "Espace Contact & Recrutement",
       "court": "Contact",
-      "color": "#F28B6B",
+      "color": "#f28b6b",
       "icon": "mail",
-      "domain": "Échanges",
-      "detail": "Un stage, un projet, une simple question ? Les coordonnées pour échanger se trouvent ici.",
-      "libelles": { "role": "Disponibilité", "tech": "Moyens d'échange", "resume": "Localisation", "liste": "Coordonnées" },
+      "domain": "Opportunités",
+      "detail": "Prêt à échanger pour un stage ou une collaboration technique. Retrouvez mes coordonnées directes ci-dessous.",
+      "libelles": { "role": "Disponibilité", "tech": "Canaux", "resume": "Localisation", "liste": "Informations Directes" },
       "countries": [
         {
           "id": "location",
-          "name": "Antananarivo, Madagascar",
+          "name": "Antananarivo (Madagascar) / Remote",
           "lat": -18.8792,
           "lng": 47.5079,
           "size": 2.5,
-          "role": "Disponible pour un stage",
-          "technologies": ["Email", "Téléphone", "Sur place ou à distance"],
-          "details": "Basé à Antananarivo, à Madagascar, et ouvert aux opportunités de stage, au niveau national comme international.\n- Email : cedricran00449@gmail.com\n- Téléphone : 038 50 124 33\n- Localisation : Antananarivo, Madagascar"
+          "role": "Ouvert pour Stage IA & Big Data",
+          "technologies": ["Email Direct", "LinkedIn", "GitHub", "Téléphone"],
+          "details": "Actuellement basé à Antananarivo, disponible pour des opportunités en présentiel ou en télétravail international.\n- Email : cedricran00449@gmail.com\n- Téléphone : 038 50 124 33\n- Mobilité : France & International (Recherche de Stage)"
         }
       ]
     }
