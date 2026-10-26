@@ -1,0 +1,13 @@
+--2026-10-26 13:09:22--  https://cdn.jsdelivr.net/npm/world-atlas@2.0.2/countries-110m.json
+Resolving cdn.jsdelivr.net (cdn.jsdelivr.net)... 104.17.207.5, 104.17.208.5, 2606:4700::6811:d005, ...
+Connecting to cdn.jsdelivr.net (cdn.jsdelivr.net)|104.17.207.5|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: unspecified [application/json]
+Saving to: ‘countries-110m.json’
+
+     0K .......... .......... .......... .......... .......... 4.56M
+    50K .......... .......... .......... .......... ..........  932K
+   100K .....                                                  27.2M=0.06s
+
+2026-10-26 13:09:22 (1.59 MB/s) - ‘countries-110m.json’ saved [107761]
+
