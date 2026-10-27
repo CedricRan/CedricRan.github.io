@@ -3,12 +3,15 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Portfolio — IA &amp; Big Data</title>
+  <title>RANDRIANARISOA Cedric — Portfolio IA &amp; Big Data</title>
+  <link rel="canonical" href="https://cedricran.github.io/">
   <meta name="description" content="Portfolio d'un étudiant en IA et Big Data, en recherche de stage : projets, compétences et contact.">
   <meta property="og:type" content="website">
   <meta property="og:title" content="Portfolio — IA &amp; Big Data">
-  <meta property="og:description" content="Un univers 3D à explorer : projets, compétences et contact.">
-  <meta property="og:image" content="apercu.png">
+  <meta property="og:description" content="Étudiant en IA et Big Data, disponible pour un stage ou un emploi. Projets, compétences et contact dans un globe 3D interactif.">
+  <meta property="og:image" content="https://cedricran.github.io/apercu.png">
+  <meta property="og:url" content="https://cedricran.github.io/">
+  <meta name="twitter:card" content="summary_large_image">
   <meta name="theme-color" content="#02040a">
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <style>
@@ -396,12 +399,27 @@
     .etiquette.sel { background: rgba(255,255,255,0.22); box-shadow: inset 3px 0 0 var(--c, #fff), 0 0 16px var(--c, #fff); }
     @media (max-width: 640px) { .etiquette { font-size: 0.68rem; max-width: 130px; padding-left: 10px; } }
     @media (max-width: 560px) { .nav-btn span { display: none; } }
+  
+    /* ===== AJOUTS ===== */
+    @keyframes cascade { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+    #info-body > * { animation: cascade 0.5s ease both; }
+    #info-body > *:nth-child(2) { animation-delay: 0.07s; } #info-body > *:nth-child(3) { animation-delay: 0.14s; }
+    #info-body > *:nth-child(4) { animation-delay: 0.21s; } #info-body > *:nth-child(5) { animation-delay: 0.28s; }
+    #info-body > *:nth-child(n+6) { animation-delay: 0.35s; }
+    .badge-prive { display: inline-block; margin-top: 14px; font-size: 0.78rem; color: #cbd5e1; background: rgba(255,255,255,0.05); border: 1px dashed rgba(255,255,255,0.28); padding: 5px 12px; border-radius: 20px; }
+    #explore-count { position: fixed; left: 25px; bottom: 34px; z-index: 10; font-size: 0.78rem; color: #9fb4d0; background: rgba(15,23,42,0.75); border: 1px solid rgba(255,255,255,0.1); padding: 7px 14px; border-radius: 20px; backdrop-filter: blur(10px); opacity: 0; transition: opacity 0.6s, color 0.6s; pointer-events: none; }
+    #explore-count.on { opacity: 1; } #explore-count b { color: #fff; } #explore-count.done { color: #5ED1A5; }
+    @media (max-width: 900px) { #explore-count { display: none; } }
+    #intro .i4 a.intro-sec { text-decoration: none; display: inline-block; }
+    @keyframes blink { 50% { opacity: 0; } }
+    #intro-titre.typing::after { content: '|'; margin-left: 3px; animation: blink 1s steps(1) infinite; }
   </style>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
 </head>
 <body>
+  <noscript><p style="position:relative;z-index:99;padding:24px;line-height:1.7">RANDRIANARISOA Herintsaina Steve Cedric — Étudiant en IA et Big Data, disponible pour un stage ou un emploi (Antananarivo ou télétravail).<br>Ce portfolio nécessite JavaScript. <a href="cv.pdf" style="color:#9fd8f0">Télécharger le CV</a> · <a href="mailto:cedricran00449@gmail.com" style="color:#9fd8f0">cedricran00449@gmail.com</a></p></noscript>
 
   <div id="canvas-container"></div>
 
@@ -1751,6 +1769,7 @@
       showStructuredInfo({
         tag: d.continentName, icon: d.icon, title: d.name, color: d.color, details: d.details,
         technologies: d.technologies, role: d.role, etude: d.etude, libelles: d.libelles, backTo: d.continentId,
+        extraMetrics: cont.countries[idx].metriques || [], prive: !!cont.countries[idx].prive,
         nav: n > 1 ? { prev: cont.countries[(idx + n - 1) % n].id, next: cont.countries[(idx + 1) % n].id, index: idx + 1, total: n } : null,
         links: links
       });
@@ -1828,7 +1847,7 @@
     function lier(t) {
       return t.replace(/(https?:\/\/[^\s<]+)/g, '<a href="$1" target="_blank" rel="noopener">$1</a>')
               .replace(/([\w.+-]+@[\w-]+\.[\w.]*\w)/g, '<a href="mailto:$1">$1</a>')
-              .replace(/(0\d{2}(?: \d{2,3}){3})/g, m => `<a href="tel:${m.replace(/ /g, '')}">${m}</a>`);
+              .replace(/((?:\+261 ?|0)\d{2}(?: \d{2,3}){3})/g, m => `<a href="tel:${m.replace(/ /g, '')}">${m}</a>`);
     }
 
     function showStructuredInfo(d) {
@@ -1934,6 +1953,84 @@
       controls.update();
       renderer.render(scene, camera);
     }
+
+    // ===== AJOUTS : interactions et animations =====
+    (function () {
+      const $ = id => document.getElementById(id);
+      const C = window.CONFIG || {};
+
+      if (C.cv) $('intro-liste').insertAdjacentHTML('afterend', `<a class="intro-sec" href="${C.cv}" target="_blank" rel="noopener">Télécharger le CV</a>`);
+      $('app-header').insertAdjacentHTML('afterend', '<div id="explore-count" aria-live="polite"></div>');
+
+      function compter(root) {
+        if (REDUIRE) return;
+        root.querySelectorAll('.metric-value').forEach(el => {
+          const m = el.textContent.trim().match(/^(\d+(?:[.,]\d+)?)(.*)$/);
+          if (!m) return;
+          const virgule = m[1].includes(','), dec = (m[1].split(/[.,]/)[1] || '').length, fin = parseFloat(m[1].replace(',', '.')), t0 = performance.now();
+          (function f(t) {
+            const k = Math.min(1, (t - t0) / 900), v = fin * (1 - Math.pow(1 - k, 3));
+            el.textContent = v.toFixed(dec).replace('.', virgule ? ',' : '.') + m[2];
+            if (k < 1) requestAnimationFrame(f);
+          })(t0);
+        });
+      }
+      const _show = showStructuredInfo;
+      showStructuredInfo = function (d) {
+        _show(d);
+        const b = $('info-body');
+        if (d.prive) b.insertAdjacentHTML('afterbegin', '<span class="badge-prive">Code privé · démonstration sur demande</span>');
+        compter(b);
+      };
+
+      const vus = new Set();
+      function maj() {
+        const n = Object.keys(placeInfos).length; if (!n) return;
+        const el = $('explore-count');
+        el.innerHTML = `Territoires explorés <b>${vus.size}</b> / ${n}`;
+        el.classList.add('on'); el.classList.toggle('done', vus.size === n);
+      }
+      const _focus = focusPlace;
+      focusPlace = function (d) {
+        _focus(d); vus.add(d.id); maj();
+        try { history.replaceState(null, '', '#' + d.id); } catch (e) {}
+      };
+      const _close = closeInfo;
+      closeInfo = function () {
+        _close();
+        try { history.replaceState(null, '', location.pathname + location.search); } catch (e) {}
+      };
+
+      function versHash() {
+        const id = decodeURIComponent(location.hash.slice(1));
+        if (id && placeInfos[id]) { fermerIntro(); focusPlaceById(id); return true; }
+        return false;
+      }
+      if (location.hash.length > 1) { let n = 0; const iv = setInterval(() => { if (versHash() || ++n > 80) clearInterval(iv); }, 250); }
+      window.addEventListener('hashchange', versHash);
+
+      document.addEventListener('click', e => {
+        const a = e.target.closest('a[href^="mailto:"]');
+        if (!a || e.ctrlKey || e.metaKey || e.shiftKey || !navigator.clipboard || matchMedia('(pointer: coarse)').matches) return;
+        e.preventDefault();
+        const mail = a.getAttribute('href').slice(7).split('?')[0];
+        navigator.clipboard.writeText(mail).then(() => toast('Email copié : ' + mail + ' (Ctrl+clic pour ouvrir la messagerie)'), () => { location.href = a.href; });
+      });
+
+      const roles = C.roles;
+      if (roles && roles.length && !REDUIRE) window.addEventListener('load', () => setTimeout(() => {
+        const el = $('intro-titre'); el.classList.add('typing');
+        let i = 0, j = 0, del = false;
+        (function pas() {
+          const r = roles[i]; j += del ? -1 : 1;
+          el.textContent = r.slice(0, j) || '\u00a0';
+          let w = del ? 30 : 65;
+          if (!del && j === r.length) { del = true; w = 2200; }
+          else if (del && j === 0) { del = false; i = (i + 1) % roles.length; w = 400; }
+          setTimeout(pas, w);
+        })();
+      }, 4200));
+    })();
 
     window.onload = init;
   </script>

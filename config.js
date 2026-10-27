@@ -1,41 +1,33 @@
 // ============================================================
-//  CONFIG — tout ce qui est à modifier se trouve dans ce fichier
-// ============================================================
-//  Règles :
-//   - Garder les guillemets "" autour des textes.
-//   - Laisser "" (vide) pour masquer un élément : rien ne s'affiche.
-//   - Ne jamais mettre de mot de passe ou de clé secrète ici :
-//     ce fichier est lisible par tous les visiteurs du site.
+//  CONFIG — infos principales (visibles par tous les visiteurs :
+//  ne jamais mettre de mot de passe ou de clé secrète ici)
+//  "" (vide) = l'élément est masqué.
 // ============================================================
 
 window.CONFIG = {
-
-  // --- Identité (affichée dans l'en-tête et dans l'onglet du navigateur) ---
-  nom: "RANDRIANARISOA Herintsaina Steve Cedric",                         // À REMPLACER par le vrai nom
+  nom: "RANDRIANARISOA Herintsaina Steve Cedric",
   titre: "Étudiant en IA et Big Data",
-  accroche: "À la recherche d'une première expérience professionnelle",
-  phrase: "Un univers à explorer continent par continent : formation, expériences, compétences et contact.",                                // Phrase affichée sous le nom dans l'introduction. Vide = phrase par défaut
+  accroche: "À la recherche d'un stage ou d'un emploi",
+  phrase: "Un univers à explorer continent par continent : formation, expériences, compétences et contact.",
 
-  // --- Liens rapides (boutons en bas à droite) ---
-  cv: "cv.pdf",                                    // Ex : "cv.pdf" (fichier placé à côté de index.html) ou lien complet https://...
+  // Textes qui défilent (effet de frappe) dans l'introduction. [] = désactivé
+  roles: [
+    "Étudiant en IA et Big Data",
+    "Traitement d'images · OpenCV",
+    "Python · FastAPI · NumPy",
+    "Disponible : stage ou emploi, sur place ou en télétravail"
+  ],
+
+  cv: "cv.pdf",
   site: "https://cedricran.github.io",
-  github: "https://github.com/cedricran",                                // Ex : "https://github.com/pseudo"
-  linkedin: "",                              // Ex : "https://www.linkedin.com/in/pseudo"
+  github: "https://github.com/cedricran",
+  linkedin: "https://www.linkedin.com/in/randrianarisoa-cedric-0431a5411/",
   email: "cedricran00449@gmail.com",
-  telephone: "038 50 124 33"                              // Ex : "038 50 124 33"
-
+  telephone: "+261 38 50 124 33"
 };
 
-// ============================================================
-//  À MODIFIER AUSSI, DANS LES AUTRES FICHIERS
-// ============================================================
-//  moi.json
-//    - Territoire « Contact » : email, téléphone, localisation
-//    - Textes, rôles et technologies de chaque lieu
-//    - Nouveaux projets (voir guide-moi-json.md)
-//
-//  index.html
-//    - Durée d'affichage du message d'accueil : chercher « 8000 »
-//    - Espace entre les zones du globe : MARGE_DEG
-//    - Taille des zones : FACTEUR_TAILLE
-// ============================================================
+// Contenu des territoires : moi.json
+//   - "prive": true      -> affiche « Code privé, démonstration sur demande »
+//   - "metriques": [...]  -> cartes de chiffres animées ({ "label": "...", "value": "93,76 %" })
+// Lien direct vers un territoire : https://cedricran.github.io/#innovart
+//   (identifiants : accroche, innovart, trafficflow, reconnaissance, ge_it, soft_skills, location...)

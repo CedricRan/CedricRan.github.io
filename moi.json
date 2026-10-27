@@ -1,289 +1,131 @@
 {
   "continents": [
     {
-      "id": "antarctica",
-      "name": "Accroche",
-      "court": "Profil",
-      "color": "#9FD8F0",
-      "icon": "compass",
+      "id": "antarctica", "name": "Accroche", "court": "Profil", "color": "#9FD8F0", "icon": "compass",
       "domain": "Vue d'ensemble",
       "detail": "Le sommet du CV : le profil en une phrase.",
-      "libelles": {
-        "role": "Statut",
-        "tech": "Domaines",
-        "resume": "Résumé",
-        "liste": "En bref"
-      },
+      "libelles": { "role": "Statut", "tech": "Domaines", "resume": "Résumé", "liste": "En bref" },
       "countries": [
         {
-          "id": "accroche",
-          "name": "Profil",
-          "pays": "Antarctica",
+          "id": "accroche", "name": "Profil", "pays": "Antarctica",
           "role": "Étudiant en IA et Big Data",
-          "technologies": [
-            "Intelligence artificielle",
-            "Big Data"
-          ],
-          "details": "Étudiant en IA et Big Data à la recherche d'une première expérience professionnelle.\n- Formation : Licence en IA et Big Data (GE-IT, 2023-2026, en cours)\n- Stage 2026 : traitement d'images chez Innov'Art XD"
+          "technologies": ["Intelligence artificielle", "Big Data"],
+          "details": "Étudiant en IA et Big Data, à la recherche d'un stage ou d'un emploi, à Antananarivo ou en télétravail.\n- Formation : Licence en IA et Big Data (GE-IT, 2023-2026, en cours)\n- Expérience : stage de 3 mois (juillet-septembre 2026) en traitement d'images chez Innov'Art XD"
         }
       ]
     },
     {
-      "id": "asia",
-      "name": "Expériences",
-      "court": "Expériences",
-      "color": "#E8B04B",
-      "icon": "briefcase",
+      "id": "asia", "name": "Expériences", "court": "Expériences", "color": "#E8B04B", "icon": "briefcase",
       "domain": "Expériences professionnelles",
       "detail": "Le continent le plus vaste : les réalisations et expériences menées jusqu'ici.",
-      "libelles": {
-        "role": "Poste",
-        "tech": "Outils",
-        "liste": "Missions"
-      },
+      "libelles": { "role": "Poste", "tech": "Outils", "liste": "Missions" },
       "countries": [
         {
-          "id": "innovart",
-          "name": "Innov'Art XD",
-          "pays": "India",
+          "id": "innovart", "name": "Innov'Art XD", "pays": "India",
           "role": "Stagiaire en traitement d'images",
-          "technologies": [
-            "Python",
-            "FastAPI",
-            "OpenCV",
-            "NumPy",
-            "scikit-image"
+          "prive": true,
+          "metriques": [
+            { "label": "Durée du stage", "value": "3 mois" },
+            { "label": "Filtre bilatéral vs NLMeans", "value": "34× plus rapide" },
+            { "label": "Configurations comparées", "value": "4" }
           ],
-          "details": "Stage 2026 à Ampefiloha, Antananarivo.\n- Conception d'une API REST de prétraitement d'images pour la reconstruction 3D\n- Pipeline OpenCV : redimensionnement, débruitage (médian, bilatéral, Non-Local Means), CLAHE, contours Canny, points ORB\n- Benchmark de 4 configurations de filtrage (PSNR, SSIM, F1 des contours, répétabilité ORB)",
+          "technologies": ["Python", "FastAPI", "OpenCV", "NumPy", "scikit-image"],
+          "details": "Stage de juillet à septembre 2026 à Ampefiloha, Antananarivo.\n- Conception d'une API REST de prétraitement d'images pour la reconstruction 3D\n- Pipeline OpenCV : redimensionnement, débruitage (médian, bilatéral, Non-Local Means), CLAHE, contours Canny, points ORB\n- Benchmark de 4 configurations de filtrage (PSNR, SSIM, F1 des contours, répétabilité ORB)",
           "etude": {
             "objectif": "Prétraiter des images pour la reconstruction 3D, via une API REST.",
-            "resultats": [
-              "Filtre bilatéral de qualité proche de NLMeans, environ 34 fois plus rapide"
-            ]
+            "resultats": ["Filtre bilatéral de qualité proche de NLMeans, environ 34 fois plus rapide"]
           }
         },
         {
-          "id": "trafficflow",
-          "name": "TrafficFlow",
-          "pays": "Japan",
+          "id": "trafficflow", "name": "TrafficFlow", "pays": "Japan",
           "role": "Projet académique",
-          "technologies": [
-            "Python",
-            "JavaScript",
-            "PWA",
-            "Postgres",
-            "Redis"
-          ],
+          "prive": true,
+          "technologies": ["Python", "JavaScript", "PWA", "Postgres", "Redis"],
           "details": "- Recherche de chemin optimal\n- Système de prédiction de trafic basé sur des données simulées\n- Développement d'une interface cartographique interactive pour la visualisation en temps réel\n- Conception d'un backend temps réel avec Redis pour optimiser la gestion du trafic dynamique"
         },
         {
-          "id": "reconnaissance",
-          "name": "IA de reconnaissance",
-          "pays": "China",
+          "id": "reconnaissance", "name": "IA de reconnaissance", "pays": "China",
           "role": "Projet académique",
-          "technologies": [
-            "Python",
-            "NumPy"
-          ],
+          "prive": true,
+          "metriques": [{ "label": "Accuracy sur MNIST", "value": "93,76 %" }],
+          "technologies": ["Python", "NumPy"],
           "details": "- Implémentation d'un Perceptron Multicouche (MLP) à partir de zéro (from scratch)\n- Jeu de données : MNIST",
-          "etude": {
-            "resultats": [
-              "Accuracy : 93,76 % sur MNIST"
-            ]
-          }
+          "etude": { "resultats": ["Accuracy : 93,76 % sur MNIST"] }
         }
       ]
     },
     {
-      "id": "africa",
-      "name": "Formation",
-      "court": "Formation",
-      "color": "#E07A5F",
-      "icon": "book",
+      "id": "africa", "name": "Formation", "court": "Formation", "color": "#E07A5F", "icon": "book",
       "domain": "Formation & diplômes",
       "detail": "Là où tout a commencé : les fondations scolaires, les diplômes et les certifications.",
-      "libelles": {
-        "role": "Niveau",
-        "tech": "Domaines",
-        "liste": "Détails"
-      },
+      "libelles": { "role": "Niveau", "tech": "Domaines", "liste": "Détails" },
       "countries": [
-        {
-          "id": "ge_it",
-          "name": "GE-IT",
-          "pays": "Madagascar",
-          "role": "Licence en IA et Big Data",
-          "technologies": [
-            "Intelligence artificielle",
-            "Big Data"
-          ],
-          "details": "Période : 2023-2026 (en cours)."
-        },
-        {
-          "id": "champagnat",
-          "name": "St Champagnat",
-          "pays": "Kenya",
-          "role": "Bac",
-          "technologies": [],
-          "details": "Période : 2022-2023."
-        },
-        {
-          "id": "loyola",
-          "name": "St Ignace de Loyola",
-          "pays": "Tanzania",
-          "role": "BEPC",
-          "technologies": [],
-          "details": "Période : 2019-2020."
-        }
+        { "id": "ge_it", "name": "GE-IT", "pays": "Madagascar", "role": "Licence en IA et Big Data",
+          "technologies": ["Intelligence artificielle", "Big Data"], "details": "Période : 2023-2026 (en cours)." },
+        { "id": "champagnat", "name": "St Champagnat", "pays": "Kenya", "role": "Bac",
+          "technologies": [], "details": "Période : 2022-2023." },
+        { "id": "loyola", "name": "St Ignace de Loyola", "pays": "Tanzania", "role": "BEPC",
+          "technologies": [], "details": "Période : 2019-2020." }
       ]
     },
     {
-      "id": "north_america",
-      "name": "Compétences techniques",
-      "court": "Techniques",
-      "color": "#6AA9F2",
-      "icon": "code",
+      "id": "north_america", "name": "Compétences techniques", "court": "Techniques", "color": "#6AA9F2", "icon": "code",
       "domain": "Hard skills",
       "detail": "Les outils et savoir-faire pratiques : technologie et maîtrise.",
-      "libelles": {
-        "role": "Domaine",
-        "tech": "Maîtrise",
-        "liste": "Concrètement"
-      },
+      "libelles": { "role": "Domaine", "tech": "Maîtrise", "liste": "Concrètement" },
       "countries": [
-        {
-          "id": "langages",
-          "name": "Langages de programmation",
-          "pays": "United States of America",
-          "role": "Programmation",
-          "technologies": [
-            "Python",
-            "SQL",
-            "JavaScript"
-          ],
-          "details": "Compétences en langages de programmation."
-        },
-        {
-          "id": "ia_data",
-          "name": "IA / Big Data",
-          "pays": "Canada",
-          "role": "Data & intelligence artificielle",
-          "technologies": [
-            "numpy",
-            "scikit-learn",
-            "pandas",
-            "OpenCV"
-          ],
-          "details": "Bibliothèques utilisées pour l'IA et le traitement des données."
-        },
-        {
-          "id": "outils",
-          "name": "Outils",
-          "pays": "Mexico",
-          "role": "Outils du quotidien",
-          "technologies": [
-            "Git",
-            "Vim",
-            "Docker",
-            "FastAPI"
-          ],
-          "details": "Outils de développement et de déploiement."
-        },
-        {
-          "id": "langues",
-          "name": "Langues",
-          "pays": "Cuba",
-          "role": "Langues parlées",
-          "technologies": [
-            "Malagasy",
-            "Français",
-            "Anglais"
-          ],
-          "details": "- Malagasy : courant\n- Français : intermédiaire\n- Anglais : intermédiaire"
-        }
+        { "id": "langages", "name": "Langages de programmation", "pays": "United States of America", "role": "Programmation",
+          "technologies": ["Python", "SQL", "JavaScript"], "details": "Compétences en langages de programmation." },
+        { "id": "ia_data", "name": "IA / Big Data", "pays": "Canada", "role": "Data & intelligence artificielle",
+          "technologies": ["numpy", "scikit-learn", "pandas", "OpenCV"], "details": "Bibliothèques utilisées pour l'IA et le traitement des données." },
+        { "id": "outils", "name": "Outils", "pays": "Mexico", "role": "Outils du quotidien",
+          "technologies": ["Git", "Vim", "Docker", "FastAPI"], "details": "Outils de développement et de déploiement." },
+        { "id": "langues", "name": "Langues", "pays": "Cuba", "role": "Langues parlées",
+          "technologies": ["Malagasy", "Français", "Anglais"],
+          "details": "- Malagasy : courant\n- Français : intermédiaire\n- Anglais : intermédiaire" }
       ]
     },
     {
-      "id": "south_america",
-      "name": "Qualités personnelles",
-      "court": "Soft skills",
-      "color": "#5ED1A5",
-      "icon": "user",
+      "id": "south_america", "name": "Qualités personnelles", "court": "Soft skills", "color": "#5ED1A5", "icon": "user",
       "domain": "Soft skills",
       "detail": "Le continent de la personnalité : la manière de travailler avec les autres.",
-      "libelles": {
-        "role": "Qualité",
-        "tech": "Atouts"
-      },
+      "libelles": { "role": "Qualité", "tech": "Atouts", "liste": "En pratique" },
       "countries": [
-        {
-          "id": "soft_skills",
-          "name": "Façon de travailler",
-          "pays": "Brazil",
-          "role": "À compléter",
-          "technologies": [],
-          "details": "Section à compléter avec les qualités personnelles, par exemple autonomie, esprit d'équipe et créativité."
-        }
+        { "id": "soft_skills", "name": "Dynamisme", "pays": "Brazil", "role": "Réactif et orienté résultat",
+          "technologies": ["Initiative", "Énergie"],
+          "details": "- Stage de 3 mois mené jusqu'à une API fonctionnelle et un benchmark complet\n- Passe vite de l'idée à un prototype testable" },
+        { "id": "rigueur", "name": "Rigueur", "pays": "Argentina", "role": "Méthode et mesure",
+          "technologies": ["Méthode", "Évaluation"],
+          "details": "- Benchmark de 4 configurations avec 4 métriques (PSNR, SSIM, F1, ORB)\n- Résultats chiffrés et vérifiés, pas d'impression à l'œil" },
+        { "id": "curiosite", "name": "Curiosité", "pays": "Colombia", "role": "Apprentissage continu",
+          "technologies": ["Autonomie", "Veille"],
+          "details": "- MLP codé from scratch pour comprendre avant d'utiliser les bibliothèques\n- Prise en main rapide d'outils variés : Docker, FastAPI, Redis, OpenCV" }
       ]
     },
     {
-      "id": "oceania",
-      "name": "Centres d'intérêt",
-      "court": "Loisirs",
-      "color": "#C792EA",
-      "icon": "star",
+      "id": "oceania", "name": "Centres d'intérêt", "court": "Loisirs", "color": "#C792EA", "icon": "star",
       "domain": "Loisirs",
-      "detail": "Les découvertes à côté du travail : passions, sports et voyages.",
-      "libelles": {
-        "role": "Activité",
-        "tech": "Thèmes"
-      },
+      "detail": "Les découvertes à côté du travail : passions, jeux et films.",
+      "libelles": { "role": "Activité", "tech": "Thèmes", "liste": "Mes préférés" },
       "countries": [
-        {
-          "id": "jeu_video",
-          "name": "Jeu vidéo",
-          "pays": "Australia",
-          "role": "Loisir",
-          "technologies": [],
-          "details": "Centre d'intérêt : jeu vidéo."
-        },
-        {
-          "id": "film",
-          "name": "Film",
-          "pays": "New Zealand",
-          "role": "Loisir",
-          "technologies": [],
-          "details": "Centre d'intérêt : cinéma et films."
-        }
+        { "id": "jeu_video", "name": "Jeux vidéo", "pays": "Australia", "role": "Loisir",
+          "technologies": ["Stratégie", "Esprit d'équipe"],
+          "details": "- PUBG\n- Mobile Legends\n- Des jeux d'équipe qui demandent réactivité et coordination" },
+        { "id": "film", "name": "Films & animé", "pays": "New Zealand", "role": "Loisir",
+          "technologies": ["Action", "Animé"],
+          "details": "- Films d'action\n- Animés" }
       ]
     },
     {
-      "id": "europe",
-      "name": "Contact",
-      "court": "Contact",
-      "color": "#F4E3C1",
-      "icon": "mail",
+      "id": "europe", "name": "Contact", "court": "Contact", "color": "#F4E3C1", "icon": "mail",
       "domain": "En-tête & contacts",
       "detail": "La porte d'entrée : les coordonnées pour se connecter.",
-      "libelles": {
-        "role": "Disponibilité",
-        "tech": "Moyens d'échange",
-        "resume": "Localisation",
-        "liste": "Coordonnées"
-      },
+      "libelles": { "role": "Disponibilité", "tech": "Moyens d'échange", "resume": "Localisation", "liste": "Coordonnées" },
       "countries": [
-        {
-          "id": "location",
-          "name": "Coordonnées",
-          "pays": "France",
-          "role": "Disponible pour une première expérience professionnelle",
-          "technologies": [
-            "Email",
-            "Téléphone",
-            "Site web"
-          ],
-          "details": "Basé à Antananarivo, Madagascar (Ankasina).\n- Adresse : IVN 85 Ô Ankasina\n- Email : cedricran00449@gmail.com\n- Téléphone : 038 50 124 33\n- Site : https://cedricran.github.io"
-        }
+        { "id": "location", "name": "Coordonnées", "pays": "France",
+          "role": "Disponible : stage ou emploi, sur place ou en télétravail",
+          "technologies": ["Email", "Téléphone", "LinkedIn", "Site web"],
+          "details": "Basé à Antananarivo, Madagascar (Ankasina). Ouvert au télétravail.\n- Email : cedricran00449@gmail.com\n- Téléphone : +261 38 50 124 33\n- LinkedIn : https://www.linkedin.com/in/randrianarisoa-cedric-0431a5411/\n- Site : https://cedricran.github.io\n- GitHub : https://github.com/cedricran" }
       ]
     }
   ]
